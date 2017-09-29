@@ -8,6 +8,7 @@ using UnityEngine;
 public class UserClass : MonoBehaviour {
 
 	// Stats
+	////////////////
 	private int healthPool;
 	private int maxHealthPool;
 	private float playerSpeed;
@@ -15,20 +16,32 @@ public class UserClass : MonoBehaviour {
 	private Vector2 targetVelocity;
 
 	// Items
+	////////////////
 	// 0 - clear; 1 - speed
 	private int[] potion = new int[2];
-	//private UserPotion potionModule; // change and activate once created
+	private UserPotion potionModule;
 	// 0 - ; 1 - ; 2 - ;
 	private int[] weaponMod = new int[5]; 
-	//private UserWeaponMod weaponModule; // change and activate once created
+	private UserWeaponMod weaponModule; //
 	// 0 - ; 1 - ; 2 - ;
 	private int[] attackMod = new int[5];
-	//private UserAttackMod itemModule; // change and activate once created
+	private UserAttackMod itemModule;
+
+	// Arrow
+	////////////////
+	private bool recheckArrow;
+	private bool recheckWeapon;
+	private weaponArrow currentArrow;
 
 	// Effects
+	////////////////
 	// 0 - ; 1 - ; 2 -
 	// 3 - ; 4 - ; 5 -
 	//private gameObject[] currentAilments = new gameObject[20]; // change and activate once created
+
+	// Animator
+	////////////////
+	private Animator anim;
 
 	///////////////////////////////////
 	// Unity Methods
@@ -36,7 +49,12 @@ public class UserClass : MonoBehaviour {
 	// Start
 	////////////////
 	void Start(){
-		//Reseting
+		// Active Module
+		//potionModule = new UserPotion();
+		weaponModule = new UserWeaponMod();
+		attackModule = new UserAttackMod();
+		anim = GetComponent<Animator>();
+		// Reseting
 		this.ResetHealth();
 		this.ResetSpeed();
 		this.ResetPotions();
@@ -58,15 +76,19 @@ public class UserClass : MonoBehaviour {
 
 		// Attack
 		if (Input.GetMouseButtonDown(1)){
-			// use Attack Module ------->
-			// use Weapon Module ------->
+			if (this.recheckArrow == true){
+				currentArrow = attackModule.ApplyMod(attackMod);
+			}
+			if (this.recheckWeapon == true){
+				weaponModule.ApplyMod(weaponMod);
+			}
+			weaponModule.fire(currentArrow);
 		}
 	}
 
 	// Fixed Update
 	////////////////
 	void FixedUpdate(){
-		// Movement
 		this.targetVelocity = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 		GetComponent<Rigidbody2D> ().velocity = targetVelocity * currentSpeed;
 	}
@@ -168,16 +190,19 @@ public class UserClass : MonoBehaviour {
 
 	public void SetWeaponMod(int indexWeaponMod, int newWeaponMod){
 		this.weaponMod[indexWeaponMod] = newWeaponMod;
+		this.recheckWeapon = true;
 	}
 
 	public void GiveWeaponMod(int indexWeaponMod){
 		this.weaponMod[indexWeaponMod] += 1;
+		this.recheckWeapon = true;
 	}
 
 	public void TakeWeaponMod(int indexWeaponMod){
 		if (this.GetWeaponMod(indexWeaponMod) > 0){
 			this.weaponMod[indexWeaponMod] -= 1;
 		}
+		this.recheckWeapon = true;
 	}
 
 	public int[] GetWeaponModFull(){
@@ -188,6 +213,7 @@ public class UserClass : MonoBehaviour {
 		for (int c = 0; c <= 4; c += 1){
 			this.SetWeaponMod(c, 0);
 		}
+		this.recheckWeapon = true;
 	}
 
 	// AttackMod
@@ -198,16 +224,19 @@ public class UserClass : MonoBehaviour {
 
 	public void SetAttackMod(int indexAttackMod, int newAttackMod) {
 		this.attackMod[indexAttackMod] = newAttackMod;
+		this.recheckArrow = true;
 	}
 
 	public void GiveAttackMod(int indexAttackMod) {
 		this.attackMod[indexAttackMod] += 1;
+		this.recheckArrow = true;
 	}
 
 	public void TakeAttackMod(int indexAttackMod) {
 		if (this.GetAttackMod(indexAttackMod) > 0){
 			this.attackMod[indexAttackMod] -= 1;
 		}
+		this.recheckArrow = true;
 	}
 
 	public int[] GetAttackModFull(){
@@ -218,5 +247,6 @@ public class UserClass : MonoBehaviour {
 		for (int c = 0; c <= 4; c += 1) {
 			this.SetAttackMod(c, 0);
 		}
+		this.recheckArrow = true;
 	}
 }
