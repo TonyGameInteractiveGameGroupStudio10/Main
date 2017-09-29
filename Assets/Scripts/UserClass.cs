@@ -36,7 +36,6 @@ public class UserClass : MonoBehaviour {
 	// Start
 	////////////////
 	void Start(){
-
 		//Reseting
 		this.ResetHealth();
 		this.ResetSpeed();
@@ -48,11 +47,6 @@ public class UserClass : MonoBehaviour {
 	// Update
 	////////////////
 	void Update(){
-
-		// Movement
-		this.targetVelocity = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-		GetComponent<Rigidbody2D> ().velocity = targetVelocity * currentSpeed;
-
 		// Potions
 		// c - clear ; x - speed
 		if (Input.GetKeyDown("c")) { 
@@ -67,6 +61,14 @@ public class UserClass : MonoBehaviour {
 			// use Attack Module ------->
 			// use Weapon Module ------->
 		}
+	}
+
+	// Fixed Update
+	////////////////
+	void FixedUpdate(){
+		// Movement
+		this.targetVelocity = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+		GetComponent<Rigidbody2D> ().velocity = targetVelocity * currentSpeed;
 	}
 
 	// Collision

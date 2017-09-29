@@ -1,0 +1,68 @@
+List of script and what they should currently look after
+
+gameMaster()
+	- Level Loader
+	- Monster Controller (AI)
+	- Boss Controller (AI)
+	- Wave Complete
+	- Level Complete
+
+gameMonster()
+	- Health
+	- Speed
+	- Environment Drops
+	- PotionSprite
+	- WeaponModSprite
+	- AttackModSprite
+
+gameBoss()
+	- Health
+	- Speed
+
+++ItemPotion() (Complete)
+	- SpriteRenderer (Complete)
+	- Contains (Complete)
+	- Gives to Player (Complete)
+	- Destories (Complete)
+
+++ItemWeaponMod() (Complete)
+	- SpriteRenderer (Complete)
+	- Contains (Complete)
+	- Gives to Player (Complete)
+	- Destories (Complete)
+
+++ItemAttackMod() (Complete)
+	- SpriteRenderer (Complete)
+	- Contains (Complete)
+	- Gives to Player (Complete)
+	- Destories (Complete)
+
+UserClass()
+	- Health (complete)
+	- Speed (complete)
+	- Array of held potions (complete)
+	- Array of held attack modifiers (complete)
+	- Array of held weapon modifiers (complete)
+	- Array of current ailments (complete)
+	- Calling the potion module
+	- Calling the attack module
+	- Calling the weapon module
+
+UserPotion()
+	- Apply effects of given potion
+	- Track time remaining on the potion's effect
+	- Remove itself from the player once expired
+
+UserAttackMod()
+	- Takes in user's array of attack modifiers
+	- Apply attack modifiers to "arrow"
+	- Gives the "arrow" back to the user (to be sent to weapon mod)
+
+UserWeaponMod()
+	- Takes in user's "arrow", and array of weapon modifiers
+	- Apply the arrow to the weapon modifiers
+	- Creates the object arrow as per the arrow given to it + weapon modifiers
+
+UserWeapon()
+	- The actual object moving through space that damages on collision
+	- will be created with correct attrubutes as per the UserWeaponMod
