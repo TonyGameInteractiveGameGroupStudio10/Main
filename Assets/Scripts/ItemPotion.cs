@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemWeaponMod : MonoBehaviour {
+public class ItemPotion : MonoBehaviour {
 
 	public int itemIndex;
 
@@ -16,14 +16,14 @@ public class ItemWeaponMod : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll){
-		if (coll.gameObject.tag == "Player")
-		{
-			coll.gameObject.GivePotion(itemIndex);
+		if (coll.gameObject.tag == "Player"){
+			UserClass tempUserScript = (UserClass) coll.gameObject.GetComponent(typeof(UserClass));
+			tempUserScript.GivePotion(itemIndex);
 			Destroy(gameObject);
 		}
 	}
 
-	public void setItemIndex(int index){
-		this.itemIndex = index;
+	public void setItemIndex(int newIndex){
+		this.itemIndex = newIndex;
 	}
-
+}

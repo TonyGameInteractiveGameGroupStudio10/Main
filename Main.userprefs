@@ -1,0 +1,17 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ItemWeaponMod.cs">
+    <Files>
+      <File FileName="Assets/Scripts/UserClass.cs" Line="85" Column="18" />
+      <File FileName="Assets/Scripts/ItemAttackMod.cs" Line="19" Column="39" />
+      <File FileName="Assets/Scripts/ItemPotion.cs" Line="27" Column="24" />
+      <File FileName="Assets/Scripts/ItemWeaponMod.cs" Line="28" Column="24" />
+      <File FileName="Assets/Scripts/UserAttackMod.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UserWeaponMod.cs" Line="12" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

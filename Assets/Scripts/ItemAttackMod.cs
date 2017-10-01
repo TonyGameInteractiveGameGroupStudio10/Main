@@ -16,13 +16,14 @@ public class ItemAttackMod : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll){
-		if (coll.gameObject.tag == "Player")
-		{
-			coll.gameObject.GiveAttackMod(itemIndex);
+		if (coll.gameObject.tag == "Player"){
+			UserClass tempUserScript = (UserClass) coll.gameObject.GetComponent(typeof(UserClass));
+			tempUserScript.GiveAttackMod(itemIndex);
 			Destroy(gameObject);
 		}
 	}
 
-	public void setItemIndex(int index){
-		this.itemIndex = index;
+	public void setItemIndex(int newIndex){
+		this.itemIndex = newIndex;
 	}
+}

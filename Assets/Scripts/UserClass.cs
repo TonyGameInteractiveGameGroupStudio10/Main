@@ -19,13 +19,13 @@ public class UserClass : MonoBehaviour {
 	////////////////
 	// 0 - clear; 1 - speed
 	private int[] potion = new int[2];
-	private UserPotion potionModule;
+	//private UserPotion potionModule;
 	// 0 - ; 1 - ; 2 - ;
 	private int[] weaponMod = new int[5]; 
 	private UserWeaponMod weaponModule; //
 	// 0 - ; 1 - ; 2 - ;
 	private int[] attackMod = new int[5];
-	private UserAttackMod itemModule;
+	private UserAttackMod attackModule;
 
 	// Arrow
 	////////////////
@@ -82,7 +82,7 @@ public class UserClass : MonoBehaviour {
 			if (this.recheckWeapon == true){
 				weaponModule.ApplyMod(weaponMod);
 			}
-			weaponModule.fire(currentArrow);
+			weaponModule.Fire(currentArrow);
 		}
 	}
 

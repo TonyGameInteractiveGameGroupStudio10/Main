@@ -14,16 +14,17 @@ public class ItemWeaponMod : MonoBehaviour {
 		//displaySprite = gameMaster.getWeaponModSprite(itemIndex);
 		this.spriteRenderer.sprite = displaySprite;
 	}
-	
+
 	void OnTriggerEnter2D(Collider2D coll){
 		if (coll.gameObject.tag == "Player")
 		{
-			coll.gameObject.GiveWeaponMod(itemIndex);
+			UserClass tempUserScript = (UserClass) coll.gameObject.GetComponent (typeof(UserClass));
+			tempUserScript.GiveWeaponMod(itemIndex);
 			Destroy(gameObject);
 		}
 	}
 
-	public void setItemIndex(int index){
-		this.itemIndex = index;
+	public void setItemIndex(int newIndex){
+		this.itemIndex = newIndex;
 	}
-
+}

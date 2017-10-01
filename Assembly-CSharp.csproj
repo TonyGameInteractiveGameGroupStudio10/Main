@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{38362816-82D1-3B61-7582-967BC0438D9B}</ProjectGuid>
+    <ProjectGuid>{DD8BB905-17D1-AAA6-C8A2-213488C298D6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -46,7 +46,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\ItemAttackMod.cs" />
+     <Compile Include="Assets\Scripts\ItemPotion.cs" />
+     <Compile Include="Assets\Scripts\ItemWeaponMod.cs" />
+     <Compile Include="Assets\Scripts\UserAttackMod.cs" />
      <Compile Include="Assets\Scripts\UserClass.cs" />
+     <Compile Include="Assets\Scripts\UserWeaponMod.cs" />
+     <Compile Include="Assets\Scripts\weaponArrow.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

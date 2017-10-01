@@ -8,7 +8,7 @@ public class UserWeaponMod : MonoBehaviour {
 
 		}
 
-		public void Fire(weaponArrow firingArrow){
-
+		public weaponArrow Fire(weaponArrow firingArrow){
+			return new weaponArrow();
 		}
 }
