@@ -78,9 +78,11 @@ public class UserClass : MonoBehaviour {
 		if (Input.GetMouseButtonDown(1)){
 			if (this.recheckArrow == true){
 				currentArrow = attackModule.ApplyMod(attackMod);
+				this.recheckArrow = false;
 			}
 			if (this.recheckWeapon == true){
 				weaponModule.ApplyMod(weaponMod);
+				this.recheckArrow = false;
 			}
 			weaponModule.Fire(currentArrow);
 		}
