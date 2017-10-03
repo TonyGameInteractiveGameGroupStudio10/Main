@@ -32,6 +32,7 @@ public class UserClass : MonoBehaviour {
 	private bool recheckAttack;
 	private bool recheckWeapon;
 	private GameObject weaponPrefab;
+	
 	// Effects
 	////////////////
 	// 0 - ; 1 - ; 2 -

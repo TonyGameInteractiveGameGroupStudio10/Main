@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\FiringPosition.cs" />
      <Compile Include="Assets\Scripts\ItemAttackMod.cs" />
      <Compile Include="Assets\Scripts\ItemPotion.cs" />
      <Compile Include="Assets\Scripts\ItemWeaponMod.cs" />

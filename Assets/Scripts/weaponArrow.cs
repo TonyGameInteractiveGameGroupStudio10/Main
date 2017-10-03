@@ -7,6 +7,7 @@ public class WeaponArrow : WeaponType {
 	// Stats
 	////////////////
 	public float speed = 1f;
+	public Vector2 firingDirection;
 
 	// Effects
 	////////////////
@@ -18,7 +19,8 @@ public class WeaponArrow : WeaponType {
 	// Update
 	////////////////
 	void FixedUpdate(){
-		GetComponent<Rigidbody2D>().velocity = new Vector2(1,0) * speed;
+		GetComponent<Rigidbody2D>().velocity = firingDirection * speed;
+		Destroy(gameObject, 7);
 	}
 
 	// Collision
@@ -46,6 +48,16 @@ public class WeaponArrow : WeaponType {
 
 	public void MinusSpeed(float minusSpeed){
 		speed -= minusSpeed;
+	}
+
+	// Firing Direction
+	/////////////////
+	public Vector2 GetFiringDirection(){
+		return firingDirection;
+	}
+
+	public void SetFiringDirection(Vector2 newDirection){
+		firingDirection = newDirection;
 	}
 
 	// Effects
