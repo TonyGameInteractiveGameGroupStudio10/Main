@@ -66,7 +66,7 @@ public class WeaponArrow : WeaponType {
 	// Resets
 	/////////////////
 	public void ResetWeaponArrow(){
-		speed = 1f;
+		speed = 8f;
 	}
 
 }

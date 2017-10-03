@@ -11,12 +11,13 @@ public class UserAttackMod : MonoBehaviour {
 	public GameObject ApplyMod(int[] buffs){
 		// Grab weapon script attached to prefab object
 		WeaponArrow newWeapon = weaponPrefab.GetComponent<WeaponArrow>();
+		newWeapon.ResetWeaponArrow();
 
 		// Apply modifiers from buffs to the script
 		for (int i = 0; i < 5; i += 1){
 			
 		}
-		newWeapon.ResetWeaponArrow();
+	
 		return weaponPrefab;
 	}
 }

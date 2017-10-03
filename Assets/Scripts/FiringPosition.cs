@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class FiringPosition : MonoBehaviour {
 
-	Vector2 positionPlacement;
-
-	float firingX;
-	float firingY;
-
-	void Update()
-	{
+	void Update(){
 
 	}
 }
