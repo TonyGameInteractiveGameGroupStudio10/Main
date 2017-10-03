@@ -2,24 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class weaponArrow : MonoBehaviour {
+public class WeaponArrow : WeaponType {
 
-	// Standard Stats
-	private float speed;
-	private int Damage;
+	// Stats
+	////////////////
+	public float speed = 1f;
 
-	// Speical Stats
-	private bool Effect0;
-	private bool Effect1;
-	private bool Effect2;
-	private bool Effect3;
-	private bool Effect4;
+	// Effects
+	////////////////
 
+
+	///////////////////////////////////
+	// Unity Methods
+	///////////////////////////////////
+	// Update
+	////////////////
 	void FixedUpdate(){
-
+		GetComponent<Rigidbody2D>().velocity = new Vector2(1,0) * speed;
 	}
 
+	// Collision
+	////////////////
 	void OnCollisionEnter2D(Collision2D coll){
 
 	}
+
+	///////////////////////////////////
+	// Methods
+	///////////////////////////////////
+	// Speed
+	/////////////////
+	public float GetSpeed(){
+		return speed;
+	}
+
+	public void SetSpeed(float newSpeed){
+		speed = newSpeed;
+	}
+
+	public void AddSpeed(float addedSpeed){
+		speed += addedSpeed;
+	}
+
+	public void MinusSpeed(float minusSpeed){
+		speed -= minusSpeed;
+	}
+
+	// Effects
+	/////////////////
+
+	// Resets
+	/////////////////
+	public void ResetWeaponArrow(){
+		speed = 1f;
+	}
+
 }

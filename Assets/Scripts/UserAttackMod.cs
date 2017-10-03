@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class UserAttackMod : MonoBehaviour {
 
-	private weaponArrow newArrow;
+	// Prefab
+	public GameObject weaponPrefab;
 
-	public weaponArrow ApplyMod(int[] buffs){
-		newArrow = new weaponArrow();
+	// Apply Modifiers to the WeaponType script
+	public GameObject ApplyMod(int[] buffs){
+		// Grab weapon script attached to prefab object
+		WeaponArrow newWeapon = weaponPrefab.GetComponent<WeaponArrow>();
 
+		// Apply modifiers from buffs to the script
 		for (int i = 0; i < 5; i += 1){
-			// Apply the effects to the arrow
+			
 		}
-
-		return newArrow;
+		newWeapon.ResetWeaponArrow();
+		return weaponPrefab;
 	}
 }

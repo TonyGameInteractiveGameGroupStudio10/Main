@@ -51,8 +51,10 @@
      <Compile Include="Assets\Scripts\ItemWeaponMod.cs" />
      <Compile Include="Assets\Scripts\UserAttackMod.cs" />
      <Compile Include="Assets\Scripts\UserClass.cs" />
+     <Compile Include="Assets\Scripts\UserPotion.cs" />
      <Compile Include="Assets\Scripts\UserWeaponMod.cs" />
-     <Compile Include="Assets\Scripts\weaponArrow.cs" />
+     <Compile Include="Assets\Scripts\WeaponArrow.cs" />
+     <Compile Include="Assets\Scripts\WeaponType.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

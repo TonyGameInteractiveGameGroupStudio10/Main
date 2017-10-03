@@ -9,30 +9,29 @@ public class UserClass : MonoBehaviour {
 
 	// Stats
 	////////////////
-	private int healthPool;
-	private int maxHealthPool;
-	private float playerSpeed;
+	private int healthPool;  
+	private int maxHealthPool; // 40
 	private float currentSpeed;
+	private float playerSpeed; // 4f
 	private Vector2 targetVelocity;
 
 	// Items
 	////////////////
 	// 0 - clear; 1 - speed
 	private int[] potion = new int[2];
-	//private UserPotion potionModule;
-	// 0 - ; 1 - ; 2 - ;
+	private UserPotion potionModule;
+	// 0 - effect1 ; 1 - effect2 ; 2 - effect3;
 	private int[] weaponMod = new int[5]; 
 	private UserWeaponMod weaponModule; //
-	// 0 - ; 1 - ; 2 - ;
+	// 0 - effect1 ; 1 - effect2 ; 2 - effect3 ;
 	private int[] attackMod = new int[5];
 	private UserAttackMod attackModule;
 
 	// Arrow
 	////////////////
-	private bool recheckArrow;
+	private bool recheckAttack;
 	private bool recheckWeapon;
-	private weaponArrow currentArrow;
-
+	private GameObject weaponPrefab;
 	// Effects
 	////////////////
 	// 0 - ; 1 - ; 2 -
@@ -49,11 +48,10 @@ public class UserClass : MonoBehaviour {
 	// Start
 	////////////////
 	void Start(){
-		// Active Module
-		//potionModule = new UserPotion();
-		weaponModule = new UserWeaponMod();
-		attackModule = new UserAttackMod();
 		anim = GetComponent<Animator>();
+		weaponModule = GetComponent<UserWeaponMod>();
+		attackModule = GetComponent<UserAttackMod>();
+		potionModule = GetComponent<UserPotion>();
 		// Reseting
 		this.ResetHealth();
 		this.ResetSpeed();
@@ -75,16 +73,16 @@ public class UserClass : MonoBehaviour {
 		}
 
 		// Attack
-		if (Input.GetMouseButtonDown(1)){
-			if (this.recheckArrow == true){
-				currentArrow = attackModule.ApplyMod(attackMod);
-				this.recheckArrow = false;
+		if (Input.GetKeyDown("space")){
+			if (this.recheckAttack == true){
+				weaponPrefab = attackModule.ApplyMod(attackMod);
+				this.recheckAttack = false;
 			}
 			if (this.recheckWeapon == true){
 				weaponModule.ApplyMod(weaponMod);
-				this.recheckArrow = false;
+				this.recheckWeapon = false;
 			}
-			weaponModule.Fire(currentArrow);
+			weaponModule.Fire(weaponPrefab, this.transform.Find("FiringPosition"));
 		}
 	}
 
@@ -93,12 +91,6 @@ public class UserClass : MonoBehaviour {
 	void FixedUpdate(){
 		this.targetVelocity = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 		GetComponent<Rigidbody2D> ().velocity = targetVelocity * currentSpeed;
-	}
-
-	// Collision
-	////////////////
-	void OnCollisionEnter2D(Collision2D coll){
-
 	}
 
 	////////////////////////////////
@@ -226,19 +218,19 @@ public class UserClass : MonoBehaviour {
 
 	public void SetAttackMod(int indexAttackMod, int newAttackMod) {
 		this.attackMod[indexAttackMod] = newAttackMod;
-		this.recheckArrow = true;
+		this.recheckAttack = true;
 	}
 
 	public void GiveAttackMod(int indexAttackMod) {
 		this.attackMod[indexAttackMod] += 1;
-		this.recheckArrow = true;
+		this.recheckAttack = true;
 	}
 
 	public void TakeAttackMod(int indexAttackMod) {
 		if (this.GetAttackMod(indexAttackMod) > 0){
 			this.attackMod[indexAttackMod] -= 1;
 		}
-		this.recheckArrow = true;
+		this.recheckAttack = true;
 	}
 
 	public int[] GetAttackModFull(){
@@ -249,6 +241,6 @@ public class UserClass : MonoBehaviour {
 		for (int c = 0; c <= 4; c += 1) {
 			this.SetAttackMod(c, 0);
 		}
-		this.recheckArrow = true;
+		this.recheckAttack = true;
 	}
 }
