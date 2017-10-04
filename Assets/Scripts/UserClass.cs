@@ -90,8 +90,13 @@ public class UserClass : MonoBehaviour {
 	// Fixed Update
 	////////////////
 	void FixedUpdate(){
+		// Movement
 		this.targetVelocity = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 		GetComponent<Rigidbody2D> ().velocity = targetVelocity * currentSpeed;
+
+		// Rotate
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		transform.rotation = Quaternion.LookRotation(new Vector3(0,0,1), transform.position - mousePos);
 	}
 
 	////////////////////////////////

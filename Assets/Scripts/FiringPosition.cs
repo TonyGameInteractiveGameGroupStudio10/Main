@@ -4,7 +4,4 @@ using UnityEngine;
 
 public class FiringPosition : MonoBehaviour {
 
-	void Update(){
-
-	}
 }

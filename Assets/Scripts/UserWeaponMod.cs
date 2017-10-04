@@ -11,6 +11,7 @@ public class UserWeaponMod : MonoBehaviour {
 
 	// Vector Direction containers
 	Vector2 firingDirection;
+	GameObject attackClone;
 
 	///////////////////////////////////
 	// Unity Methods
@@ -53,9 +54,11 @@ public class UserWeaponMod : MonoBehaviour {
 			// Find direction in which the mouse is pointed
 			firingDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - firingPosition.position).normalized;
 			// Fire that direction
-			firingWeapon.GetComponent<WeaponArrow>().SetFiringDirection((Camera.main.ScreenToWorldPoint(Input.mousePosition) - firingPosition.position).normalized);
+			firingWeapon.GetComponent<WeaponArrow>().SetFiringDirection(firingDirection);
 			// Create weapon swing/strike
-			Instantiate(firingWeapon,firingPosition.position,Quaternion.identity);
+			attackClone = Instantiate(firingWeapon,firingPosition.position,Quaternion.identity);
+			// Rotate object to correct direction
+			attackClone.transform.rotation = Quaternion.LookRotation(new Vector3(0,0,1), firingDirection);
 
 			// reset swing counter
 			attackCounter = attackSpeed;
