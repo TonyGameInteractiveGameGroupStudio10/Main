@@ -7,23 +7,23 @@ public class MonsterClass : MonoBehaviour {
 
     // Stats
     ////////////////
-    private int healthPool;
-    private float currentSpeed;
+    protected int healthPool;
+    protected float currentSpeed;
 
     // Components
     ////////////////
-    private Rigidbody2D enemyBody;
-    private Animator enemyAnimator;
+    protected Rigidbody2D enemyBody;
+    protected Animator enemyAnimator;
 
     // Player
     ////////////////
-    private GameObject thePlayer;
-    private Transform playerLocation;
+    protected GameObject thePlayer;
+    protected Transform playerLocation;
 
     // Audio
     ///////////////
     public AudioClip deathCry;
-    private AudioSource audioPlayer;
+    protected AudioSource audioPlayer;
 
     // Effects
     ////////////////
@@ -53,21 +53,13 @@ public class MonsterClass : MonoBehaviour {
         this.healthPool = newHealth;
     }
 
-    public int GetMaxHealth(){
-        return this.maxHealth;
-    }
-
-    public void SetMaxHealth(int newMaxHealth){
-        this.maxHealth = newMaxHealth;
-    }
-
     public void TakeDamage(int incomingDamage){
         this.healthPool -= incomingDamage;
     }
 
     public void Die(){
         effectDropper();
-        Destory(gameObject);
+        Destroy(gameObject);
     }
 
     // Speed
@@ -82,7 +74,7 @@ public class MonsterClass : MonoBehaviour {
 
     // Effects
     ////////////////
-    private void effectRoller(){
+    protected void effectRoller(){
         int diceRoll = Random.Range(1,101);
 
         // Roll values are currently temp, this is more of a skeleton
@@ -103,7 +95,7 @@ public class MonsterClass : MonoBehaviour {
         }
     }
 
-    private void effectDropper(){
+    protected void effectDropper(){
         if (potionDrop == true){
             // potion prefab
         }

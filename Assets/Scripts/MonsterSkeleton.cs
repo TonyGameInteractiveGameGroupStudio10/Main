@@ -36,7 +36,7 @@ public class MonsterSkeleton : MonsterClass {
     ////////////////
     void Update(){
         transform.right = playerLocation.position - transform.position;
-        transform.position = Vector2.MoveTowards(transform.position, playerLocation.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
 
         if (healthPool <= 0){
             Die();
@@ -71,6 +71,6 @@ public class MonsterSkeleton : MonsterClass {
     }
 
     public void SetMonsterSpeed(float newSpeed){
-    	monsterSpeed = newSpeed();
+    	monsterSpeed = newSpeed;
     }
 }
