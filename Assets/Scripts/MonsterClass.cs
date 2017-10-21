@@ -2,40 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Monster Class that all monster classes are to be built from
 public class MonsterClass : MonoBehaviour {
 
-    Transform target;
-    
-
+    // Stats
+    ////////////////
     private int healthPool;
-    private int maxHealth;
-    private float currentSpeed; //4.2f
+    private float currentSpeed;
 
-
+    // Components
+    ////////////////
     private Rigidbody2D enemyBody;
-
     private Animator enemyAnimator;
 
-    // Use this for initialization
-    void Start() {
-        enemyAnimator = GetComponent<Animator>();
-        currentSpeed = 4.2f;
-        enemyBody = GetComponent<Rigidbody2D>();
-        
-    }
+    // Player
+    ////////////////
+    private GameObject thePlayer;
+    private Transform playerLocation;
 
-    // Update is called once per frame
-    void FixedUpdate() {
+    // Audio
+    ///////////////
+    public AudioClip deathCry;
+    private AudioSource audioPlayer;
 
-        target = GameObject.FindWithTag("Player").transform;
-       
-        //enemyBody.velocity = target.position * currentSpeed;
-        while (Vector3.Distance(transform.position, target.position) >= 0.1f)
-        {
-           enemyBody.velocity = target.position * currentSpeed;
-        }
+    // Effects
+    ////////////////
+    private int dropIndex;
+    private bool potionDrop;
+    private bool attackModDrop;
+    private bool weaponModDrop;
 
-    }
+
+    ///////////////////////////////////
+    // Methods
+    ///////////////////////////////////
+    // Health
+    ////////////////
     public int GetHealth()
     {
         return this.healthPool;
@@ -61,9 +63,25 @@ public class MonsterClass : MonoBehaviour {
         this.healthPool -= incomingDamage;
     }
 
-    public void ResetHealth()
-    {
-        this.SetHealth(40);
-        this.SetMaxHealth(40);
+    public void Die(){
+        Destory(gameObject);
+    }
+
+    // Speed
+    ////////////////
+    public float GetCurrentSpeed(){
+        return this.currentSpeed;
+    }
+
+    public void SetCurrentSpeed(float newSpeed){
+        this.currentSpeed = newSpeed;
+    }
+
+    // Effects
+    ////////////////
+    private void effectRoller(){
+        int diceRoll = Random.Range(1,100);
+
+        
     }
 }

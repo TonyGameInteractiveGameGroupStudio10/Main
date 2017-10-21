@@ -12,7 +12,8 @@ public class UserAttackMod : MonoBehaviour {
 	////////////////
 	public GameObject weaponPrefab;
 
-	// Apply Modifiers to the WeaponType script
+	// Methods
+	////////////////
 	public GameObject ApplyMod(int[] buffs){
 		// Grab weapon script attached to prefab object
 		WeaponArrow newWeapon = weaponPrefab.GetComponent<WeaponArrow>();
