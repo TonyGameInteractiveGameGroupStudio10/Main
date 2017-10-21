@@ -31,6 +31,13 @@ public class MonsterClass : MonoBehaviour {
     private bool potionDrop;
     private bool attackModDrop;
     private bool weaponModDrop;
+    private bool environmentDrop;
+
+    // Prefab
+    ////////////////
+    public GameObject potionPrefab;
+    public GameObject attackModPrefab;
+    public GameObject weaponModPrefab;
 
 
     ///////////////////////////////////
@@ -38,32 +45,28 @@ public class MonsterClass : MonoBehaviour {
     ///////////////////////////////////
     // Health
     ////////////////
-    public int GetHealth()
-    {
+    public int GetHealth(){
         return this.healthPool;
     }
 
-    public void SetHealth(int newHealth)
-    {
+    public void SetHealth(int newHealth){
         this.healthPool = newHealth;
     }
 
-    public int GetMaxHealth()
-    {
+    public int GetMaxHealth(){
         return this.maxHealth;
     }
 
-    public void SetMaxHealth(int newMaxHealth)
-    {
+    public void SetMaxHealth(int newMaxHealth){
         this.maxHealth = newMaxHealth;
     }
 
-    public void TakeDamage(int incomingDamage)
-    {
+    public void TakeDamage(int incomingDamage){
         this.healthPool -= incomingDamage;
     }
 
     public void Die(){
+        effectDropper();
         Destory(gameObject);
     }
 
@@ -80,8 +83,38 @@ public class MonsterClass : MonoBehaviour {
     // Effects
     ////////////////
     private void effectRoller(){
-        int diceRoll = Random.Range(1,100);
+        int diceRoll = Random.Range(1,101);
 
-        
+        // Roll values are currently temp, this is more of a skeleton
+        if (diceRoll <= 2){
+            potionDrop = true;
+            dropIndex = Random.Range(0,2);
+        }
+        else if (diceRoll >= 3 && diceRoll <= 4){
+            weaponModDrop = true;
+            dropIndex = Random.Range(0,5);
+        }
+        else if (diceRoll >= 5 && diceRoll <= 6){
+            attackModDrop = true;
+            dropIndex = Random.Range(0,5);
+        }
+        else if (diceRoll >= 7 && diceRoll <= 8){
+            environmentDrop = true;
+        }
+    }
+
+    private void effectDropper(){
+        if (potionDrop == true){
+            // potion prefab
+        }
+        else if(weaponModDrop == true){
+            // weapon prefab
+        }
+        else if(attackModDrop == true){
+            // attack prefab
+        }
+        else if (environmentDrop == true){
+            // environment prefab
+        }
     }
 }

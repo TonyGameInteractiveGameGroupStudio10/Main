@@ -73,8 +73,4 @@ public class MonsterSkeleton : MonsterClass {
     public void SetMonsterSpeed(float newSpeed){
     	monsterSpeed = newSpeed();
     }
-
-
-
-
 }
