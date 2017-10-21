@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// The Arrow Prefab Script, inhertance from WeaponType
 public class WeaponArrow : WeaponType {
 
 	// Stats

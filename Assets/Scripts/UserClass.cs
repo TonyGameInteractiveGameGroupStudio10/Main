@@ -5,6 +5,7 @@ using UnityEngine;
 // Requirments:
 [RequireComponent (typeof (Rigidbody2D))]
 
+// Main Class for the Player
 public class UserClass : MonoBehaviour {
 
 	// Stats

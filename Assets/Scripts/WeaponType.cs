@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// General Weapon Script that all prefab scripts should inherit from
 public class WeaponType : MonoBehaviour {
 
+	// Stats
+	////////////////
 	protected int damage;
 
+	///////////////////////////////////
+	// Methods
+	///////////////////////////////////
+	// Damage
+	/////////////////
 	public int GetDamage(){
 		return damage;
 	}

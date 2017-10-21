@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Weapon Module extension for the User Class
+// - Applies all weapon modifiers
+// - Handles the attack (Fire, etc)
 public class UserWeaponMod : MonoBehaviour {
 
-	// Attack Properties
+	// Stats
+	////////////////
 	private float attackSpeed;
 	private float attackCounter;
 	private bool inAttackAnimation;
 
-	// Vector Direction containers
+	// Vector Containers
+	////////////////
 	Vector2 firingDirection;
 	GameObject attackClone;
 
@@ -65,6 +70,4 @@ public class UserWeaponMod : MonoBehaviour {
 			inAttackAnimation = true;
 		}
 	}
-
-
 }
