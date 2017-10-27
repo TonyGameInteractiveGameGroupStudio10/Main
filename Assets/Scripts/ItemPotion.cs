@@ -17,8 +17,7 @@ public class ItemPotion : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D coll){
 		if (coll.gameObject.tag == "Player"){
-			UserClass tempUserScript = (UserClass) coll.gameObject.GetComponent(typeof(UserClass));
-			tempUserScript.GivePotion(itemIndex);
+			coll.gameObject.SendMessage("GivePotion", itemIndex);
 			Destroy(gameObject);
 		}
 	}

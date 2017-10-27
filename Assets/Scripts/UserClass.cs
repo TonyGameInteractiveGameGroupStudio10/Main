@@ -60,6 +60,8 @@ public class UserClass : MonoBehaviour {
 		this.ResetPotions();
 		this.ResetWeaponMod();
 		this.ResetAttackMod();
+
+		transform.position = new Vector3(0,0,0);
 	}
 
 	// Update

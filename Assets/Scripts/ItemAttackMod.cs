@@ -17,8 +17,7 @@ public class ItemAttackMod : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D coll){
 		if (coll.gameObject.tag == "Player"){
-			UserClass tempUserScript = (UserClass) coll.gameObject.GetComponent(typeof(UserClass));
-			tempUserScript.GiveAttackMod(itemIndex);
+			coll.gameObject.SendMessage("GiveAttackMod", itemIndex);
 			Destroy(gameObject);
 		}
 	}

@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour {
     }
     
     void Update () {
-		if (Input.GetKey(KeyCode.E)){
+		if (Input.GetKey(KeyCode.F)){
 			this.transform.position = new Vector3(0,0, -10);
 			cameraComp.orthographicSize = 11;
 		} else{
