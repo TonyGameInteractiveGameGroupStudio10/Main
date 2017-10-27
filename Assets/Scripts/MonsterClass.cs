@@ -97,15 +97,19 @@ public class MonsterClass : MonoBehaviour {
 
     protected void effectDropper(){
         if (potionDrop == true){
+            // set drop index
             // potion prefab
         }
         else if(weaponModDrop == true){
+            // set drop index
             // weapon prefab
         }
         else if(attackModDrop == true){
+            // set drop index
             // attack prefab
         }
         else if (environmentDrop == true){
+            // set drop index
             // environment prefab
         }
     }
