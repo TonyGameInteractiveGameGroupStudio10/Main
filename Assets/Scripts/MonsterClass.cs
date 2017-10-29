@@ -97,16 +97,16 @@ public class MonsterClass : MonoBehaviour {
 
     protected void effectDropper(){
         if (potionDrop == true){
-            // set drop index
-            // potion prefab
+            GameObject potionTemp = Instantiate(potionPrefab,transform.position,Quaternion.identity);
+            potionTemp.SendMessage("setItemIndex", dropIndex);
         }
         else if(weaponModDrop == true){
-            // set drop index
-            // weapon prefab
+            GameObject weaponTemp = Instantiate(weaponModPrefab,transform.position,Quaternion.identity);
+            weaponTemp.SendMessage("setItemIndex", dropIndex);
         }
         else if(attackModDrop == true){
-            // set drop index
-            // attack prefab
+            GameObject attackTemp = Instantiate(attackModPrefab,transform.position,Quaternion.identity);
+            attackTemp.SendMessage("setItemIndex", dropIndex)
         }
         else if (environmentDrop == true){
             // set drop index

@@ -44,6 +44,11 @@ public class UserClass : MonoBehaviour {
 	////////////////
 	private Animator anim;
 
+	// Test Variables
+	public int howManyPotions; // start // give potion
+	public int howManyAttackMod; // start // give attack mod
+	public int howManyWeaponMod; // start // give weapon mod
+
 	///////////////////////////////////
 	// Unity Methods
 	///////////////////////////////////
@@ -62,6 +67,10 @@ public class UserClass : MonoBehaviour {
 		this.ResetAttackMod();
 
 		transform.position = new Vector3(0,0,0);
+
+		howManyPotions = 0;
+		howManyWeaponMod = 0;
+		howManyAttackMod = 0;
 	}
 
 	// Update
@@ -166,7 +175,8 @@ public class UserClass : MonoBehaviour {
 	}
 
 	public void GivePotion(int incomingPotion){ 
-		this.potion[incomingPotion] += 1; 
+		this.potion[incomingPotion] += 1;
+		howManyPotions += 1;
 	}
 
 	public void UsePotion(int outgoingPotion){ 
@@ -199,6 +209,8 @@ public class UserClass : MonoBehaviour {
 	public void GiveWeaponMod(int indexWeaponMod){
 		this.weaponMod[indexWeaponMod] += 1;
 		this.recheckWeapon = true;
+
+		howManyWeaponMod += 1;
 	}
 
 	public void TakeWeaponMod(int indexWeaponMod){
@@ -233,6 +245,8 @@ public class UserClass : MonoBehaviour {
 	public void GiveAttackMod(int indexAttackMod) {
 		this.attackMod[indexAttackMod] += 1;
 		this.recheckAttack = true;
+
+		howManyAttackMod += 1;
 	}
 
 	public void TakeAttackMod(int indexAttackMod) {
