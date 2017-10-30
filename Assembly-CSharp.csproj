@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\GameMaster.cs" />
      <Compile Include="Assets\Scripts\ItemAttackMod.cs" />
      <Compile Include="Assets\Scripts\ItemPotion.cs" />
      <Compile Include="Assets\Scripts\ItemWeaponMod.cs" />

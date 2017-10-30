@@ -106,7 +106,7 @@ public class MonsterClass : MonoBehaviour {
         }
         else if(attackModDrop == true){
             GameObject attackTemp = Instantiate(attackModPrefab,transform.position,Quaternion.identity);
-            attackTemp.SendMessage("setItemIndex", dropIndex)
+			attackTemp.SendMessage ("setItemIndex", dropIndex);
         }
         else if (environmentDrop == true){
             // set drop index

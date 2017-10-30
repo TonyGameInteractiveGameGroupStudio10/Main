@@ -18,8 +18,8 @@ public class UserClass : MonoBehaviour {
 
 	// Items
 	////////////////
-	// 0 - clear; 1 - speed
-	private int[] potion = new int[2];
+	// 0 - clear; 1 - speed; 2 - health
+	private int[] potion = new int[3];
 	private UserPotion potionModule;
 	// 0 - effect1 ; 1 - effect2 ; 2 - effect3;
 	private int[] weaponMod = new int[5]; 

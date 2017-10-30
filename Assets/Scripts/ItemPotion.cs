@@ -4,25 +4,49 @@ using UnityEngine;
 
 public class ItemPotion : MonoBehaviour {
 
-	public int itemIndex;
+	// Index of Potion
+	private int itemIndex;
 
-	public Sprite displaySprite;
+	// Link to gameMaster
+	private GameObject theGameMaster;
+
+	// Sprite
 	private SpriteRenderer spriteRenderer;
+	private bool askedForSprite;
 
+
+	// Unity Methods
+	////////////////
 	void Start () {	
+		itemIndex = 123;
+		askedForSprite = false;
 		this.spriteRenderer = GetComponent<SpriteRenderer>();
-		//displaySprite = gameMaster.getPotionSprite(itemIndex);
-		//this.spriteRenderer.sprite = displaySprite;
+		theGameMaster = GameObject.FindGameObjectWithTag("GameMaster");
+	}
+
+	void Update() {
+		// If that index has been changed/set
+		if ((itemIndex != 123) && (askedForSprite == false)) {
+			theGameMaster.GetComponent<GameMaster>().GetPotionSprite(itemIndex);
+			askedForSprite = true;
+		}
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll){
-		if (coll.gameObject.tag == "Player"){
+		// check if its the player, and the index has been changed/set
+		if ((coll.gameObject.tag == "Player") && (itemIndex != 123)) {
 			coll.gameObject.SendMessage("GivePotion", itemIndex);
 			Destroy(gameObject);
 		}
 	}
 
+	// Methods
+	////////////////
 	public void setItemIndex(int newIndex){
 		this.itemIndex = newIndex;
+	}
+
+	public void setSprite(Sprite newSprite){
+		this.spriteRenderer.sprite = newSprite;
 	}
 }

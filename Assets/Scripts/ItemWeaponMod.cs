@@ -4,25 +4,47 @@ using UnityEngine;
 
 public class ItemWeaponMod : MonoBehaviour {
 
-	public int itemIndex;
+	// Index of Weapon Modifier
+	private int itemIndex;
 
-	public Sprite displaySprite;
+	// Link to GameMaster
+	private GameObject theGameMaster;
+
+	// Sprite
 	private SpriteRenderer spriteRenderer;
+	private bool askedForSprite;
 
+	// Unity Methods
+	////////////////
 	void Start () {	
+		itemIndex = 123;
+		askedForSprite = false;
 		this.spriteRenderer = GetComponent<SpriteRenderer>();
-		//displaySprite = gameMaster.getWeaponModSprite(itemIndex);
-		//this.spriteRenderer.sprite = displaySprite;
+		theGameMaster = GameObject.FindGameObjectWithTag("GameMaster");
+	}
+
+	void Update() {
+		// If that index has been changed/set
+		if ((itemIndex != 123) && (askedForSprite == false)) {
+			theGameMaster.GetComponent<GameMaster>().GetWeaponSprite(itemIndex);
+			askedForSprite = true;
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D coll){
-		if (coll.gameObject.tag == "Player"){
+		if ((coll.gameObject.tag == "Player") && (itemIndex != 123)) {
 			coll.gameObject.SendMessage("GiveWeaponMod", itemIndex);
 			Destroy(gameObject);
 		}
 	}
 
+	// Methods
+	////////////////
 	public void setItemIndex(int newIndex){
 		this.itemIndex = newIndex;
+	}
+
+	public void setSprite(Sprite newSprite){
+		this.spriteRenderer.sprite = newSprite;
 	}
 }
