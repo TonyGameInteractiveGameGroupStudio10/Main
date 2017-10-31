@@ -18,13 +18,15 @@ public class UserClass : MonoBehaviour {
 
 	// Items
 	////////////////
-	// 0 - clear; 1 - speed; 2 - health
+	// 0 - clear; 1 - haste; 2 - health
 	private int[] potion = new int[3];
 	private UserPotion potionModule;
-	// 0 - effect1 ; 1 - effect2 ; 2 - effect3;
+	// 0 - Arrow Speed ; 1 - Attack Speed ; 2 - Crit;
+	// 3 - cone;
 	private int[] weaponMod = new int[5]; 
 	private UserWeaponMod weaponModule; //
-	// 0 - effect1 ; 1 - effect2 ; 2 - effect3 ;
+	// 0 - Posion ; 1 - vine ; 2 - shock ;
+	// 3 - quaking
 	private int[] attackMod = new int[5];
 	private UserAttackMod attackModule;
 
