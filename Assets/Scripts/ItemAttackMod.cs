@@ -17,7 +17,7 @@ public class ItemAttackMod : MonoBehaviour {
 	// Unity Methods
 	////////////////
 	void Start () {	
-		itemIndex = 123;
+		//itemIndex = 123;   <------- TURN THIS ON
 		askedForSprite = false;
 		this.spriteRenderer = GetComponent<SpriteRenderer>();
 		theGameMaster = GameObject.FindGameObjectWithTag("GameMaster");
@@ -26,7 +26,7 @@ public class ItemAttackMod : MonoBehaviour {
 	void Update(){
 		// If that index has been changed/set
 		if ((itemIndex != 123) && (askedForSprite == false)) {
-			theGameMaster.GetComponent<GameMaster>().GetAttackSprite(itemIndex);
+			//theGameMaster.GetComponent<GameMaster>().GetAttackSprite(itemIndex); <------ TURN THIS ON
 			askedForSprite = true;
 		}
 	}

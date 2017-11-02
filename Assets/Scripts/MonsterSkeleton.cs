@@ -6,7 +6,7 @@ public class MonsterSkeleton : MonsterClass {
 
 	// Stats
     private float monsterSpeed = 4.2f;
-    private int maxHealth = 10;
+    private int maxHealth = 15;
 
     ///////////////////////////////////
     // Unity Methods

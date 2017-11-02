@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\ItemPotion.cs" />
      <Compile Include="Assets\Scripts\ItemWeaponMod.cs" />
      <Compile Include="Assets\Scripts\MonsterClass.cs" />
+     <Compile Include="Assets\Scripts\MonsterDummy.cs" />
      <Compile Include="Assets\Scripts\MonsterSkeleton.cs" />
      <Compile Include="Assets\Scripts\UserAttackMod.cs" />
      <Compile Include="Assets\Scripts\UserClass.cs" />

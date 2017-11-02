@@ -13,9 +13,10 @@ public class MonsterClass : MonoBehaviour {
     // Status Effects
     ///////////////
     protected int poison;
-    protected float poisonTimer; // 3 seconds
+    protected float poisonTimer; // 6 seconds
+    protected bool[] poisonDamage = new bool[3];
     protected bool stunned; 
-    protected float stunnedTimer; // 1 seconds
+    protected float stunTimer; // 1 seconds
 
     // Components
     ////////////////
@@ -62,6 +63,7 @@ public class MonsterClass : MonoBehaviour {
 
     public void TakeDamage(int incomingDamage){
         this.healthPool -= incomingDamage;
+		Debug.Log(incomingDamage);
     }
 
     public void Die(){
@@ -82,19 +84,23 @@ public class MonsterClass : MonoBehaviour {
     // Status Effects
     ////////////////
     protected void Poisoned(){
-        TakeDamage(2*this.poison);
+        int tick = 2*this.poison;
+        this.TakeDamage(tick);
     }
 
     public void ReceivingPoison(){
         if (this.poison <= 5){
             this.poison += 1;
         }
-        this.poisonTimer = 3f;
+        this.poisonTimer = 6f;
+        for (int i = 0; i < poisonDamage.Length; i += 1){
+            poisonDamage[i] = false;
+        }
     }
 
     public void ReceivingStun(){
         this.stunned = true;
-        this.stunnedTimer = 1f;
+        this.stunTimer = 1f;
     }
 
     // Effects/Items

@@ -27,7 +27,7 @@ public class UserClass : MonoBehaviour {
 	private UserWeaponMod weaponModule; //
 	// 0 - Posion ; 1 - vine ; 2 - shock ;
 	// 3 - quaking ; 4 - ricochet
-	private int[] attackMod = new int[5];
+	public int[] attackMod = new int[5];
 	private UserAttackMod attackModule;
 
 	// Arrow

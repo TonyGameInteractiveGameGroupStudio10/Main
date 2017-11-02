@@ -13,10 +13,12 @@ public class WeaponArrow : WeaponType {
 
 	// Effects
 	////////////////
-	private bool poison;
+	public bool poison;
 	private bool vine;
+	public GameObject vinePrefab;
 	private bool shock;
 	private bool quaking;
+	public GameObject quakePrefab;
 	private bool ricochet;
 
 	///////////////////////////////////
@@ -36,7 +38,7 @@ public class WeaponArrow : WeaponType {
 			this.QuakingEffect();
 			Destroy(gameObject);
 		}
-		else if (coll.gameObject.tag == "Monster"){
+		else if (coll.gameObject.tag == "Enemy"){
 			coll.gameObject.SendMessage("TakeDamage", 10);
 			this.PoisonEffect(coll.gameObject);
 			this.VineEffect();
@@ -52,6 +54,24 @@ public class WeaponArrow : WeaponType {
 	///////////////////////////////////
 	// Effects
 	/////////////////
+	public void SetAttackEffects(int buffArrayIndex, int buffValue){
+		if ((buffArrayIndex == 0) && (buffValue > 0)){
+			poison = true;
+		}
+		if ((buffArrayIndex == 1) && (buffValue > 0)){
+			vine = true;
+		}
+		if ((buffArrayIndex == 2) && (buffValue > 0)){
+			shock = true;
+		}
+		if ((buffArrayIndex == 3) && (buffValue > 0)){
+			quaking = true;
+		}
+		if ((buffArrayIndex == 4) && (buffValue > 0)){
+			ricochet = true;
+		}
+	}
+
 	private void PoisonEffect(GameObject target){
 		if (this.poison == true){
 			target.GetComponent<MonsterClass>().ReceivingPoison();
