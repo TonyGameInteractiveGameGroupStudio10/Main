@@ -13,7 +13,11 @@ public class WeaponArrow : WeaponType {
 
 	// Effects
 	////////////////
-
+	private bool poison;
+	private bool vine;
+	private bool shock;
+	private bool quaking;
+	private bool ricochet;
 
 	///////////////////////////////////
 	// Unity Methods
@@ -21,7 +25,7 @@ public class WeaponArrow : WeaponType {
 	// Update
 	////////////////
 	void FixedUpdate(){
-        GetComponent<Rigidbody2D>().velocity = firingDirection.normalized * speed;
+        this.GetComponent<Rigidbody2D>().velocity = firingDirection.normalized * speed;
         Destroy(gameObject, 7);
 	}
 
@@ -29,51 +33,92 @@ public class WeaponArrow : WeaponType {
 	////////////////
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "Wall"){
+			this.QuakingEffect();
 			Destroy(gameObject);
 		}
-		else if ((coll.gameObject.tag == "Player") || (coll.gameObject.tag == "Monster")){
+		else if (coll.gameObject.tag == "Monster"){
 			coll.gameObject.SendMessage("TakeDamage", 10);
+			this.PoisonEffect(coll.gameObject);
+			this.VineEffect();
+			this.ShockEffect(coll.gameObject);
+			this.QuakingEffect();
+			this.RicochetEffect();
+			Destroy(gameObject);
 		}
 	}
 
 	///////////////////////////////////
 	// Methods
 	///////////////////////////////////
+	// Effects
+	/////////////////
+	private void PoisonEffect(GameObject target){
+		if (this.poison == true){
+			target.GetComponent<MonsterClass>().ReceivingPoison();
+		}
+	}
+
+	private void VineEffect(){
+		if (this.vine == true){
+			// create vine prefab
+		}
+	}
+
+	private void ShockEffect(GameObject target){
+		if (this.shock == true){
+			target.GetComponent<MonsterClass>().ReceivingStun();
+		}
+	}
+
+	private void QuakingEffect(){
+		if (this.quaking == true){
+			// create vine prefab
+		}
+	}
+
+	private void RicochetEffect(){
+		if (this.ricochet == true){
+			// create arrow prefab
+		}
+	}
+
 	// Speed
 	/////////////////
 	public float GetSpeed(){
-		return speed;
+		return this.speed;
 	}
 
 	public void SetSpeed(float newSpeed){
-		speed = newSpeed;
+		this.speed = newSpeed;
 	}
 
 	public void AddSpeed(float addedSpeed){
-		speed += addedSpeed;
+		this.speed += addedSpeed;
 	}
 
 	public void MinusSpeed(float minusSpeed){
-		speed -= minusSpeed;
+		this.speed -= minusSpeed;
 	}
 
 	// Firing Direction
 	/////////////////
 	public Vector2 GetFiringDirection(){
-		return firingDirection;
+		return this.firingDirection;
 	}
 
 	public void SetFiringDirection(Vector2 newDirection){
-		firingDirection = newDirection;
+		this.firingDirection = newDirection;
 	}
-
-	// Effects
-	/////////////////
 
 	// Resets
 	/////////////////
 	public void ResetWeaponArrow(){
-		speed = 8f;
+		this.speed = 8f;
+		this.poison = false;
+		this.vine = false;
+		this.shock = false;
+		this.quaking = false;
+		this.ricochet = false;
 	}
 
 }

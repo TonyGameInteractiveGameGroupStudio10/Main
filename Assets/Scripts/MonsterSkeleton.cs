@@ -35,9 +35,15 @@ public class MonsterSkeleton : MonsterClass {
     // Update
     ////////////////
     void Update(){
+        // Chase the player
         transform.right = playerLocation.position - transform.position;
         transform.position = Vector2.MoveTowards(transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
 
+        // Poison Timer
+
+        // Stun Timer
+
+        // if HP is less then 0
         if (healthPool <= 0){
             Die();
         }
@@ -46,6 +52,7 @@ public class MonsterSkeleton : MonsterClass {
     // Fixed Update
     ////////////////
     void FixedUpdate() {
+        // probably place this in a different place, and have it check less often
         playerLocation = thePlayer.transform;
     }
 

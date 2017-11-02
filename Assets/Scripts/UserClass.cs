@@ -26,7 +26,7 @@ public class UserClass : MonoBehaviour {
 	private int[] weaponMod = new int[5]; 
 	private UserWeaponMod weaponModule; //
 	// 0 - Posion ; 1 - vine ; 2 - shock ;
-	// 3 - quaking
+	// 3 - quaking ; 4 - ricochet
 	private int[] attackMod = new int[5];
 	private UserAttackMod attackModule;
 
@@ -46,17 +46,13 @@ public class UserClass : MonoBehaviour {
 	////////////////
 	private Animator anim;
 
-	// Test Variables
-	public int howManyPotions; // start // give potion
-	public int howManyAttackMod; // start // give attack mod
-	public int howManyWeaponMod; // start // give weapon mod
-
 	///////////////////////////////////
 	// Unity Methods
 	///////////////////////////////////
 	// Start
 	////////////////
 	void Start(){
+		// Grab all the components needed
 		anim = GetComponent<Animator>();
 		weaponModule = GetComponent<UserWeaponMod>();
 		attackModule = GetComponent<UserAttackMod>();
@@ -67,12 +63,8 @@ public class UserClass : MonoBehaviour {
 		this.ResetPotions();
 		this.ResetWeaponMod();
 		this.ResetAttackMod();
-
+		// Set player to center stage
 		transform.position = new Vector3(0,0,0);
-
-		howManyPotions = 0;
-		howManyWeaponMod = 0;
-		howManyAttackMod = 0;
 	}
 
 	// Update
@@ -87,7 +79,7 @@ public class UserClass : MonoBehaviour {
 			this.UsePotion(1); 
 		}
 
-		// Attack
+		// Fire
 		if (Input.GetKeyDown("space")){
 			if (this.recheckAttack == true){
 				weaponPrefab = attackModule.ApplyMod(attackMod);
@@ -139,8 +131,8 @@ public class UserClass : MonoBehaviour {
 	}
 
 	public void ResetHealth(){
-		this.SetHealth(40);
 		this.SetMaxHealth(40);
+		this.SetHealth(maxHealthPool);
 	}
 
 	// Speed
@@ -178,7 +170,12 @@ public class UserClass : MonoBehaviour {
 
 	public void GivePotion(int incomingPotion){ 
 		this.potion[incomingPotion] += 1;
-		howManyPotions += 1;
+	}
+
+	public void ResetPotions(){
+		for (int c = 0; c <=1; c += 1){
+			this.SetPotion(c,0);
+		}
 	}
 
 	public void UsePotion(int outgoingPotion){ 
@@ -191,16 +188,14 @@ public class UserClass : MonoBehaviour {
 		}
 	}
 
-	public void ResetPotions(){
-		for (int c = 0; c <=1; c += 1){
-			this.SetPotion(c,0);
-		}
-	}
-
 	// WeaponMod
 	////////////////
 	public int GetWeaponMod(int indexWeaponMod){
 		return this.weaponMod[indexWeaponMod];
+	}
+
+	public int[] GetWeaponModFull(){
+		return this.weaponMod;
 	}
 
 	public void SetWeaponMod(int indexWeaponMod, int newWeaponMod){
@@ -211,19 +206,6 @@ public class UserClass : MonoBehaviour {
 	public void GiveWeaponMod(int indexWeaponMod){
 		this.weaponMod[indexWeaponMod] += 1;
 		this.recheckWeapon = true;
-
-		howManyWeaponMod += 1;
-	}
-
-	public void TakeWeaponMod(int indexWeaponMod){
-		if (this.GetWeaponMod(indexWeaponMod) > 0){
-			this.weaponMod[indexWeaponMod] -= 1;
-		}
-		this.recheckWeapon = true;
-	}
-
-	public int[] GetWeaponModFull(){
-		return this.weaponMod;
 	}
 
 	public void ResetWeaponMod(){
@@ -239,6 +221,10 @@ public class UserClass : MonoBehaviour {
 		return this.attackMod[indexAttackMod];
 	}
 
+	public int[] GetAttackModFull(){
+		return this.attackMod;
+	}
+
 	public void SetAttackMod(int indexAttackMod, int newAttackMod) {
 		this.attackMod[indexAttackMod] = newAttackMod;
 		this.recheckAttack = true;
@@ -247,19 +233,6 @@ public class UserClass : MonoBehaviour {
 	public void GiveAttackMod(int indexAttackMod) {
 		this.attackMod[indexAttackMod] += 1;
 		this.recheckAttack = true;
-
-		howManyAttackMod += 1;
-	}
-
-	public void TakeAttackMod(int indexAttackMod) {
-		if (this.GetAttackMod(indexAttackMod) > 0){
-			this.attackMod[indexAttackMod] -= 1;
-		}
-		this.recheckAttack = true;
-	}
-
-	public int[] GetAttackModFull(){
-		return this.attackMod;
 	}
 
 	public void ResetAttackMod(){

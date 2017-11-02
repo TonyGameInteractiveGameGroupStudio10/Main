@@ -10,6 +10,13 @@ public class MonsterClass : MonoBehaviour {
     protected int healthPool;
     protected float currentSpeed;
 
+    // Status Effects
+    ///////////////
+    protected int poison;
+    protected float poisonTimer; // 3 seconds
+    protected bool stunned; 
+    protected float stunnedTimer; // 1 seconds
+
     // Components
     ////////////////
     protected Rigidbody2D enemyBody;
@@ -58,7 +65,7 @@ public class MonsterClass : MonoBehaviour {
     }
 
     public void Die(){
-        effectDropper();
+        this.effectDropper();
         Destroy(gameObject);
     }
 
@@ -72,43 +79,66 @@ public class MonsterClass : MonoBehaviour {
         this.currentSpeed = newSpeed;
     }
 
-    // Effects
+    // Status Effects
+    ////////////////
+    protected void Poisoned(){
+        TakeDamage(2*this.poison);
+    }
+
+    public void ReceivingPoison(){
+        if (this.poison <= 5){
+            this.poison += 1;
+        }
+        this.poisonTimer = 3f;
+    }
+
+    public void ReceivingStun(){
+        this.stunned = true;
+        this.stunnedTimer = 1f;
+    }
+
+    // Effects/Items
     ////////////////
     protected void effectRoller(){
         int diceRoll = Random.Range(1,101);
-
         // Roll values are currently temp, this is more of a skeleton
         if (diceRoll <= 2){
-            potionDrop = true;
-            dropIndex = Random.Range(0,2);
+            this.potionDrop = true; 
+            // 0 - clear; 1 - haste; 2 - health;
+            this.dropIndex = Random.Range(0,4);
         }
         else if (diceRoll >= 3 && diceRoll <= 4){
-            weaponModDrop = true;
-            dropIndex = Random.Range(0,5);
+            this.weaponModDrop = true;
+            // 0 - Arrow Speed ; 1 - Attack Speed ; 2 - Crit; 3 - cone;
+            this.dropIndex = Random.Range(0,4);
         }
         else if (diceRoll >= 5 && diceRoll <= 6){
-            attackModDrop = true;
-            dropIndex = Random.Range(0,5);
+            this.attackModDrop = true;
+            // 0 - Posion ; 1 - vine ; 2 - shock ; 3 - quaking ; 4 - ricochet;
+            this.dropIndex = Random.Range(0,5);
         }
-        else if (diceRoll >= 7 && diceRoll <= 8){
-            environmentDrop = true;
+        else if (diceRoll >= 7 && diceRoll <= 12){
+            // doesn't have a drop table because each environment drop is unique to
+            // the monster that it is being dropped by
+            this.environmentDrop = true;
         }
     }
 
     protected void effectDropper(){
-        if (potionDrop == true){
+        // If any dropper has been marked true, the instantiate a drop of that type
+        if (this.potionDrop == true){
             GameObject potionTemp = Instantiate(potionPrefab,transform.position,Quaternion.identity);
             potionTemp.SendMessage("setItemIndex", dropIndex);
         }
-        else if(weaponModDrop == true){
+        else if(this.weaponModDrop == true){
             GameObject weaponTemp = Instantiate(weaponModPrefab,transform.position,Quaternion.identity);
             weaponTemp.SendMessage("setItemIndex", dropIndex);
         }
-        else if(attackModDrop == true){
+        else if(this.attackModDrop == true){
             GameObject attackTemp = Instantiate(attackModPrefab,transform.position,Quaternion.identity);
 			attackTemp.SendMessage ("setItemIndex", dropIndex);
         }
-        else if (environmentDrop == true){
+        else if (this.environmentDrop == true){
             // set drop index
             // environment prefab
         }
