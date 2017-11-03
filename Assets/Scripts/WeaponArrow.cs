@@ -34,7 +34,7 @@ public class WeaponArrow : WeaponType {
 	// Collision
 	////////////////
 	void OnCollisionEnter2D(Collision2D coll){
-		if (coll.gameObject.tag == "Wall"){
+		if ((coll.gameObject.tag == "Wall") || (coll.gameObject.tag == "DropWall")) {
 			this.QuakingEffect();
 			Destroy(gameObject);
 		}
@@ -98,10 +98,13 @@ public class WeaponArrow : WeaponType {
 
 	private void RicochetEffect(){
 		if (this.ricochet == true){
+			// grab new directiosn
 			float randomX = Random.Range(-1.0f, 1.0f);
 			float randomY = Random.Range(-1.0f, 1.0f);
+			// set firing direction and position
 			Vector3 firingDirection = new Vector3(randomX, randomY, 1);
 			Vector3 firingPosition = new Vector3(transform.position.x+randomX, transform.position.y+randomY, 1);
+			// shoot object and rotate
 			GameObject ricochetClone = Instantiate(gameObject,firingPosition,Quaternion.identity);
 			ricochetClone.GetComponent<WeaponArrow>().SetFiringDirection(firingDirection);
 			ricochetClone.transform.rotation = Quaternion.LookRotation(new Vector3(0,0,1), firingDirection);

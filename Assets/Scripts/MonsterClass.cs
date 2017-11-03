@@ -35,11 +35,12 @@ public class MonsterClass : MonoBehaviour {
 
     // Effects
     ////////////////
-    private int dropIndex;
-    private bool potionDrop;
-    private bool attackModDrop;
-    private bool weaponModDrop;
-    private bool environmentDrop;
+    protected int dropIndex;
+    protected bool potionDrop;
+    protected bool attackModDrop;
+    protected bool weaponModDrop;
+    protected bool environmentDrop;
+    public GameObject environDrop;
 
     // Prefab
     ////////////////
@@ -108,7 +109,7 @@ public class MonsterClass : MonoBehaviour {
     protected void effectRoller(){
         int diceRoll = Random.Range(1,101);
         // Roll values are currently temp, this is more of a skeleton
-        if (diceRoll <= 2){
+        if (diceRoll <= 2){ 
             this.potionDrop = true; 
             // 0 - clear; 1 - haste; 2 - health;
             this.dropIndex = Random.Range(0,4);
@@ -118,12 +119,12 @@ public class MonsterClass : MonoBehaviour {
             // 0 - Arrow Speed ; 1 - Attack Speed ; 2 - Crit; 3 - cone;
             this.dropIndex = Random.Range(0,4);
         }
-        else if (diceRoll >= 5 && diceRoll <= 6){
+        else if (diceRoll >= 5 && diceRoll <= 5){
             this.attackModDrop = true;
             // 0 - Posion ; 1 - vine ; 2 - shock ; 3 - quaking ; 4 - ricochet;
             this.dropIndex = Random.Range(0,5);
         }
-        else if (diceRoll >= 7 && diceRoll <= 12){
+        else if (diceRoll >= 7 && diceRoll <= 12){ 
             // doesn't have a drop table because each environment drop is unique to
             // the monster that it is being dropped by
             this.environmentDrop = true;
@@ -145,8 +146,7 @@ public class MonsterClass : MonoBehaviour {
 			attackTemp.SendMessage ("setItemIndex", dropIndex);
         }
         else if (this.environmentDrop == true){
-            // set drop index
-            // environment prefab
+            Instantiate(environDrop,transform.position,Quaternion.identity);
         }
     }
 }
