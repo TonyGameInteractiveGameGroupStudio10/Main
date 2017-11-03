@@ -62,7 +62,7 @@ public class MonsterDummy : MonsterClass {
 
         // Movement
         if (stunned == false){
-            
+
         }
 
         // if HP is less then 0

@@ -14,12 +14,12 @@ public class WeaponArrow : WeaponType {
 	// Effects
 	////////////////
 	public bool poison;
-	private bool vine;
+	public bool vine;
 	public GameObject vinePrefab;
-	private bool shock;
-	private bool quaking;
+	public bool shock;
+	public bool quaking;
 	public GameObject quakePrefab;
-	private bool ricochet;
+	public bool ricochet;
 
 	///////////////////////////////////
 	// Unity Methods
@@ -92,7 +92,7 @@ public class WeaponArrow : WeaponType {
 
 	private void QuakingEffect(){
 		if (this.quaking == true){
-			// create vine prefab
+			Instantiate(quakePrefab,transform.position,Quaternion.identity);
 		}
 	}
 

@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\UserPotion.cs" />
      <Compile Include="Assets\Scripts\UserWeaponMod.cs" />
      <Compile Include="Assets\Scripts\WeaponArrow.cs" />
+     <Compile Include="Assets\Scripts\WeaponQuake.cs" />
      <Compile Include="Assets\Scripts\WeaponType.cs" />
      <Compile Include="Assets\Sprites\Placeholders\Orc Warrior\Scripts\MouseController.cs" />
  <Reference Include="UnityEngine.UIAutomation">
