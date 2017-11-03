@@ -15,11 +15,11 @@ public class WeaponArrow : WeaponType {
 	////////////////
 	public bool poison;
 	public bool vine;
-	public GameObject vinePrefab;
 	public bool shock;
 	public bool quaking;
-	public GameObject quakePrefab;
 	public bool ricochet;
+	public GameObject quakePrefab;
+	public GameObject vinePrefab;
 
 	///////////////////////////////////
 	// Unity Methods
@@ -80,7 +80,7 @@ public class WeaponArrow : WeaponType {
 
 	private void VineEffect(){
 		if (this.vine == true){
-			// create vine prefab
+			Instantiate(vinePrefab,transform.position,Quaternion.identity);
 		}
 	}
 
@@ -98,7 +98,13 @@ public class WeaponArrow : WeaponType {
 
 	private void RicochetEffect(){
 		if (this.ricochet == true){
-			// create arrow prefab
+			float randomX = Random.Range(-1.0f, 1.0f);
+			float randomY = Random.Range(-1.0f, 1.0f);
+			Vector3 firingDirection = new Vector3(randomX, randomY, 1);
+			Vector3 firingPosition = new Vector3(transform.position.x+randomX, transform.position.y+randomY, 1);
+			GameObject ricochetClone = Instantiate(gameObject,firingPosition,Quaternion.identity);
+			ricochetClone.GetComponent<WeaponArrow>().SetFiringDirection(firingDirection);
+			ricochetClone.transform.rotation = Quaternion.LookRotation(new Vector3(0,0,1), firingDirection);
 		}
 	}
 

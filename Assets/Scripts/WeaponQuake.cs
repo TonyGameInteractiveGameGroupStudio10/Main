@@ -14,30 +14,30 @@ public class WeaponQuake : WeaponType {
 	// Unity Methods
 	////////////////
 	void Start(){
-		quake = true;
-		quakeTimer = 3f;
+		this.quake = true;
+		this.quakeTimer = 3f;
 		InvokeRepeating("ActivateQuake", 1f, 1f);
 	}
 
 	void Update() {
-		quakeTimer -= Time.deltaTime;
+		this.quakeTimer -= Time.deltaTime;
 		if (quakeTimer <= 0){
 			Destroy(gameObject);
 		}
 	}
 
 	void OnTriggerStay2D(Collider2D coll){
-		if (quake == true){
+		if (this.quake == true){
 			if (coll.gameObject.tag == "Enemy"){
 				coll.gameObject.SendMessage("TakeDamage", 4);
 			}
-			quake = false;
+			this.quake = false;
 		}
 	}
 
 	// Methods
 	////////////////
 	private void ActivateQuake(){
-		quake = true;
+		this.quake = true;
 	}
 }
