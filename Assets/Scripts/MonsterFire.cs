@@ -10,7 +10,7 @@ using UnityEngine;
 public class MonsterFire : MonsterClass {
 
     // Stats
-    private float monsterSpeed = 4.5f;
+    private float monsterSpeed = 4f;
     private int maxHealth = 15;
 
     // Sprite

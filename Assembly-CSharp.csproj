@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\MonsterClass.cs" />
      <Compile Include="Assets\Scripts\MonsterDummy.cs" />
      <Compile Include="Assets\Scripts\MonsterFire.cs" />
+     <Compile Include="Assets\Scripts\MonsterIce.cs" />
      <Compile Include="Assets\Scripts\MonsterOil.cs" />
      <Compile Include="Assets\Scripts\MonsterPoison.cs" />
      <Compile Include="Assets\Scripts\MonsterStone.cs" />

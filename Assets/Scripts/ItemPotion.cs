@@ -11,7 +11,7 @@ public class ItemPotion : MonoBehaviour {
 	private GameObject theGameMaster;
 
 	// Sprite
-	private SpriteRenderer spriteRenderer;
+	private SpriteRenderer spriteSwitcher;
 	private bool askedForSprite;
 
 
@@ -20,14 +20,14 @@ public class ItemPotion : MonoBehaviour {
 	void Start () {	
 		itemIndex = 123;
 		askedForSprite = false;
-		this.spriteRenderer = GetComponent<SpriteRenderer>();
+		this.spriteSwitcher = GetComponent<SpriteRenderer>();
 		theGameMaster = GameObject.FindGameObjectWithTag("GameMaster");
 	}
 
 	void Update() {
 		// If that index has been changed/set
-		if ((itemIndex != 123) && (askedForSprite == false)) {
-			theGameMaster.GetComponent<GameMaster>().GetPotionSprite(itemIndex);
+		if ((askedForSprite == false) && (itemIndex != 123)) {
+			spriteSwitcher.sprite = theGameMaster.GetComponent<GameMaster>().GetPotionSprite(itemIndex);
 			askedForSprite = true;
 		}
 	}
@@ -44,9 +44,5 @@ public class ItemPotion : MonoBehaviour {
 	////////////////
 	public void setItemIndex(int newIndex){
 		this.itemIndex = newIndex;
-	}
-
-	public void setSprite(Sprite newSprite){
-		this.spriteRenderer.sprite = newSprite;
 	}
 }
