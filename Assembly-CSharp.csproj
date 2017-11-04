@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\DropFire.cs" />
+     <Compile Include="Assets\Scripts\DropIce.cs" />
      <Compile Include="Assets\Scripts\DropOil.cs" />
      <Compile Include="Assets\Scripts\DropPoison.cs" />
      <Compile Include="Assets\Scripts\GameMaster.cs" />

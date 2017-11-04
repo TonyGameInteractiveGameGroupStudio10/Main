@@ -115,6 +115,11 @@ public class UserClass : MonoBehaviour {
                 this.poisonDamage[2] = true;
             }
         }
+
+        // Death
+        if (healthPool <= 0){
+        	
+        }
 	}
 
 	// Fixed Update

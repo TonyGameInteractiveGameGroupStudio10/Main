@@ -5,7 +5,6 @@ using UnityEngine;
 public class MonsterDummy : MonsterClass {
 
 	// Stats
-    private float monsterSpeed = 4.2f;
     private int maxHealth = 100;
 
     ///////////////////////////////////
@@ -16,6 +15,7 @@ public class MonsterDummy : MonsterClass {
     void Start() {
     	// Set Stats
     	this.healthPool = this.maxHealth;
+        this.monsterSpeed = 4.2f;
     	this.currentSpeed = this.monsterSpeed;
 
     	// Grab Components
@@ -84,15 +84,5 @@ public class MonsterDummy : MonsterClass {
     public void SetMaxHealth(int newMaxHealth)
     {
         this.maxHealth = newMaxHealth;
-    }
-
-    // Speed
-    ////////////////
-    public float GetMonsterSpeed(){
-    	return monsterSpeed;
-    }
-
-    public void SetMonsterSpeed(float newSpeed){
-    	monsterSpeed = newSpeed;
     }
 }

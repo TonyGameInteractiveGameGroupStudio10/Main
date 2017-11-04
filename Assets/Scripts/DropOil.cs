@@ -5,18 +5,29 @@ using UnityEngine;
 // Drop Oil
 // - creates a circle of oil
 // - slows the unit
+// - Fire Wins, spread (FIRE)
+// - Poison Wins, spread (POISON)
+// - Ice Loses, spread (HERE)
 public class DropOil : MonoBehaviour {
 
     // Unity Methods
     ////////////////
     void OnTriggerEnter2D(Collider2D coll){
+        // Slow enemy 
         if (coll.gameObject.tag == "Enemy"){
             float objectSpeed = coll.gameObject.GetComponent<MonsterClass>().GetCurrentSpeed();
             coll.gameObject.GetComponent<MonsterClass>().SetCurrentSpeed(objectSpeed/2);
         }
+        // Slow Player
         else if (coll.gameObject.tag == "Player") {
             float objectSpeed = coll.gameObject.GetComponent<UserClass>().GetCurrentSpeed();
             coll.gameObject.GetComponent<UserClass>().SetCurrentSpeed(objectSpeed/2);
+        }
+        // The oil corrupts the water/ice/juel
+        else if (coll.gameObject.tag == "DropIce"){
+            Vector3 iceLocation = coll.gameObject.transform.position;
+            Destroy(coll.gameObject);
+            Instantiate(this, iceLocation, Quaternion.identity);
         }
     }
 
