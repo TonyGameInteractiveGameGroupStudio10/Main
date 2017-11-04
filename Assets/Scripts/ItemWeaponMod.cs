@@ -5,28 +5,27 @@ using UnityEngine;
 public class ItemWeaponMod : MonoBehaviour {
 
 	// Index of Weapon Modifier
-	private int itemIndex;
+	private int itemIndex = 123;
 
 	// Link to GameMaster
 	private GameObject theGameMaster;
 
 	// Sprite
-	private SpriteRenderer spriteRenderer;
+	private SpriteRenderer spriteSwitcher;
 	private bool askedForSprite;
 
 	// Unity Methods
 	////////////////
 	void Start () {	
-		itemIndex = 123;
 		askedForSprite = false;
-		this.spriteRenderer = GetComponent<SpriteRenderer>();
+		this.spriteSwitcher = GetComponent<SpriteRenderer>();
 		theGameMaster = GameObject.FindGameObjectWithTag("GameMaster");
 	}
 
 	void Update() {
 		// If that index has been changed/set
 		if ((itemIndex != 123) && (askedForSprite == false)) {
-			theGameMaster.GetComponent<GameMaster>().GetWeaponSprite(itemIndex);
+			spriteSwitcher.sprite = theGameMaster.GetComponent<GameMaster>().GetWeaponSprite(itemIndex);
 			askedForSprite = true;
 		}
 	}
@@ -40,11 +39,7 @@ public class ItemWeaponMod : MonoBehaviour {
 
 	// Methods
 	////////////////
-	public void setItemIndex(int newIndex){
+	public void SetItemIndex(int newIndex){
 		this.itemIndex = newIndex;
-	}
-
-	public void setSprite(Sprite newSprite){
-		this.spriteRenderer.sprite = newSprite;
 	}
 }

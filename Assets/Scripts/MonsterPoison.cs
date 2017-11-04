@@ -10,7 +10,6 @@ using UnityEngine;
 public class MonsterPoison : MonsterClass {
 
     // Stats
-    private float monsterSpeed = 3.5f;
     private int maxHealth = 20;
 
     // Sprite
@@ -26,6 +25,7 @@ public class MonsterPoison : MonsterClass {
     void Start() {
         // Set Stats
         healthPool = maxHealth;
+        monsterSpeed = 3.5f;
         currentSpeed = monsterSpeed;
 
         // Grab Components
@@ -93,15 +93,5 @@ public class MonsterPoison : MonsterClass {
     public void SetMaxHealth(int newMaxHealth)
     {
         this.maxHealth = newMaxHealth;
-    }
-
-    // Speed
-    ////////////////
-    public float GetMonsterSpeed(){
-        return this.monsterSpeed;
-    }
-
-    public void SetMonsterSpeed(float newSpeed){
-        this.monsterSpeed = newSpeed;
     }
 }

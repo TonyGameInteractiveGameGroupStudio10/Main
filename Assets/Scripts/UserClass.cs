@@ -16,6 +16,12 @@ public class UserClass : MonoBehaviour {
 	private float playerSpeed; // 4f
 	private Vector2 targetVelocity;
 
+    // Status Effects
+    ///////////////
+    protected int poison;
+    protected float poisonTimer; // 6 seconds
+    protected bool[] poisonDamage = new bool[3];
+
 	// Items
 	////////////////
 	// 0 - clear; 1 - haste; 2 - health
@@ -63,6 +69,7 @@ public class UserClass : MonoBehaviour {
 		this.ResetPotions();
 		this.ResetWeaponMod();
 		this.ResetAttackMod();
+		this.poison = 0;
 		// Set player to center stage
 		transform.position = new Vector3(0,0,0);
 	}
@@ -91,6 +98,23 @@ public class UserClass : MonoBehaviour {
 			}
 			weaponModule.Fire(weaponPrefab, this.transform.Find("FiringPosition"));
 		}
+
+		// Poison Timer
+        if (this.poisonTimer > 0){
+            this.poisonTimer -= Time.deltaTime;
+            if ((poisonDamage[0] == false) && (poisonTimer >= 4)){
+                this.Poisoned();
+                this.poisonDamage[0] = true;
+            }
+            else if ((poisonDamage[1] == false) && (poisonTimer < 4) && (poisonTimer >= 2)){
+                this.Poisoned();
+                this.poisonDamage[1] = true;
+            }
+            else if ((poisonDamage[2] == false) && (poisonTimer < 2)) {
+                this.Poisoned();
+                this.poisonDamage[2] = true;
+            }
+        }
 	}
 
 	// Fixed Update
@@ -108,6 +132,23 @@ public class UserClass : MonoBehaviour {
 	////////////////////////////////
 	// Methods 
 	////////////////////////////////
+	// Status Effects
+    ////////////////
+    protected void Poisoned(){
+        int tick = 2*this.poison;
+        this.TakeDamage(tick);
+    }
+
+    public void ReceivingPoison(){
+        if (this.poison < 3){
+            this.poison += 1;
+        }
+        this.poisonTimer = 6f;
+        for (int i = 0; i < poisonDamage.Length; i += 1){
+            poisonDamage[i] = false;
+        }
+    }
+
 	// Health
 	////////////////
 	public int GetHealth(){ 

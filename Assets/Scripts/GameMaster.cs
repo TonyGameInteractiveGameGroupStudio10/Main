@@ -7,6 +7,13 @@ public class GameMaster : MonoBehaviour {
 	// Spawn Location
 	public GameObject[] spawner = new GameObject[12];
 
+	// Enemy Types
+	public GameObject monsterFire;
+	public GameObject monsterIce;
+	public GameObject monsterOil;
+	public GameObject monsterStone;
+	public GameObject monsterPoison;
+
 	// Sprite Containers
 	public Sprite[] potionSprites = new Sprite[3];
 	public Sprite[] weaponSprites;

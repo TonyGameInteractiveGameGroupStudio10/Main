@@ -9,7 +9,6 @@ using UnityEngine;
 public class MonsterStone : MonsterClass {
 
     // Stats
-    private float monsterSpeed = 2f;
     private int maxHealth = 30;
 
     // Sprite
@@ -25,6 +24,7 @@ public class MonsterStone : MonsterClass {
     void Start() {
         // Set Stats
         healthPool = maxHealth;
+        monsterSpeed = 2f;
         currentSpeed = monsterSpeed;
 
         // Grab Components
@@ -55,23 +55,23 @@ public class MonsterStone : MonsterClass {
         // Movement
         if (stunned == false){
              transform.right = playerLocation.position - transform.position;
-        transform.position = Vector2.MoveTowards(transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
         }
 
         // Poison Timer
-        if (poisonTimer > 0){
-            poisonTimer -= Time.deltaTime;
-            if ((poisonTimer >= 4) && (poisonDamage[0]) == false){
+        if (this.poisonTimer > 0){
+            this.poisonTimer -= Time.deltaTime;
+            if ((poisonDamage[0] == false) && (poisonTimer >= 4)){
                 this.Poisoned();
-                poisonDamage[0] = true;
+                this.poisonDamage[0] = true;
             }
-            else if ((poisonTimer < 4) && (poisonTimer >= 2) && (poisonDamage[1] == false)){
+            else if ((poisonDamage[1] == false) && (poisonTimer < 4) && (poisonTimer >= 2)){
                 this.Poisoned();
-                poisonDamage[1] = true;
+                this.poisonDamage[1] = true;
             }
-            else if ((poisonTimer < 2)  && (poisonDamage[2] == false)) {
+            else if ((poisonDamage[2] == false) && (poisonTimer < 2)) {
                 this.Poisoned();
-                poisonDamage[2] = true;
+                this.poisonDamage[2] = true;
             }
         }
 
@@ -109,15 +109,5 @@ public class MonsterStone : MonsterClass {
     public void SetMaxHealth(int newMaxHealth)
     {
         this.maxHealth = newMaxHealth;
-    }
-
-    // Speed
-    ////////////////
-    public float GetMonsterSpeed(){
-        return this.monsterSpeed;
-    }
-
-    public void SetMonsterSpeed(float newSpeed){
-        this.monsterSpeed = newSpeed;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemAttackMod : MonoBehaviour {
 
 	// Index of Attack Modifier
-	public int itemIndex;
+	public int itemIndex = 123;
 
 	// Link to GameMaster
 	private GameObject theGameMaster;
@@ -16,8 +16,7 @@ public class ItemAttackMod : MonoBehaviour {
 
 	// Unity Methods
 	////////////////
-	void Start () {	
-		//itemIndex = 123;   <------- TURN THIS ON
+	void Start () {
 		askedForSprite = false;
 		this.spriteRenderer = GetComponent<SpriteRenderer>();
 		theGameMaster = GameObject.FindGameObjectWithTag("GameMaster");
@@ -25,7 +24,7 @@ public class ItemAttackMod : MonoBehaviour {
 
 	void Update(){
 		// If that index has been changed/set
-		if ((itemIndex != 123) && (askedForSprite == false)) {
+		if ((askedForSprite == false) && (itemIndex != 123)) {
 			//theGameMaster.GetComponent<GameMaster>().GetAttackSprite(itemIndex); <------ TURN THIS ON
 			askedForSprite = true;
 		}
@@ -40,11 +39,7 @@ public class ItemAttackMod : MonoBehaviour {
 
 	// Methods
 	////////////////
-	public void setItemIndex(int newIndex){
+	public void SetItemIndex(int newIndex){
 		this.itemIndex = newIndex;
-	}
-
-	public void setSprite(Sprite newSprite){
-		this.spriteRenderer.sprite = newSprite;
 	}
 }

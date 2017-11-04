@@ -4,4 +4,7 @@ using UnityEngine;
 
 public class UserPotion : MonoBehaviour {
 
+	public int healthPotions;
+	public int hastePotions;
+	public int clearPotions;
 }

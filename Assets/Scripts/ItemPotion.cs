@@ -5,10 +5,10 @@ using UnityEngine;
 public class ItemPotion : MonoBehaviour {
 
 	// Index of Potion
-	private int itemIndex;
+	public int itemIndex = 123;
 
 	// Link to gameMaster
-	private GameObject theGameMaster;
+	public GameObject theGameMaster;
 
 	// Sprite
 	private SpriteRenderer spriteSwitcher;
@@ -18,7 +18,6 @@ public class ItemPotion : MonoBehaviour {
 	// Unity Methods
 	////////////////
 	void Start () {	
-		itemIndex = 123;
 		askedForSprite = false;
 		this.spriteSwitcher = GetComponent<SpriteRenderer>();
 		theGameMaster = GameObject.FindGameObjectWithTag("GameMaster");
@@ -42,7 +41,7 @@ public class ItemPotion : MonoBehaviour {
 
 	// Methods
 	////////////////
-	public void setItemIndex(int newIndex){
-		this.itemIndex = newIndex;
+	public void SetItemIndex(int newIndex){
+		itemIndex = newIndex;
 	}
 }

@@ -9,6 +9,7 @@ public class MonsterClass : MonoBehaviour {
     ////////////////
     protected int healthPool;
     protected float currentSpeed;
+    protected float monsterSpeed;
 
     // Status Effects
     ///////////////
@@ -82,6 +83,14 @@ public class MonsterClass : MonoBehaviour {
         this.currentSpeed = newSpeed;
     }
 
+    public float GetMonsterSpeed(){
+        return this.monsterSpeed;
+    }
+
+    public void SetMonsterSpeed(float newSpeed){
+        this.monsterSpeed = newSpeed;
+    }
+
     // Status Effects
     ////////////////
     protected void Poisoned(){
@@ -90,7 +99,7 @@ public class MonsterClass : MonoBehaviour {
     }
 
     public void ReceivingPoison(){
-        if (this.poison <= 5){
+        if (this.poison < 5){
             this.poison += 1;
         }
         this.poisonTimer = 6f;
@@ -109,22 +118,22 @@ public class MonsterClass : MonoBehaviour {
     protected void effectRoller(){
         int diceRoll = Random.Range(1,101);
         // Roll values are currently temp, this is more of a skeleton
-        if (diceRoll <= 100){ // 2
+        if (diceRoll <= 2){ // 2
             this.potionDrop = true; 
             // 0 - clear; 1 - haste; 2 - health;
-            this.dropIndex = Random.Range(0,4);
+            this.dropIndex = Random.Range(0,3);
         }
-        else if (diceRoll >= 0 && diceRoll <= 0){ // 3 4
+        else if (diceRoll >= 3 && diceRoll <= 4){ // 3 4
             this.weaponModDrop = true;
             // 0 - Arrow Speed ; 1 - Attack Speed ; 2 - Crit; 3 - cone;
             this.dropIndex = Random.Range(0,4);
         }
-        else if (diceRoll >= 0 && diceRoll <= 0){ // 5 6
+        else if (diceRoll >= 5 && diceRoll <= 6){ // 5 6
             this.attackModDrop = true;
             // 0 - Posion ; 1 - vine ; 2 - shock ; 3 - quaking ; 4 - ricochet;
             this.dropIndex = Random.Range(0,5);
         }
-        else if (diceRoll >= 0 && diceRoll <= 0){ // 7 12
+        else if (diceRoll >= 7 && diceRoll <= 12){ // 7 12
             // doesn't have a drop table because each environment drop is unique to
             // the monster that it is being dropped by
             this.environmentDrop = true;
@@ -135,15 +144,16 @@ public class MonsterClass : MonoBehaviour {
         // If any dropper has been marked true, the instantiate a drop of that type
         if (this.potionDrop == true){
             GameObject potionTemp = Instantiate(potionPrefab,transform.position,Quaternion.identity);
-            potionTemp.SendMessage("setItemIndex", dropIndex);
+            potionTemp.GetComponent<ItemPotion>().SetItemIndex(dropIndex);
+            //potionTemp.SendMessage("setItemIndex", dropIndex);
         }
         else if(this.weaponModDrop == true){
             GameObject weaponTemp = Instantiate(weaponModPrefab,transform.position,Quaternion.identity);
-            weaponTemp.SendMessage("setItemIndex", dropIndex);
+            weaponTemp.GetComponent<ItemWeaponMod>().SetItemIndex(dropIndex);
         }
         else if(this.attackModDrop == true){
             GameObject attackTemp = Instantiate(attackModPrefab,transform.position,Quaternion.identity);
-			attackTemp.SendMessage ("setItemIndex", dropIndex);
+			attackTemp.GetComponent<ItemAttackMod>().SetItemIndex(dropIndex);
         }
         else if (this.environmentDrop == true){
             Instantiate(environDrop,transform.position,Quaternion.identity);

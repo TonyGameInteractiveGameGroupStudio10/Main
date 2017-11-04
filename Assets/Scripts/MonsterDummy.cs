@@ -36,19 +36,19 @@ public class MonsterDummy : MonsterClass {
     ////////////////
     void Update(){
         // Poison Timer
-        if (poisonTimer > 0){
-            poisonTimer -= Time.deltaTime;
-            if ((poisonTimer >= 4) && (poisonDamage[0]) == false){
+        if (this.poisonTimer > 0){
+            this.poisonTimer -= Time.deltaTime;
+            if ((poisonTimer >= 4) && (poisonDamage[0] == false)){
                 this.Poisoned();
-                poisonDamage[0] = true;
+                this.poisonDamage[0] = true;
             }
             else if ((poisonTimer < 4) && (poisonTimer >= 2) && (poisonDamage[1] == false)){
                 this.Poisoned();
-                poisonDamage[1] = true;
+                this.poisonDamage[1] = true;
             }
             else if ((poisonTimer < 2)  && (poisonDamage[2] == false)) {
                 this.Poisoned();
-                poisonDamage[2] = true;
+                this.poisonDamage[2] = true;
             }
         }
 

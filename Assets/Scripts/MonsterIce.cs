@@ -5,11 +5,10 @@ using UnityEngine;
 // Monster Ice
 // - Medium Speed
 // - High HP
-// - Drops ice
+// - Drops water/fuel/maybe ice?
 public class MonsterIce : MonsterClass {
 
     // Stats
-    private float monsterSpeed = 3.5f;
     private int maxHealth = 30;
 
     // Sprite
@@ -25,6 +24,7 @@ public class MonsterIce : MonsterClass {
     void Start() {
         // Set Stats
         healthPool = maxHealth;
+        monsterSpeed = 3.5f;
         currentSpeed = monsterSpeed;
 
         // Grab Components
@@ -61,15 +61,15 @@ public class MonsterIce : MonsterClass {
         // Poison Timer
         if (this.poisonTimer > 0){
             this.poisonTimer -= Time.deltaTime;
-            if ((poisonTimer >= 4) && (poisonDamage[0]) == false){
+            if ((poisonDamage[0] == false) && (poisonTimer >= 4)){
                 this.Poisoned();
                 this.poisonDamage[0] = true;
             }
-            else if ((poisonTimer < 4) && (poisonTimer >= 2) && (poisonDamage[1] == false)){
+            else if ((poisonDamage[1] == false) && (poisonTimer < 4) && (poisonTimer >= 2)){
                 this.Poisoned();
                 this.poisonDamage[1] = true;
             }
-            else if ((poisonTimer < 2)  && (poisonDamage[2] == false)) {
+            else if ((poisonDamage[2] == false) && (poisonTimer < 2)) {
                 this.Poisoned();
                 this.poisonDamage[2] = true;
             }
@@ -109,15 +109,5 @@ public class MonsterIce : MonsterClass {
     public void SetMaxHealth(int newMaxHealth)
     {
         this.maxHealth = newMaxHealth;
-    }
-
-    // Speed
-    ////////////////
-    public float GetMonsterSpeed(){
-        return this.monsterSpeed;
-    }
-
-    public void SetMonsterSpeed(float newSpeed){
-        this.monsterSpeed = newSpeed;
     }
 }
