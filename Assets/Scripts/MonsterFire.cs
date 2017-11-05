@@ -56,7 +56,10 @@ public class MonsterFire : MonsterClass {
         // Movement
         transform.right = playerLocation.position - transform.position;
         transform.position = Vector2.MoveTowards(transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
-
+        //if(DistanceToPlayer == 2.0f && charged == true)
+        //{
+            //BlastingCannon();  
+        //}
 
         // Poison Timer
         if (this.poisonTimer > 0){
@@ -110,4 +113,8 @@ public class MonsterFire : MonsterClass {
     {
         this.maxHealth = newMaxHealth;
     }
+    //private void BlastingCannon()
+    //{
+            
+    //}
 }
