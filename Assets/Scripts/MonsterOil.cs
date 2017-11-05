@@ -11,7 +11,9 @@ public class MonsterOil : MonsterClass {
 
     // Stats
     private int maxHealth = 20;
-
+    //Distance to player and temp location
+    private int DistanceToPlayer;
+    public Transform TempLocation;
     // Sprite
     private SpriteRenderer spriteSwitcher;
     public Sprite smallSprite;
@@ -58,7 +60,11 @@ public class MonsterOil : MonsterClass {
             transform.right = playerLocation.position - transform.position;
         	transform.position = Vector2.MoveTowards(transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
         }
-
+        //Attack
+        if (DistanceToPlayer <= 8)
+        {
+            OilSling();   
+        }
         // Poison Timer
         if (this.poisonTimer > 0){
             this.poisonTimer -= Time.deltaTime;
@@ -116,4 +122,13 @@ public class MonsterOil : MonsterClass {
     {
         this.maxHealth = newMaxHealth;
     }
+    //private void OilBomb();
+    //{
+    //     transform.right = playerLocation.position - transform.position;
+    //     Instantiate.OilBomb;
+    //     if (oil hits player)
+    //         slow Player for 2 tiles
+    //     else
+    //         do nothing
+    //}
 }
