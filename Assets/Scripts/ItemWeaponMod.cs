@@ -25,7 +25,7 @@ public class ItemWeaponMod : MonoBehaviour {
 	void Update() {
 		// If that index has been changed/set
 		if ((itemIndex != 123) && (askedForSprite == false)) {
-			spriteSwitcher.sprite = theGameMaster.GetComponent<GameMaster>().GetWeaponSprite(itemIndex);
+			//spriteSwitcher.sprite = theGameMaster.GetComponent<GameMaster>().GetWeaponSprite(itemIndex);
 			askedForSprite = true;
 		}
 	}

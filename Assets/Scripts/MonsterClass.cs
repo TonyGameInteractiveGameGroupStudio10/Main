@@ -171,8 +171,8 @@ public class MonsterClass : MonoBehaviour {
         }
         else if (diceRoll >= 3 && diceRoll <= 4){ // 3 4
             this.weaponModDrop = true;
-            // 0 - Arrow Speed ; 1 - Attack Speed ;
-            this.dropIndex = Random.Range(0,2);
+            // 0 -  Attack Speed ;
+            this.dropIndex = 0;
         }
         else if (diceRoll >= 5 && diceRoll <= 6){ // 5 6
             this.attackModDrop = true;
