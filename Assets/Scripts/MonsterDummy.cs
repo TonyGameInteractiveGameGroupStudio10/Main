@@ -12,7 +12,7 @@ public class MonsterDummy : MonsterClass {
     ///////////////////////////////////
     // Start
     ////////////////
-    void Start() {
+    protected override void Start() {
     	// Set Stats
     	this.healthPool = this.maxHealth;
         this.monsterSpeed = 4.2f;
@@ -34,7 +34,7 @@ public class MonsterDummy : MonsterClass {
 
     // Update
     ////////////////
-    void Update(){
+    protected override void Update(){
         // Poison Timer
         if (this.poisonTimer > 0){
             this.poisonTimer -= Time.deltaTime;

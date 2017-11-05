@@ -20,7 +20,10 @@ public class MonsterIce : MonsterClass {
     ///////////////////////////////////
     // Start
     ////////////////
-    void Start() {
+    protected override void Start() {
+        // Run MonsterClass Start()
+        base.Start();
+
         // Set Stats
         healthPool = maxHealth;
         monsterSpeed = 3.5f;
@@ -40,7 +43,10 @@ public class MonsterIce : MonsterClass {
 
     // Update
     ////////////////
-    void Update(){
+    protected override void Update(){
+        // Rune MonsterClass Update()
+        base.Update();
+
         // Poison Timer
         if (this.poisonTimer > 0){
             this.poisonTimer -= Time.deltaTime;

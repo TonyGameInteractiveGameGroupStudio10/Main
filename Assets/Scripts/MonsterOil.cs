@@ -25,7 +25,10 @@ public class MonsterOil : MonsterClass {
     ///////////////////////////////////
     // Start
     ////////////////
-    void Start() {
+    protected override void Start() {
+        // Run MonsterClass Start()
+        base.Start();
+
         // Set Stats
         healthPool = maxHealth;
         monsterSpeed = 2.5f;
@@ -45,7 +48,10 @@ public class MonsterOil : MonsterClass {
 
     // Update
     ////////////////
-    void Update(){
+    protected override void Update(){
+        // Rune MonsterClass Update()
+        base.Update();
+
         //Attack
         if (DistanceToPlayer <= 8)
         {

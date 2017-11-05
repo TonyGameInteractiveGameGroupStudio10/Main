@@ -13,18 +13,22 @@ public class MonsterStone : MonsterClass {
     private int maxHealth = 30;
 
     // Sprite
-    private Transform tempLocation;
-    private SpriteRenderer spriteSwitcher;
     public Sprite smallSprite;
-    private float DistanceToPlayer;
     public Sprite largeSprite;
+
+    // Other
+    private Transform tempLocation;
+    private float DistanceToPlayer;
 
     ///////////////////////////////////
     // Unity Methods
     ///////////////////////////////////
     // Start
     ////////////////
-    void Start() {
+    protected override void Start() {
+        // Run MonsterClass Start()
+        base.Start();
+
         // Set Stats
         healthPool = maxHealth;
         monsterSpeed = 2f;
@@ -44,7 +48,10 @@ public class MonsterStone : MonsterClass {
 
     // Update
     ////////////////
-    void Update(){
+    protected override void Update(){
+        // Rune MonsterClass Update()
+        base.Update();
+
         if (DistanceToPlayer <= 2.0f)
         {
             BoundAttack();

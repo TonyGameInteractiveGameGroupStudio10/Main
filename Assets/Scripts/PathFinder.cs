@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // The enemies ask for a path.
-// Threat Types: 0 - wall; 1- fire ; 2 - poison; 3 - oil
 public class PathFinder : MonoBehaviour {
 
     // Player Info
@@ -109,9 +108,9 @@ public class PathFinder : MonoBehaviour {
                 thePath.Add(currentPath);
                 currentPath = currentPath.GetParent();
             }
-            // reverse it
+            // Reverse it
 			thePath.Reverse();
-            // return it
+            // Return it
             return thePath;
         }
         // If no path was found
@@ -155,7 +154,25 @@ public class PathFinder : MonoBehaviour {
     }
 
     private int ThreatWeight(int[] tile){
+        // Threat Types: 0 - wall; 1- fire ; 2 - poison; 3 - oil
+        int threatCounter = 0;
+        // Wall
+        if(tile[0] > 0){
 
+        }
+        // Fire
+        if(tile[1] > 0){
+
+        }
+        // Poison
+        if(tile[2] > 0){
+
+        }
+        // Oil
+        if(tile[3] > 0){
+
+        }
+        return threatCounter;
     }
 
     // Player

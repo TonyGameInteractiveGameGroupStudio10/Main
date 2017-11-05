@@ -21,7 +21,10 @@ public class MonsterPoison : MonsterClass {
     ///////////////////////////////////
     // Start
     ////////////////
-    void Start() {
+    protected override void Start() {
+        // Run MonsterClass Start()
+        base.Start();
+
         // Set Stats
         healthPool = maxHealth;
         monsterSpeed = 3.5f;
@@ -41,7 +44,10 @@ public class MonsterPoison : MonsterClass {
 
     // Update
     ////////////////
-    void Update(){
+    protected override void Update(){
+        // Rune MonsterClass Update()
+        base.Update();
+
         // Stun Timer
         if (this.stunTimer > 0){
             this.stunTimer -= Time.deltaTime;

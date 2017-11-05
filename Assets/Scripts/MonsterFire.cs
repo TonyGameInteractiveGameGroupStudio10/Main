@@ -22,7 +22,9 @@ public class MonsterFire : MonsterClass {
     // Start
     ////////////////
     protected override void Start() {
+        // Run MonsterClass Start()
         base.Start();
+
         // Set Stats
         healthPool = maxHealth;
         monsterSpeed = 4f;
@@ -43,7 +45,9 @@ public class MonsterFire : MonsterClass {
     // Update
     ////////////////
     protected override void Update(){
-		base.update();
+        // Rune MonsterClass Update()
+		base.Update();
+
         //if(DistanceToPlayer == 2.0f && charged == true)
         //{
             //BlastingCannon();  
