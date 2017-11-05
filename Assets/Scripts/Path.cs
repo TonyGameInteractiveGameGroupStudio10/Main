@@ -25,7 +25,7 @@ public class Path {
     }
 
     public void SetPosition(Vector3 newPosition){
-        vectorPosition = newPosition
+		vectorPosition = newPosition;
     }
 
     // Parent
@@ -35,7 +35,7 @@ public class Path {
     }
 
     public void SetParent(Path parent){
-        parent = newParent
+		parent = newParent;
     }
 
     // Score

@@ -11,11 +11,12 @@ public class MonsterOil : MonsterClass {
 
     // Stats
     private int maxHealth = 20;
+
     //Distance to player and temp location
     private int DistanceToPlayer;
     public Transform TempLocation;
+
     // Sprite
-    private SpriteRenderer spriteSwitcher;
     public Sprite smallSprite;
     public Sprite largeSprite;
 
@@ -29,16 +30,6 @@ public class MonsterOil : MonsterClass {
         healthPool = maxHealth;
         monsterSpeed = 2.5f;
         currentSpeed = monsterSpeed;
-
-        // Grab Components
-        enemyAnimator = GetComponent<Animator>();
-        enemyBody = GetComponent<Rigidbody2D>();
-        audioPlayer = GetComponent<AudioSource>();
-        spriteSwitcher = GetComponent<SpriteRenderer>();
-
-        // Locate Player
-        thePlayer = GameObject.FindWithTag("Player");
-        playerLocation = thePlayer.transform;
 
         // Check to see if we drop something
         this.effectRoller();
@@ -55,11 +46,6 @@ public class MonsterOil : MonsterClass {
     // Update
     ////////////////
     void Update(){
-        // Movement
-        if (this.stunned == false){
-            transform.right = playerLocation.position - transform.position;
-        	transform.position = Vector2.MoveTowards(transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
-        }
         //Attack
         if (DistanceToPlayer <= 8)
         {
@@ -93,11 +79,6 @@ public class MonsterOil : MonsterClass {
         // Can't be slowed
         if (this.monsterSpeed != this.currentSpeed){
         	this.currentSpeed = this.monsterSpeed;
-        }
-
-        // if HP is less then 0
-        if (healthPool <= 0){
-            this.Die();
         }
     }
 

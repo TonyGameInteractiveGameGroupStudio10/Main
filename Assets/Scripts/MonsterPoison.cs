@@ -13,7 +13,6 @@ public class MonsterPoison : MonsterClass {
     private int maxHealth = 20;
 
     // Sprite
-    private SpriteRenderer spriteSwitcher;
     public Sprite smallSprite;
     public Sprite largeSprite;
 
@@ -27,16 +26,6 @@ public class MonsterPoison : MonsterClass {
         healthPool = maxHealth;
         monsterSpeed = 3.5f;
         currentSpeed = monsterSpeed;
-
-        // Grab Components
-        enemyAnimator = GetComponent<Animator>();
-        enemyBody = GetComponent<Rigidbody2D>();
-        audioPlayer = GetComponent<AudioSource>();
-        spriteSwitcher = GetComponent<SpriteRenderer>();
-
-        // Locate Player
-        thePlayer = GameObject.FindWithTag("Player");
-        playerLocation = thePlayer.transform;
 
         // Check to see if we drop something
         this.effectRoller();
@@ -53,23 +42,12 @@ public class MonsterPoison : MonsterClass {
     // Update
     ////////////////
     void Update(){
-        // Movement
-        if (this.stunned == false){
-            transform.right = playerLocation.position - transform.position;
-            transform.position = Vector2.MoveTowards(transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
-        }
-
         // Stun Timer
         if (this.stunTimer > 0){
             this.stunTimer -= Time.deltaTime;
             if (this.stunTimer <= 0){
                 this.stunned = false;
             }
-        }
-
-        // if HP is less then 0
-        if (healthPool <= 0){
-            this.Die();
         }
     }
 

@@ -30,16 +30,6 @@ public class MonsterStone : MonsterClass {
         monsterSpeed = 2f;
         currentSpeed = monsterSpeed;
 
-        // Grab Components
-        enemyAnimator = GetComponent<Animator>();
-        enemyBody = GetComponent<Rigidbody2D>();
-        audioPlayer = GetComponent<AudioSource>();
-        spriteSwitcher = GetComponent<SpriteRenderer>();
-
-        // Locate Player
-        thePlayer = GameObject.FindWithTag("Player");
-        playerLocation = thePlayer.transform;
-
         // Check to see if we drop something
         this.effectRoller();
 
@@ -55,11 +45,6 @@ public class MonsterStone : MonsterClass {
     // Update
     ////////////////
     void Update(){
-        // Movement
-        if (stunned == false){
-             transform.right = playerLocation.position - transform.position;
-            transform.position = Vector2.MoveTowards(transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
-        }
         if (DistanceToPlayer <= 2.0f)
         {
             BoundAttack();

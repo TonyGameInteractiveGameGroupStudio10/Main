@@ -34,7 +34,7 @@ public class PathFinder : MonoBehaviour {
     ////////////////
     // Path Finding
     ////////////////
-    public Vector3[] FindPath(Vector3 currentVector){
+    public List<Vector3> FindPath(Vector3 currentVector){
         // Path hasn't been found
         bool pathFound = false;
 
@@ -55,7 +55,7 @@ public class PathFinder : MonoBehaviour {
 
         // Clear open and closed list
         openList.Clear();
-        closedList.Clear()
+		closedList.Clear();
 
         // Add starting path to open list
         openList.Add(currentPath);
@@ -84,7 +84,7 @@ public class PathFinder : MonoBehaviour {
             adjacentSquares[2] = new Vector3(currentLocation.x+0.5,currentLocation.y,0);
             adjacentSquares[3] = new Vector3(currentLocation.x-0.5,currentLocation.y,0);
 
-             // for loop through the adjacent square
+            // for loop through the adjacent square
             for (int i = 0; i < 4; i + 1){
                 adjacentScore = TileWeight(adjacentSquare[i]);
                 adjacentPath = new Path(adjacentSquare[i],currentPath,adjacentScore);
@@ -101,11 +101,22 @@ public class PathFinder : MonoBehaviour {
             }
          // Continue until there is no more available square in the open list (which means there is no path)
         } while (openList.Count > 0);
+        // If a path was found
         if (pathFound == true){
-            // if we found the path follow it backwards
+			List<Vector3> thePath = new List<Vector3>();
+            // Follow it backwards
+            while(currentPath.GetParent().GetParent() != null){
+                thePath.Add(currentPath);
+                currentPath = currentPath.GetParent();
+            }
+            // reverse it
+			thePath.Reverse();
+            // return it
+            return thePath;
         }
+        // If no path was found
         else{
-            // wrekt something
+            // rekt something
         }
     }
 
@@ -131,7 +142,7 @@ public class PathFinder : MonoBehaviour {
     // Calculating Weights
     ////////////////
     private int TileWeight(Vector3 currentVector){
-        int[] tile = threatMap.getInfluenceNode(currentVector).getThreat()
+		int[] tile = threatMap.getInfluenceNode (currentVector).getThreat();
         int h = this.DistanceToPlayer(currentVector);
         int f = this.ThreatWeight(tile);
         return f+h;
