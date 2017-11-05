@@ -125,8 +125,8 @@ public class MonsterClass : MonoBehaviour {
         }
         else if (diceRoll >= 3 && diceRoll <= 4){ // 3 4
             this.weaponModDrop = true;
-            // 0 - Arrow Speed ; 1 - Attack Speed ; 2 - Crit; 3 - cone;
-            this.dropIndex = Random.Range(0,4);
+            // 0 - Arrow Speed ; 1 - Attack Speed ;
+            this.dropIndex = Random.Range(0,2);
         }
         else if (diceRoll >= 5 && diceRoll <= 6){ // 5 6
             this.attackModDrop = true;
@@ -145,7 +145,6 @@ public class MonsterClass : MonoBehaviour {
         if (this.potionDrop == true){
             GameObject potionTemp = Instantiate(potionPrefab,transform.position,Quaternion.identity);
             potionTemp.GetComponent<ItemPotion>().SetItemIndex(dropIndex);
-            //potionTemp.SendMessage("setItemIndex", dropIndex);
         }
         else if(this.weaponModDrop == true){
             GameObject weaponTemp = Instantiate(weaponModPrefab,transform.position,Quaternion.identity);

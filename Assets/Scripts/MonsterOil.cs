@@ -63,7 +63,7 @@ public class MonsterOil : MonsterClass {
         //Attack
         if (DistanceToPlayer <= 8)
         {
-            OilSling();   
+            //OilSling();   
         }
         // Poison Timer
         if (this.poisonTimer > 0){

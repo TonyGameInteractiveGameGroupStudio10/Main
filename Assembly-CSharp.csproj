@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\MonsterOil.cs" />
      <Compile Include="Assets\Scripts\MonsterPoison.cs" />
      <Compile Include="Assets\Scripts\MonsterStone.cs" />
+     <Compile Include="Assets\Scripts\PlayerHUD.cs" />
      <Compile Include="Assets\Scripts\UserAttackMod.cs" />
      <Compile Include="Assets\Scripts\UserClass.cs" />
      <Compile Include="Assets\Scripts\UserPotion.cs" />
