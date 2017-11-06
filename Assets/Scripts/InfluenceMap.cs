@@ -10,33 +10,29 @@ using UnityEngine;
 
 public class InfluenceMap : MonoBehaviour {
 
+
 	// the world unit length and width of our game
-	private int gridWidth = 40;
-	private int gridLength = 40;
+	private static int gridWidth = 40;
+	private static int gridLength = 40;
 
 	//y,x for efficiency I thenk 
-	InfluenceNode[][] influenceMap;
-
-
-	void Start(){
-		influenceMap = new InfluenceNode[gridWidth << 1][gridLength << 1];
-	}
+	InfluenceNode[,] influenceMap = new InfluenceNode[gridWidth << 1 , gridLength << 1];
 
 
 	public void addNode(Vector3 nodePos, int type){
-		Vector2 gridLoc = worldPosToGrid(nodePos);
+		IntVector2 gridLoc = worldPosToGrid(nodePos);
 
 		spreadInfluence(false, type, gridLoc);
 	}
 
 	public void delNode(Vector3 nodePos, int type){
-		Vector2 gridLoc = worldPosToGrid(nodePos);
+		IntVector2 gridLoc = worldPosToGrid(nodePos);
 
 		spreadInfluence(true, type, gridLoc);
 	}
 
 
-	public Vector2 worldPosToGrid(Vector3 worldPos){
+	public IntVector2 worldPosToGrid(Vector3 worldPos){
 		int x, y;
 
 		if(worldPos.x < 0) {
@@ -51,20 +47,20 @@ public class InfluenceMap : MonoBehaviour {
 			y = (int) (worldPos.y * 4);
 		}
 
-		return new Vector2(x,y);
+		return new IntVector2(x,y);
 	}
 
 
 
 	public InfluenceNode getInfluenceNode(Vector3 position){
-		Vector2 conVec = worldPosToGrid(position);
+		IntVector2 conVec = worldPosToGrid(position);
 
-		return influenceMap[conVec.y][conVec.x];
+		return influenceMap[(int) conVec.y , (int) conVec.x];
 	}
 
 	// these numbers need to be play tested; for now I'm just picking some
 	// arbitrary shtuff cuz we r in finish 'em mode - Chris
-	private void spreadInfluence(bool delInfluence, int type, Vector2 center){
+	private void spreadInfluence(bool delInfluence, int type, IntVector2 center){
 		int radius = 3;
 		int decayFactor = 75;
 		int threatVal = 100;
@@ -76,13 +72,13 @@ public class InfluenceMap : MonoBehaviour {
 
 		for(int i = -3; i < radius; i++){
 			if(((center.y + i) < influenceMap.Length) && ((center.y + i) > 0)) {
-				influenceMap[center.y+i][center.x].threats[type] += threatVal * (decayFactor * i);
+				influenceMap[center.y+i , center.x].getThreat()[type] += threatVal * (decayFactor * i);
 				for(spread = (Mathf.Abs(radius - i)); spread > 0; spread--){
 					if((center.x + spread) < influenceMap.Length) {
-						influenceMap[center.y+i][center.x+spread].threats[type] += threatVal * (decayFactor * spread);
+						influenceMap[center.y+i , center.x+spread].getThreat()[type] += threatVal * (decayFactor * spread);
 					}
 					if((center.x - spread) > 0){
-						influenceMap[center.y+i][center.x-spread].threats[type] += threatVal * (decayFactor * spread);
+						influenceMap[center.y+i , center.x-spread].getThreat()[type] += threatVal * (decayFactor * spread);
 					}
 				}
 				
