@@ -14,7 +14,7 @@ public class InfluenceMap : MonoBehaviour {
 	private static int scaledWidth = gridWidth * 2;
 
 	//y,x for efficiency I thenk 
-	public InfluenceNode[,] influenceMap = new InfluenceNode[scaledLength, scaledWidth];
+	public static InfluenceNode[,] influenceMap = new InfluenceNode[scaledLength, scaledWidth];
 
 
 	public void Start(){
