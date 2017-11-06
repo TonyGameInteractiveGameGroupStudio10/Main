@@ -7,7 +7,7 @@ public class ColumnThreat : MonoBehaviour {
 
     // Add this wall to the threat map
     void Start(){
-        GameObject.FindWithTag("GameMaster").GetComponent<InfluenceMap>().addNode(transform.position, 0);
+        //GameObject.FindWithTag("GameMaster").GetComponent<InfluenceMap>().addNode(transform.position, 0);
     }
 
 }
