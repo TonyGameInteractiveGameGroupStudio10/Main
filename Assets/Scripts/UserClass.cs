@@ -27,9 +27,8 @@ public class UserClass : MonoBehaviour {
 	// 0 - clear; 1 - haste; 2 - health
 	private int[] potion = new int[3];
 	private UserPotion potionModule;
-	// 0 - Arrow Speed ; 1 - Attack Speed ; 2 - Crit;
-	// 3 - cone;
-	private int[] weaponMod = new int[5]; 
+	// 0 - Arrow Speed ; 1 - Attack Speed ;
+	private int[] weaponMod = new int[2]; 
 	private UserWeaponMod weaponModule; //
 	// 0 - Posion ; 1 - vine ; 2 - shock ;
 	// 3 - quaking ; 4 - ricochet
@@ -41,12 +40,6 @@ public class UserClass : MonoBehaviour {
 	private bool recheckAttack;
 	private bool recheckWeapon;
 	private GameObject weaponPrefab;
-	
-	// Effects
-	////////////////
-	// 0 - ; 1 - ; 2 -
-	// 3 - ; 4 - ; 5 -
-	//private gameObject[] currentAilments = new gameObject[20]; // change and activate once created
 
 	// Animator
 	////////////////

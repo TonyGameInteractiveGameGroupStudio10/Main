@@ -9,33 +9,30 @@ using UnityEngine;
 public class MonsterStone : MonsterClass {
 
     // Stats
+    public int Thrust = 50;
     private int maxHealth = 30;
 
     // Sprite
-    private SpriteRenderer spriteSwitcher;
     public Sprite smallSprite;
     public Sprite largeSprite;
+
+    // Other
+    private Transform tempLocation;
+    private float DistanceToPlayer;
 
     ///////////////////////////////////
     // Unity Methods
     ///////////////////////////////////
     // Start
     ////////////////
-    void Start() {
+    protected override void Start() {
+        // Run MonsterClass Start()
+        base.Start();
+
         // Set Stats
         healthPool = maxHealth;
         monsterSpeed = 2f;
         currentSpeed = monsterSpeed;
-
-        // Grab Components
-        enemyAnimator = GetComponent<Animator>();
-        enemyBody = GetComponent<Rigidbody2D>();
-        audioPlayer = GetComponent<AudioSource>();
-        spriteSwitcher = GetComponent<SpriteRenderer>();
-
-        // Locate Player
-        thePlayer = GameObject.FindWithTag("Player");
-        playerLocation = thePlayer.transform;
 
         // Check to see if we drop something
         this.effectRoller();
@@ -51,11 +48,13 @@ public class MonsterStone : MonsterClass {
 
     // Update
     ////////////////
-    void Update(){
-        // Movement
-        if (stunned == false){
-             transform.right = playerLocation.position - transform.position;
-            transform.position = Vector2.MoveTowards(transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
+    protected override void Update(){
+        // Rune MonsterClass Update()
+        base.Update();
+
+        if (DistanceToPlayer <= 2.0f)
+        {
+            BoundAttack();
         }
 
         // Poison Timer
@@ -105,9 +104,28 @@ public class MonsterStone : MonsterClass {
     {
         return this.maxHealth;
     }
-
+   
     public void SetMaxHealth(int newMaxHealth)
     {
         this.maxHealth = newMaxHealth;
     }
+    ///////////////////////////////////
+    //BoundAttack
+    ///////////////////////////////////
+    public void BoundAttack()
+    {
+           transform.right = playerLocation.position;
+           playerLocation = tempLocation;
+           //gameObject.AddForce(transform.right * Thrust);
+    }
+    //It's collision.. Sadly I'm using Linux and Unity isn't being very friendly so I have no way of testing this yet. 
+    //Once I get home I'll be able to actually fix and run this and hopefully have something running.
+    //void OnCollisionEnter2D(Collision coll)
+    //{
+        //if(coll.tag == "Player")
+        // thePlayer.GetComponent<userClass>().TakeDamage(5.0f);
+        //else if (coll.tag == "wall")
+        //  this.takeDamage(10.0f);
+      
+    //}
 }

@@ -12,7 +12,6 @@ public class MonsterIce : MonsterClass {
     private int maxHealth = 30;
 
     // Sprite
-    private SpriteRenderer spriteSwitcher;
     public Sprite smallSprite;
     public Sprite largeSprite;
 
@@ -21,21 +20,14 @@ public class MonsterIce : MonsterClass {
     ///////////////////////////////////
     // Start
     ////////////////
-    void Start() {
+    protected override void Start() {
+        // Run MonsterClass Start()
+        base.Start();
+
         // Set Stats
         healthPool = maxHealth;
         monsterSpeed = 3.5f;
         currentSpeed = monsterSpeed;
-
-        // Grab Components
-        enemyAnimator = GetComponent<Animator>();
-        enemyBody = GetComponent<Rigidbody2D>();
-        audioPlayer = GetComponent<AudioSource>();
-        spriteSwitcher = GetComponent<SpriteRenderer>();
-
-        // Locate Player
-        thePlayer = GameObject.FindWithTag("Player");
-        playerLocation = thePlayer.transform;
 
         // Check to see if we drop something
         this.effectRoller();
@@ -51,12 +43,9 @@ public class MonsterIce : MonsterClass {
 
     // Update
     ////////////////
-    void Update(){
-        // Movement
-        if (this.stunned == false){
-            transform.right = playerLocation.position - transform.position;
-            transform.position = Vector2.MoveTowards(transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
-        }
+    protected override void Update(){
+        // Rune MonsterClass Update()
+        base.Update();
 
         // Poison Timer
         if (this.poisonTimer > 0){
@@ -81,11 +70,6 @@ public class MonsterIce : MonsterClass {
             if (this.stunTimer <= 0){
                 this.stunned = false;
             }
-        }
-
-        // if HP is less then 0
-        if (healthPool <= 0){
-            this.Die();
         }
     }
 

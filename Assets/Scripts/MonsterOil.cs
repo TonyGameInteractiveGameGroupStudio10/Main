@@ -12,8 +12,11 @@ public class MonsterOil : MonsterClass {
     // Stats
     private int maxHealth = 20;
 
+    //Distance to player and temp location
+    private int DistanceToPlayer;
+    public Transform TempLocation;
+
     // Sprite
-    private SpriteRenderer spriteSwitcher;
     public Sprite smallSprite;
     public Sprite largeSprite;
 
@@ -22,21 +25,14 @@ public class MonsterOil : MonsterClass {
     ///////////////////////////////////
     // Start
     ////////////////
-    void Start() {
+    protected override void Start() {
+        // Run MonsterClass Start()
+        base.Start();
+
         // Set Stats
         healthPool = maxHealth;
         monsterSpeed = 2.5f;
         currentSpeed = monsterSpeed;
-
-        // Grab Components
-        enemyAnimator = GetComponent<Animator>();
-        enemyBody = GetComponent<Rigidbody2D>();
-        audioPlayer = GetComponent<AudioSource>();
-        spriteSwitcher = GetComponent<SpriteRenderer>();
-
-        // Locate Player
-        thePlayer = GameObject.FindWithTag("Player");
-        playerLocation = thePlayer.transform;
 
         // Check to see if we drop something
         this.effectRoller();
@@ -52,13 +48,15 @@ public class MonsterOil : MonsterClass {
 
     // Update
     ////////////////
-    void Update(){
-        // Movement
-        if (this.stunned == false){
-            transform.right = playerLocation.position - transform.position;
-        	transform.position = Vector2.MoveTowards(transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
-        }
+    protected override void Update(){
+        // Rune MonsterClass Update()
+        base.Update();
 
+        //Attack
+        if (DistanceToPlayer <= 8)
+        {
+            //OilSling();   
+        }
         // Poison Timer
         if (this.poisonTimer > 0){
             this.poisonTimer -= Time.deltaTime;
@@ -88,11 +86,6 @@ public class MonsterOil : MonsterClass {
         if (this.monsterSpeed != this.currentSpeed){
         	this.currentSpeed = this.monsterSpeed;
         }
-
-        // if HP is less then 0
-        if (healthPool <= 0){
-            this.Die();
-        }
     }
 
     // Fixed Update
@@ -116,4 +109,13 @@ public class MonsterOil : MonsterClass {
     {
         this.maxHealth = newMaxHealth;
     }
+    //private void OilBomb();
+    //{
+    //     transform.right = playerLocation.position - transform.position;
+    //     Instantiate.OilBomb;
+    //     if (oil hits player)
+    //         slow Player for 2 tiles
+    //     else
+    //         do nothing
+    //}
 }

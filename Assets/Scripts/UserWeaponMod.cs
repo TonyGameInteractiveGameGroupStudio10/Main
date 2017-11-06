@@ -46,9 +46,11 @@ public class UserWeaponMod : MonoBehaviour {
 	// Applying Modifiers
 	///////////////
 	public void ApplyMod(int[] buffs){
-		// Apply modifiers from the buffs to the weapon module
-		for (int i = 0; i < 5; i += 1){
+		float newAttackSpeed = buffs [0] * 0.05;
+		if(newAttackSpeed > 0.5){
+			newAttackSpeed == 0.5;
 		}
+		attackSpeed = newAttackSpeed;
 	}
 
 	// Firing Weapon
