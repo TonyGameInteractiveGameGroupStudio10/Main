@@ -16,8 +16,16 @@ public class InfluenceMap : MonoBehaviour {
 	private static int gridLength = 40;
 
 	//y,x for efficiency I thenk 
-	InfluenceNode[,] influenceMap = new InfluenceNode[gridWidth << 1 , gridLength << 1];
+	InfluenceNode[,] influenceMap = new InfluenceNode[gridWidth , gridLength];
 
+
+	public void Start(){
+		for(int i = 0; i < gridLength; i++){
+			for(int j =0; j < gridWidth; j++){
+				influenceMap[i,j] = new InfluenceNode(0);
+			}
+		}
+	}
 
 	public void addNode(Vector3 nodePos, int type){
 		IntVector2 gridLoc = worldPosToGrid(nodePos);
