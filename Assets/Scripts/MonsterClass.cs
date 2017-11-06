@@ -78,7 +78,7 @@ public class MonsterClass : MonoBehaviour {
         playerLocation = thePlayer.transform;
 
         // Find the first path, then search every second
-        //this.FindPath();
+        this.FindPath();
         InvokeRepeating("FindPath", 2f, 0.5f);
     }
 

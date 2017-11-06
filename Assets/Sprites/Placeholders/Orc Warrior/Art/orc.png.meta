@@ -2,7 +2,18 @@ fileFormatVersion: 2
 guid: 8a72ffba25c088349984b59bd2159399
 timeCreated: 18446744011573954816
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: orc _L_arm
+    21300002: orc_head
+    21300004: orc _R_arm
+    21300006: orc_weapon
+    21300008: orc_L_hand
+    21300010: orc_body
+    21300012: orc _R_hand
+    21300014: orc_pants
+    21300016: orc _L_leg
+    21300018: orc _R_leg
+  externalObjects: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -56,6 +67,7 @@ TextureImporter:
   platformSettings:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 1024
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -64,6 +76,7 @@ TextureImporter:
     overridden: 0
   - buildTarget: iPhone
     maxTextureSize: 1024
+    resizeAlgorithm: 0
     textureFormat: 2
     textureCompression: 0
     compressionQuality: 50

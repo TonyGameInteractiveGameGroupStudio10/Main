@@ -703,6 +703,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 114325295855067316, guid: 1d761c7744e7c41f18b75dee1a8d91cc,
+        type: 2}
+      propertyPath: environDrop
+      value: 
+      objectReference: {fileID: 1468543302838636, guid: 7f93273493bc144f8be655adfd760acd,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d761c7744e7c41f18b75dee1a8d91cc, type: 2}
   m_IsPrefabParent: 0
@@ -1216,7 +1222,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.1
+  m_Mass: 0.01
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
