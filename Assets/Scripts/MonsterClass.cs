@@ -78,8 +78,7 @@ public class MonsterClass : MonoBehaviour {
         playerLocation = thePlayer.transform;
 
         // Find the first path, then search every second
-        this.FindPath();
-        InvokeRepeating("FindPath", 2f, 0.5f);
+        InvokeRepeating("FindPath", 1f, 10f);
     }
 
     // Update
@@ -216,6 +215,8 @@ public class MonsterClass : MonoBehaviour {
 			attackTemp.GetComponent<ItemAttackMod>().SetItemIndex(dropIndex);
         }
         else if (this.environmentDrop == true){
+            //IntVector2 tempVec = gameMaster.GetComponent<InfluenceMap>().worldPosToGrid(transform.position);
+            //Vector3 tempVec3 = new Vector3(tempVec.x/2, tempVec.y/2,0);
             Instantiate(environDrop,transform.position,Quaternion.identity);
             gameMaster.GetComponent<InfluenceMap>().addNode(transform.position,monsterType);
         }
