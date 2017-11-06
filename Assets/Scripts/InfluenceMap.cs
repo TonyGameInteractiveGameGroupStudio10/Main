@@ -15,14 +15,16 @@ public class InfluenceMap : MonoBehaviour {
 	// each block is 0.5 world units long
 	private static int gridWidth = 40;
 	private static int gridLength = 40;
+	private static int scaledLength = gridLength * 2;
+	private static int scaledWidth = gridWidth * 2;
 
 	//y,x for efficiency I thenk 
-	public InfluenceNode[,] influenceMap = new InfluenceNode[gridWidth * 2, gridLength * 2];
+	public InfluenceNode[,] influenceMap = new InfluenceNode[scaledLength, scaledWidth];
 
 
 	public void Start(){
-		for(int i = 0; i < 80; i++){
-			for(int j = 0; j < 80; j++){
+		for(int i = 0; i < scaledLength; i++){
+			for(int j = 0; j < scaledWidth; j++){
 				influenceMap[i,j] = new InfluenceNode(0);
 			}
 		}
@@ -79,10 +81,10 @@ public class InfluenceMap : MonoBehaviour {
 		}
 
 		for(int i = -3; i < radius; i++){
-			if(((center.y + i) < influenceMap.Length) && ((center.y + i) > 0)) {
+			if(((center.y + i) < scaledLength) && ((center.y + i) > 0)) {
 				influenceMap[center.y+i , center.x].getThreat()[type] += threatVal * (decayFactor * i);
-				for(spread = (Mathf.Abs(radius - i)); spread > 0; spread--){
-					if((center.x + spread) < influenceMap.Length) {
+				for(spread = (radius - Mathf.Abs(i)); spread > 0; spread--){
+					if((center.x + spread) < scaledWidth) {
 						influenceMap[center.y+i , center.x+spread].getThreat()[type] += threatVal * (decayFactor * spread);
 					}
 					if((center.x - spread) > 0){
