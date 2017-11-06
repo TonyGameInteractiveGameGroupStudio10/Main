@@ -194,7 +194,7 @@ public class MonsterClass : MonoBehaviour {
             // 0 - Posion ; 1 - vine ; 2 - shock ; 3 - quaking ; 4 - ricochet;
             this.dropIndex = Random.Range(0,5);
         }
-        else if (diceRoll >= 7 && diceRoll <= 12){ // 7 12
+        else if (diceRoll >= 7 && diceRoll <= 100){ // 7 12
             // doesn't have a drop table because each environment drop is unique to
             // the monster that it is being dropped by
             this.environmentDrop = true;

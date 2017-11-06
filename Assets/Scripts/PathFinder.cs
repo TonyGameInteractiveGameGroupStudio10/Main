@@ -163,6 +163,22 @@ public class PathFinder : MonoBehaviour {
     private int ThreatWeight(int[] tile){
         // Threat Types: 0 - wall; 1- fire ; 2 - poison; 3 - oil
         int threatCounter = 0;
+        // Wall Threats
+        if (tile[0] >= 100){
+            threatCounter += 1000;
+        }
+        // Fire Threat
+        if (tile[1] >= 100){
+            threatCounter += 2;
+        }
+        // Poison Threat
+        if (tile[2] >= 100){
+            threatCounter += 2;
+        }
+        // Oil Threat
+        if (tile[3] >= 100){
+            threatCounter += 1;
+        }
         return threatCounter;
     }
 }
