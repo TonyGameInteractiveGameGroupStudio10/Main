@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// tiles changing
-// add tile
-// destroy tile
-// convert worldpasta to block
 
 public class InfluenceMap : MonoBehaviour {
 
@@ -28,6 +24,13 @@ public class InfluenceMap : MonoBehaviour {
 			}
 		}
 	}
+
+
+	// changes the node at nodePos from 
+	public void changeTile(Vector3 nodePos, int rType, int newType) {
+
+	}
+
 
 	public void addNode(Vector3 nodePos, int type){
 		IntVector2 gridLoc = worldPosToGrid(nodePos);
@@ -79,7 +82,7 @@ public class InfluenceMap : MonoBehaviour {
 			threatVal = -threatVal;
 		}
 
-		for(int i = -3; i < radius; i++){
+		for(int i = -3; i <= radius; i++) {
 			if(((center.y + i) < scaledLength) && ((center.y + i) > 0)) {
 				influenceMap[center.y+i , center.x].getThreat()[type] += threatVal * (decayFactor * i);
 				for(spread = (radius - Mathf.Abs(i)); spread > 0; spread--){
@@ -93,7 +96,13 @@ public class InfluenceMap : MonoBehaviour {
 				
 			}
 		}
-
+		
+		for (int i = 0; i < scaledLength; i++) {
+			for(int j =0; j < scaledWidth; j++){
+				Debug.Log(influenceMap[i][j]);
+			}
+			Debug.Log(System.Environment.NewLine);
+		}
 	}
 
 }
