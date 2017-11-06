@@ -40,13 +40,13 @@ public class InfluenceMap : MonoBehaviour {
 		int x, y;
 
 		if(worldPos.x < 0) {
-			x = (int) (abs(worldPos.x * 2));
+			x = (int) (Mathf.Abs(worldPos.x * 2));
 		} else {
 			x = (int) (worldPos.x * 4);
 		}
 
 		if(worldPos.y < 0) {
-			y = (int) (abs(worldPos.x * 2));
+			y = (int) (Mathf.Abs(worldPos.x * 2));
 		} else {
 			y = (int) (worldPos.y * 4);
 		}
@@ -71,14 +71,14 @@ public class InfluenceMap : MonoBehaviour {
 		int spread;
 
 		if(delInfluence) {
-			theatVal = -threatVal;
+			threatVal = -threatVal;
 		}
 
 		for(int i = -3; i < radius; i++){
-			if(((center.y + i) < influenceMap.length) && ((center.y + i) > 0)) {
+			if(((center.y + i) < influenceMap.Length) && ((center.y + i) > 0)) {
 				influenceMap[center.y+i][center.x].threats[type] += threatVal * (decayFactor * i);
-				for(spread = (abs(radius - i)); spread > 0; spread--){
-					if((center.x + spread) < influenceMap.length) {
+				for(spread = (Mathf.Abs(radius - i)); spread > 0; spread--){
+					if((center.x + spread) < influenceMap.Length) {
 						influenceMap[center.y+i][center.x+spread].threats[type] += threatVal * (decayFactor * spread);
 					}
 					if((center.x - spread) > 0){

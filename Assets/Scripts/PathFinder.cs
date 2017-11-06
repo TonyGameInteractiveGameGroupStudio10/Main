@@ -161,19 +161,19 @@ public class PathFinder : MonoBehaviour {
         int threatCounter = 0;
         // Wall
         if(tile[0] > 0){
-
+			threatCounter += 1000;
         }
         // Fire
         if(tile[1] > 0){
-
-        }
+			threatCounter += 2;
+        }	
         // Poison
         if(tile[2] > 0){
-
+			threatCounter += 2;
         }
         // Oil
         if(tile[3] > 0){
-
+			threatCounter += 1;
         }
         return threatCounter;
     }
