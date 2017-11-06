@@ -10,7 +10,6 @@ using UnityEngine;
 
 public class InfluenceMap : MonoBehaviour {
 
-
 	// the world unit length and width of our game
 	// each block is 0.5 world units long
 	private static int gridWidth = 40;
