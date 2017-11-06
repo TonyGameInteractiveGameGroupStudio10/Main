@@ -17,12 +17,12 @@ public class InfluenceMap : MonoBehaviour {
 	private static int gridLength = 40;
 
 	//y,x for efficiency I thenk 
-	InfluenceNode[,] influenceMap = new InfluenceNode[gridWidth * 2, gridLength * 2];
+	public InfluenceNode[,] influenceMap = new InfluenceNode[gridWidth * 2, gridLength * 2];
 
 
 	public void Start(){
-		for(int i = 0; i < influenceMap.length; i++){
-			for(int j =0; j < influenceMap.length; j++){
+		for(int i = 0; i < influenceMap.Length-1; i++){
+			for(int j = 0; j < influenceMap.Length-1; j++){
 				influenceMap[i,j] = new InfluenceNode(0);
 			}
 		}
@@ -63,7 +63,7 @@ public class InfluenceMap : MonoBehaviour {
 	
 	public InfluenceNode getInfluenceNode(Vector3 position){
 		IntVector2 conVec = worldPosToGrid(position);
-
+		Debug.Log("X: " + conVec.x + " Y: " + conVec.y);
 		return influenceMap[conVec.y , conVec.x];
 	}
 

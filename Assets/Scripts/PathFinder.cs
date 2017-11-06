@@ -20,13 +20,7 @@ public class PathFinder : MonoBehaviour {
     // Unity Methods
     ////////////////
     void start(){
-        // Find the player object
-        player = GameObject.FindGameObjectWithTag("Player");
-        // Find the threat map
-        gameMaster = GameObject.FindGameObjectWithTag("GameMaster");
-        threatMap = gameMaster.GetComponent<InfluenceMap>();
-        // Look for the players location every second
-        InvokeRepeating("findPlayer", 0f, 1f);
+       InvokeRepeating("findPlayer", 0f, 1f);
     }
 
     // Methods
@@ -34,6 +28,17 @@ public class PathFinder : MonoBehaviour {
     // Path Finding
     ////////////////
     public List<Vector3> FindPath(Vector3 currentVector){
+        // set up components, if they aren't set up
+        if (player == null){
+            player = GameObject.FindWithTag("Player");
+        }
+        if (gameMaster == null){
+            gameMaster = GameObject.FindWithTag("GameMaster");
+        }
+        if (threatMap == null){
+            threatMap = gameMaster.GetComponent<InfluenceMap>();
+        }
+
         // Path hasn't been found
         bool pathFound = false;
 
@@ -144,7 +149,11 @@ public class PathFinder : MonoBehaviour {
     // Calculating Weights
     ////////////////
     private int TileWeight(Vector3 currentVector){
-        InfluenceNode tempNode = threatMap.getInfluenceNode(currentVector); 
+        if (player == null) { Debug.Log("Player is null"); }
+        if (threatMap == null) { Debug.Log("Threat Map is null"); }
+        if (gameMaster == null) { Debug.Log("GameMaster is null"); }
+        InfluenceNode tempNode = threatMap.getInfluenceNode(currentVector);
+        if (tempNode == null) { Debug.Log("TempNode is null");} 
 		int[] tile = tempNode.getThreat();
         int h = this.DistanceToPlayer(currentVector);
         int f = this.ThreatWeight(tile);

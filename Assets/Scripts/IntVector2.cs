@@ -8,7 +8,7 @@ using UnityEngine;
 // destroy tile
 // convert worldpasta to block
 
-public class IntVector2 : MonoBehaviour {
+public class IntVector2 {
 
 	public int x;
 	public int y;
