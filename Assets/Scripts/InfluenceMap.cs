@@ -12,16 +12,17 @@ public class InfluenceMap : MonoBehaviour {
 
 
 	// the world unit length and width of our game
+	// each block is 0.5 world units long
 	private static int gridWidth = 40;
 	private static int gridLength = 40;
 
 	//y,x for efficiency I thenk 
-	InfluenceNode[,] influenceMap = new InfluenceNode[gridWidth , gridLength];
+	InfluenceNode[,] influenceMap = new InfluenceNode[gridWidth * 2, gridLength * 2];
 
 
 	public void Start(){
-		for(int i = 0; i < gridLength; i++){
-			for(int j =0; j < gridWidth; j++){
+		for(int i = 0; i < influenceMap.length; i++){
+			for(int j =0; j < influenceMap.length; j++){
 				influenceMap[i,j] = new InfluenceNode(0);
 			}
 		}
@@ -63,7 +64,7 @@ public class InfluenceMap : MonoBehaviour {
 	public InfluenceNode getInfluenceNode(Vector3 position){
 		IntVector2 conVec = worldPosToGrid(position);
 
-		return influenceMap[(int) conVec.y , (int) conVec.x];
+		return influenceMap[conVec.y , conVec.x];
 	}
 
 	// these numbers need to be play tested; for now I'm just picking some
