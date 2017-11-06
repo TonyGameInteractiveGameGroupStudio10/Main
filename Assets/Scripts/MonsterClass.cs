@@ -28,7 +28,7 @@ public class MonsterClass : MonoBehaviour {
 
     // Pathing
     ////////////////
-    protected int listPosition;
+    protected int listPosition = 0;
     protected List<Vector3> listOfMovement;
 
     // Player
@@ -75,23 +75,36 @@ public class MonsterClass : MonoBehaviour {
 
         // Find the first path, then search every second
         //this.FindPath();
-        InvokeRepeating("FindPath", 2f, 1f);
+        InvokeRepeating("FindPath", 2f, 2f);
     }
 
     // Update
     ////////////////
     protected virtual void Update(){
         // Movement
-        // if the destination has been reached
+        // Verify the list isn't null
         if (listOfMovement != null){
-            if (transform.position == listOfMovement[listPosition]){
-                // and if there is more movement commands in the list
-                if (!(listPosition >= listOfMovement.Count)){
-                    listPosition += 1;
-                    //transform.position = Vector3.MoveTowards(transform.position, listOfMovement[listPosition], currentSpeed*Time.deltaTime);
+            listPosition += 1;
+            transform.position = listOfMovement[listPosition];
+        }
+        /*
+        if (listOfMovement != null){
+
+            // Verify Arrival at correct location
+             if ((transform.position.x > listOfMovement[listPosition].x-0.5f) && (transform.position.x < listOfMovement[listPosition].x+0.5f)){
+                if  ((transform.position.y > listOfMovement[listPosition].y-0.5f) && (transform.position.y > listOfMovement[listPosition].y+0.5f)) {
+                    // Verify more movement commands in the list
+                    if (listPosition < listOfMovement.Count){
+                        listPosition += 1;
+                        transform.position = listOfMovement[listPosition];
+                    }
                 }
             }
         }
+        else{
+            // rekt something
+        }
+        */
 
         // if HP is less then 0
         if (healthPool <= 0){

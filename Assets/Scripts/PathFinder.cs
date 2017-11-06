@@ -17,12 +17,6 @@ public class PathFinder : MonoBehaviour {
     private List<Path> openList = new List<Path>();
     private List<Path> closedList = new List<Path>();
 
-    // Unity Methods
-    ////////////////
-    void start(){
-       InvokeRepeating("findPlayer", 0f, 1f);
-    }
-
     // Methods
     ////////////////
     // Path Finding
@@ -38,6 +32,7 @@ public class PathFinder : MonoBehaviour {
         if (threatMap == null){
             threatMap = gameMaster.GetComponent<InfluenceMap>();
         }
+        playerLocation = player.transform.position;
 
         // Path hasn't been found
         bool pathFound = false;
@@ -75,18 +70,18 @@ public class PathFinder : MonoBehaviour {
 
             // Check to see if we arrived at destination
             currentPosition = smallestLocation.GetPosition();
-            if ((currentPosition.x > playerLocation.x-0.5) && (currentPosition.x < playerLocation.x+0.5)){
-                if  ((currentPosition.y > playerLocation.y-0.5) && (currentPosition.y > playerLocation.y+0.5)) {
+            if ((currentPosition.x > playerLocation.x-1f) && (currentPosition.x < playerLocation.x+1f)){
+                if  ((currentPosition.y > playerLocation.y-1f) && (currentPosition.y < playerLocation.y+1f)) {
                     pathFound = true;
                     break;
                 }
             }
 
             // retreive all adjacent squares
-            adjacentSquares[0] = new Vector3(currentPosition.x,playerLocation.y+0.5f,0);
-            adjacentSquares[1] = new Vector3(currentPosition.x,playerLocation.y-0.5f,0);
-			adjacentSquares[2] = new Vector3(currentPosition.x+0.5f,playerLocation.y,0);
-            adjacentSquares[3] = new Vector3(currentPosition.x-0.5f,playerLocation.y,0);
+            adjacentSquares[0] = new Vector3(currentPosition.x,currentPosition.y+0.5f,0);
+            adjacentSquares[1] = new Vector3(currentPosition.x,currentPosition.y-0.5f,0);
+			adjacentSquares[2] = new Vector3(currentPosition.x+0.5f,currentPosition.y,0);
+            adjacentSquares[3] = new Vector3(currentPosition.x-0.5f,currentPosition.y,0);
 
             // for loop through the adjacent square
             for (int i = 0; i < 4; i += 1){
@@ -95,7 +90,7 @@ public class PathFinder : MonoBehaviour {
                 // if it is already in closed list, ignore it
                 if (!(closedList.Contains(adjacentPath))){
                     // if you cannot pass the square, ignore it
-					if (adjacentPath.GetScore() > 1000){
+					if (adjacentPath.GetScore() < 1000){
                          // if its not in the open list, add it
                         if (!(openList.Contains(adjacentPath))){
                             openList.Add(adjacentPath);
@@ -109,7 +104,7 @@ public class PathFinder : MonoBehaviour {
         if (pathFound == true){
 			List<Vector3> thePath = new List<Vector3>();
             // Follow it backwards
-            while(currentPath.GetParent().GetParent() != null){
+            while(currentPath.GetParent() != null){
 				thePath.Add(currentPath.GetPosition());
                 currentPath = currentPath.GetParent();
             }
@@ -149,48 +144,23 @@ public class PathFinder : MonoBehaviour {
     // Calculating Weights
     ////////////////
     private int TileWeight(Vector3 currentVector){
-        if (player == null) { Debug.Log("Player is null"); }
-        if (threatMap == null) { Debug.Log("Threat Map is null"); }
-        if (gameMaster == null) { Debug.Log("GameMaster is null"); }
-        InfluenceNode tempNode = threatMap.getInfluenceNode(currentVector);
-        if (tempNode == null) { Debug.Log("TempNode is null");} 
+        InfluenceNode tempNode = threatMap.getInfluenceNode(currentVector); 
 		int[] tile = tempNode.getThreat();
         int h = this.DistanceToPlayer(currentVector);
         int f = this.ThreatWeight(tile);
-        return f+h;
+        return (f+h);
     }
 
     private int DistanceToPlayer(Vector3 currentVector){
-        int xDifference = (int)Mathf.Round(playerLocation.x-currentVector.x);
-        int yDifference = (int)Mathf.Round(playerLocation.y-currentVector.y);
+        // 0 - 4 = -4 + -2 = -8. 0-5 = -5 + -3 = -10
+        int xDifference = (int)Mathf.Abs(playerLocation.x-currentVector.x);
+        int yDifference = (int)Mathf.Abs(playerLocation.y-currentVector.y);
         return (xDifference+yDifference);
     }
 
     private int ThreatWeight(int[] tile){
         // Threat Types: 0 - wall; 1- fire ; 2 - poison; 3 - oil
         int threatCounter = 0;
-        // Wall
-        if(tile[0] > 0){
-			threatCounter += 1000;
-        }
-        // Fire
-        if(tile[1] > 0){
-			threatCounter += 2;
-        }	
-        // Poison
-        if(tile[2] > 0){
-			threatCounter += 2;
-        }
-        // Oil
-        if(tile[3] > 0){
-			threatCounter += 1;
-        }
         return threatCounter;
-    }
-
-    // Player
-    ////////////////
-    private void findPlayer(){
-        playerLocation = player.transform.position;
     }
 }
