@@ -34,7 +34,7 @@ public class Path {
         return parent;
     }
 
-    public void SetParent(Path parent){
+    public void SetParent(Path newParent){
 		parent = newParent;
     }
 

@@ -46,9 +46,9 @@ public class UserWeaponMod : MonoBehaviour {
 	// Applying Modifiers
 	///////////////
 	public void ApplyMod(int[] buffs){
-		float newAttackSpeed = buffs [0] * 0.05;
+		float newAttackSpeed = buffs[0] * 0.05f;
 		if(newAttackSpeed > 0.5){
-			newAttackSpeed == 0.5;
+			newAttackSpeed = 0.5f;
 		}
 		attackSpeed = newAttackSpeed;
 	}

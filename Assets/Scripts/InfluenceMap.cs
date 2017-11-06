@@ -8,7 +8,7 @@ using UnityEngine;
 // destroy tile
 // convert worldpasta to block
 
-public class InfluenceMap : MonoBehavior {
+public class InfluenceMap : MonoBehaviour {
 
 	// the world unit length and width of our game
 	private int gridWidth = 40;
@@ -40,13 +40,13 @@ public class InfluenceMap : MonoBehavior {
 		int x, y;
 
 		if(worldPos.x < 0) {
-			x = (int) (abs(worldPos.x * 2));
+			x = (int) (Mathf.Abs(worldPos.x * 2));
 		} else {
 			x = (int) (worldPos.x * 4);
 		}
 
 		if(worldPos.y < 0) {
-			y = (int) (abs(worldPos.x * 2));
+			y = (int) (Mathf.Abs(worldPos.x * 2));
 		} else {
 			y = (int) (worldPos.y * 4);
 		}
@@ -64,21 +64,21 @@ public class InfluenceMap : MonoBehavior {
 
 	// these numbers need to be play tested; for now I'm just picking some
 	// arbitrary shtuff cuz we r in finish 'em mode - Chris
-	private spreadInfluence(bool delInfluence, int type, Vector2 center){
+	private void spreadInfluence(bool delInfluence, int type, Vector2 center){
 		int radius = 3;
 		int decayFactor = 75;
 		int threatVal = 100;
 		int spread;
 
 		if(delInfluence) {
-			theatVal = -threatVal;
+			threatVal = -threatVal;
 		}
 
 		for(int i = -3; i < radius; i++){
-			if(((center.y + i) < influenceMap.length) && ((center.y + i) > 0)) {
+			if(((center.y + i) < influenceMap.Length) && ((center.y + i) > 0)) {
 				influenceMap[center.y+i][center.x].threats[type] += threatVal * (decayFactor * i);
-				for(spread = (abs(radius - i)); spread > 0; spread--){
-					if((center.x + spread) < influenceMap.length) {
+				for(spread = (Mathf.Abs(radius - i)); spread > 0; spread--){
+					if((center.x + spread) < influenceMap.Length) {
 						influenceMap[center.y+i][center.x+spread].threats[type] += threatVal * (decayFactor * spread);
 					}
 					if((center.x - spread) > 0){
