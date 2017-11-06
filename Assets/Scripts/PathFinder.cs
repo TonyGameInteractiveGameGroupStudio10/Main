@@ -164,7 +164,7 @@ public class PathFinder : MonoBehaviour {
         // Threat Types: 0 - wall; 1- fire ; 2 - poison; 3 - oil
         int threatCounter = 0;
         if (tile[0] > 99){
-            threatCounter += 1;
+            threatCounter += 100;
         }
         return threatCounter;
     }

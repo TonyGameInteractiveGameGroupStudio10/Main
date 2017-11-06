@@ -99,7 +99,7 @@ public class InfluenceMap : MonoBehaviour {
 		
 		for (int i = 0; i < scaledLength; i++) {
 			for(int j =0; j < scaledWidth; j++){
-				Debug.Log(influenceMap[i][j]);
+				Debug.Log(influenceMap[i,j]);
 			}
 			Debug.Log(System.Environment.NewLine);
 		}
