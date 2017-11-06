@@ -85,15 +85,18 @@ public class PathFinder : MonoBehaviour {
 
             // for loop through the adjacent square
             for (int i = 0; i < 4; i += 1){
-                adjacentScore = TileWeight(adjacentSquares[i]);
-                adjacentPath = new Path(adjacentSquares[i],currentPath,adjacentScore);
-                // if it is already in closed list, ignore it
-                if (!(closedList.Contains(adjacentPath))){
-                    // if you cannot pass the square, ignore it
-					if (adjacentPath.GetScore() < 1000){
-                         // if its not in the open list, add it
-                        if (!(openList.Contains(adjacentPath))){
-                            openList.Add(adjacentPath);
+                // check if its out of bounds
+                if ((adjacentSquares[i].x >= -20) && (adjacentSquares[i].x <= 20) && (adjacentSquares[i].y >= -20) && (adjacentSquares[i].y <= 20)){
+                    adjacentScore = TileWeight(adjacentSquares[i]);
+                    adjacentPath = new Path(adjacentSquares[i],currentPath,adjacentScore);
+                    // if it is already in closed list, ignore it
+                    if (!(closedList.Contains(adjacentPath))){
+                        // if you cannot pass the square, ignore it
+                        if (adjacentPath.GetScore() < 1000){
+                            // if its not in the open list, add it
+                            if (!(openList.Contains(adjacentPath))){
+                                openList.Add(adjacentPath);
+                            }
                         }
                     }
                 }
@@ -152,7 +155,6 @@ public class PathFinder : MonoBehaviour {
     }
 
     private int DistanceToPlayer(Vector3 currentVector){
-        // 0 - 4 = -4 + -2 = -8. 0-5 = -5 + -3 = -10
         int xDifference = (int)Mathf.Abs(playerLocation.x-currentVector.x);
         int yDifference = (int)Mathf.Abs(playerLocation.y-currentVector.y);
         return (xDifference+yDifference);

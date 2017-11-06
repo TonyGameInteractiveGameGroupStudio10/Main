@@ -26,6 +26,7 @@ public class MonsterPoison : MonsterClass {
         base.Start();
 
         // Set Stats
+        monsterType = 2;
         healthPool = maxHealth;
         monsterSpeed = 3.5f;
         currentSpeed = monsterSpeed;

@@ -30,6 +30,7 @@ public class MonsterOil : MonsterClass {
         base.Start();
 
         // Set Stats
+        monsterType = 3;
         healthPool = maxHealth;
         monsterSpeed = 2.5f;
         currentSpeed = monsterSpeed;

@@ -26,6 +26,7 @@ public class MonsterFire : MonsterClass {
         base.Start();
 
         // Set Stats
+        monsterType = 1;
         healthPool = maxHealth;
         monsterSpeed = 4f;
         currentSpeed = monsterSpeed;

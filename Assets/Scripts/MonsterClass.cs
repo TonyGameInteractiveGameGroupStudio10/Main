@@ -7,6 +7,7 @@ public class MonsterClass : MonoBehaviour {
 
     // Stats
     ////////////////
+    protected int monsterType;
     protected int healthPool;
     protected float currentSpeed;
     protected float monsterSpeed;
@@ -25,10 +26,12 @@ public class MonsterClass : MonoBehaviour {
     protected Animator enemyAnimator;
     protected SpriteRenderer spriteSwitcher;
     protected PathFinder movementPlan;
+    protected GameObject gameMaster;
 
     // Pathing
     ////////////////
-    protected int listPosition = 0;
+    protected int numberOfMoves = 0;
+    protected Vector3 goalPosition;
     protected List<Vector3> listOfMovement;
 
     // Player
@@ -68,6 +71,7 @@ public class MonsterClass : MonoBehaviour {
         audioPlayer = GetComponent<AudioSource>();
         spriteSwitcher = GetComponent<SpriteRenderer>();
         movementPlan = GetComponent<PathFinder>();
+		gameMaster = GameObject.FindWithTag("GameMaster");
 
         // Locate Player
         thePlayer = GameObject.FindWithTag("Player");
@@ -75,36 +79,31 @@ public class MonsterClass : MonoBehaviour {
 
         // Find the first path, then search every second
         //this.FindPath();
-        InvokeRepeating("FindPath", 2f, 2f);
+        InvokeRepeating("FindPath", 2f, 0.5f);
     }
 
     // Update
     ////////////////
     protected virtual void Update(){
         // Movement
-        // Verify the list isn't null
+        /* Used to show that it works
         if (listOfMovement != null){
             listPosition += 1;
             transform.position = listOfMovement[listPosition];
         }
-        /*
-        if (listOfMovement != null){
+        */
+        // Movement
+        // Verify the list isn't empty
+        if((listOfMovement != null) && (listOfMovement.Count > 1)){
+            if (numberOfMoves < listOfMovement.Count) {
+                goalPosition = listOfMovement[numberOfMoves];
+                transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), goalPosition, (currentSpeed * Time.deltaTime));
 
-            // Verify Arrival at correct location
-             if ((transform.position.x > listOfMovement[listPosition].x-0.5f) && (transform.position.x < listOfMovement[listPosition].x+0.5f)){
-                if  ((transform.position.y > listOfMovement[listPosition].y-0.5f) && (transform.position.y > listOfMovement[listPosition].y+0.5f)) {
-                    // Verify more movement commands in the list
-                    if (listPosition < listOfMovement.Count){
-                        listPosition += 1;
-                        transform.position = listOfMovement[listPosition];
-                    }
+                if ((transform.position.x == goalPosition.x) && (transform.position.y == goalPosition.y)){
+                        numberOfMoves += 1;
                 }
             }
         }
-        else{
-            // rekt something
-        }
-        */
 
         // if HP is less then 0
         if (healthPool <= 0){
@@ -218,6 +217,7 @@ public class MonsterClass : MonoBehaviour {
         }
         else if (this.environmentDrop == true){
             Instantiate(environDrop,transform.position,Quaternion.identity);
+            gameMaster.GetComponent<InfluenceMap>().addNode(transform.position,monsterType);
         }
     }
 
@@ -225,6 +225,6 @@ public class MonsterClass : MonoBehaviour {
     ///////////////
     protected void FindPath(){
        listOfMovement = movementPlan.FindPath(transform.position);
-       listPosition = 0;
+       numberOfMoves = 1;
     }
 }
