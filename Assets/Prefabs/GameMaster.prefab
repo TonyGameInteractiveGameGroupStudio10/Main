@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4683520442958076}
   - component: {fileID: 114210010938429020}
+  - component: {fileID: 114851941304788236}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: GameMaster
@@ -331,7 +332,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1014885274186860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4328885, y: -0.1480232, z: -0.32578468}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4115897281462440}
@@ -423,3 +424,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 992c7a4a2c9b349a095684edf6fe481c, type: 3}
   weaponSprites: []
   attackSprites: []
+--- !u!114 &114851941304788236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014885274186860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a7ef3217ef3a349b7f62ad73a065d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
