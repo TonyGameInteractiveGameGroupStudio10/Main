@@ -82,11 +82,11 @@ public class MonsterClass : MonoBehaviour {
     protected virtual void Update(){
         // Movement
         // if the destination has been reached
-        if (transform.position == listOfMovement.Item[listPosition]){
+        if (transform.position == listOfMovement[listPosition]){
             // and if there is more movement commands in the list
 			if (!(listPosition >= listOfMovement.Count)){
                 listPosition += 1;
-                transform.position = Vector3.MoveTowards(transform.position, listOfMovement.Item[listPosition], currentSpeed*Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, listOfMovement[listPosition], currentSpeed*Time.deltaTime);
             }
         }
 

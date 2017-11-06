@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InfluenceNode : Monobehavior {
+public class InfluenceNode : MonoBehaviour {
 
 	//0=wall, 1=fire, 2=poison, 3=oil 
 	int[] threats;

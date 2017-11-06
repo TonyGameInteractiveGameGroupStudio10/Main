@@ -8,7 +8,7 @@ using UnityEngine;
 // destroy tile
 // convert worldpasta to block
 
-public class InfluenceMap : MonoBehavior {
+public class InfluenceMap : MonoBehaviour {
 
 	// the world unit length and width of our game
 	private int gridWidth = 40;
@@ -64,7 +64,7 @@ public class InfluenceMap : MonoBehavior {
 
 	// these numbers need to be play tested; for now I'm just picking some
 	// arbitrary shtuff cuz we r in finish 'em mode - Chris
-	private spreadInfluence(bool delInfluence, int type, Vector2 center){
+	private void spreadInfluence(bool delInfluence, int type, Vector2 center){
 		int radius = 3;
 		int decayFactor = 75;
 		int threatVal = 100;

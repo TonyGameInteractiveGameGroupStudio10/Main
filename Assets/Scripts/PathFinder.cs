@@ -11,7 +11,7 @@ public class PathFinder : MonoBehaviour {
 
     // Threat Map access
     private GameObject gameMaster;
-    private ThreatSCRIPT threatMap;
+    private InfluenceMap threatMap;
 
     // Path Lists
     private List<Path> openList = new List<Path>();
@@ -24,7 +24,7 @@ public class PathFinder : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         // Find the threat map
         gameMaster = GameObject.FindGameObjectWithTag("GameMaster");
-        threatMap = gameMaster.GetComponent<>();
+        threatMap = gameMaster.GetComponent<InfluenceMap>();
         // Look for the players location every second
         InvokeRepeating("findPlayer", 0f, 1f);
     }
@@ -78,19 +78,19 @@ public class PathFinder : MonoBehaviour {
             }
 
             // retreive all adjacent squares
-            adjacentSquares[0] = new Vector3(currentLocation.x,currentLocation.y+0.5,0);
-            adjacentSquares[1] = new Vector3(currentLocation.x,currentLocation.y-0.5,0);
-            adjacentSquares[2] = new Vector3(currentLocation.x+0.5,currentLocation.y,0);
-            adjacentSquares[3] = new Vector3(currentLocation.x-0.5,currentLocation.y,0);
+            adjacentSquares[0] = new Vector3(currentPosition.x,playerLocation.y+0.5f,0);
+            adjacentSquares[1] = new Vector3(currentPosition.x,playerLocation.y-0.5f,0);
+			adjacentSquares[2] = new Vector3(currentPosition.x+0.5f,playerLocation.y,0);
+            adjacentSquares[3] = new Vector3(currentPosition.x-0.5f,playerLocation.y,0);
 
             // for loop through the adjacent square
-            for (int i = 0; i < 4; i + 1){
-                adjacentScore = TileWeight(adjacentSquare[i]);
-                adjacentPath = new Path(adjacentSquare[i],currentPath,adjacentScore);
+            for (int i = 0; i < 4; i += 1){
+                adjacentScore = TileWeight(adjacentSquares[i]);
+                adjacentPath = new Path(adjacentSquares[i],currentPath,adjacentScore);
                 // if it is already in closed list, ignore it
                 if (!(closedList.Contains(adjacentPath))){
                     // if you cannot pass the square, ignore it
-                    if (adjacentPath.GetScore > 1000){
+					if (adjacentPath.GetScore() > 1000){
                          // if its not in the open list, add it
                         if (!(openList.Contains(adjacentPath))){
                             openList.Add(adjacentPath);
@@ -105,7 +105,7 @@ public class PathFinder : MonoBehaviour {
 			List<Vector3> thePath = new List<Vector3>();
             // Follow it backwards
             while(currentPath.GetParent().GetParent() != null){
-                thePath.Add(currentPath);
+				thePath.Add(currentPath.GetPosition());
                 currentPath = currentPath.GetParent();
             }
             // Reverse it
@@ -115,7 +115,8 @@ public class PathFinder : MonoBehaviour {
         }
         // If no path was found
         else{
-            // rekt something
+			// rekt something
+			return null;
         }
     }
 
@@ -124,15 +125,17 @@ public class PathFinder : MonoBehaviour {
         int listLength = openList.Count;
         // Holder variables
         Path currentSmallest;
+		int smallestWeight;
+		int contenderWeight;
         // Assign the first value to smallest
-        currentSmallest = openList.Item[0];
+        currentSmallest = openList[0];
         smallestWeight = currentSmallest.GetScore();
         // Loop Through openList finding the smallest tile weight
         for (int i = 1; i < openList.Count; i += 1){
-            contenderWeight = openList.Item[i].GetScore;
+			contenderWeight = openList[i].GetScore();
             if (smallestWeight > contenderWeight){
                 smallestWeight = contenderWeight;
-                currentSmallest = openList.Item[i];
+                currentSmallest = openList[i];
             }
         }
         return currentSmallest;
