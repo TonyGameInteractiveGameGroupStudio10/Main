@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 61006931007022232}
   - component: {fileID: 50839095157638794}
   - component: {fileID: 114757054859467790}
+  - component: {fileID: 114050546082190032}
   m_Layer: 0
   m_Name: poisonSmall
   m_TagString: Enemy
@@ -88,6 +89,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
+--- !u!114 &114050546082190032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1624527080125814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 876ec01fe5bbe4a3eadd515bdc73608f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114757054859467790
 MonoBehaviour:
   m_ObjectHideFlags: 1

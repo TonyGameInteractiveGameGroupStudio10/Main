@@ -73,7 +73,8 @@ public class MonsterClass : MonoBehaviour {
         thePlayer = GameObject.FindWithTag("Player");
         playerLocation = thePlayer.transform;
 
-        // Find the path
+        // Find the first path, then search every second
+        this.FindPath();
         InvokeRepeating("FindPath", 0f, 1f);
     }
 
@@ -82,11 +83,13 @@ public class MonsterClass : MonoBehaviour {
     protected virtual void Update(){
         // Movement
         // if the destination has been reached
-        if (transform.position == listOfMovement[listPosition]){
-            // and if there is more movement commands in the list
-			if (!(listPosition >= listOfMovement.Count)){
-                listPosition += 1;
-                transform.position = Vector3.MoveTowards(transform.position, listOfMovement[listPosition], currentSpeed*Time.deltaTime);
+        if (listOfMovement != null){
+            if (transform.position == listOfMovement[listPosition]){
+                // and if there is more movement commands in the list
+                if (!(listPosition >= listOfMovement.Count)){
+                    listPosition += 1;
+                    //transform.position = Vector3.MoveTowards(transform.position, listOfMovement[listPosition], currentSpeed*Time.deltaTime);
+                }
             }
         }
 

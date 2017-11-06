@@ -27,8 +27,8 @@ public class UserClass : MonoBehaviour {
 	// 0 - clear; 1 - haste; 2 - health
 	private int[] potion = new int[3];
 	private UserPotion potionModule;
-	// 0 - Arrow Speed ; 1 - Attack Speed ;
-	private int[] weaponMod = new int[2]; 
+	// 0 - Attack Speed ;
+	private int[] weaponMod = new int[1]; 
 	private UserWeaponMod weaponModule; //
 	// 0 - Posion ; 1 - vine ; 2 - shock ;
 	// 3 - quaking ; 4 - ricochet
@@ -212,7 +212,7 @@ public class UserClass : MonoBehaviour {
 	}
 
 	public void ResetPotions(){
-		for (int c = 0; c <=1; c += 1){
+		for (int c = 0; c < 3; c += 1){
 			this.SetPotion(c,0);
 		}
 	}
@@ -248,7 +248,7 @@ public class UserClass : MonoBehaviour {
 	}
 
 	public void ResetWeaponMod(){
-		for (int c = 0; c <= 4; c += 1){
+		for (int c = 0; c < 1; c += 1){
 			this.SetWeaponMod(c, 0);
 		}
 		this.recheckWeapon = true;
@@ -275,7 +275,7 @@ public class UserClass : MonoBehaviour {
 	}
 
 	public void ResetAttackMod(){
-		for (int c = 0; c <= 4; c += 1) {
+		for (int c = 0; c < 1; c += 1) {
 			this.SetAttackMod(c, 0);
 		}
 		this.recheckAttack = true;
