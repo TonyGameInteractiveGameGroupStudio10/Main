@@ -114,8 +114,8 @@ public class MonsterStone : MonsterClass {
     ///////////////////////////////////
     public void BoundAttack()
     {
-           transform.right = playerLocation.position;
-           playerLocation = tempLocation;
+           //transform.right = playerLocation.position;
+           //playerLocation = tempLocation;
            //gameObject.AddForce(transform.right * Thrust);
     }
     //It's collision.. Sadly I'm using Linux and Unity isn't being very friendly so I have no way of testing this yet. 

@@ -144,7 +144,8 @@ public class PathFinder : MonoBehaviour {
     // Calculating Weights
     ////////////////
     private int TileWeight(Vector3 currentVector){
-		int[] tile = threatMap.getInfluenceNode (currentVector).getThreat();
+        InfluenceNode tempNode = threatMap.getInfluenceNode(currentVector); 
+		int[] tile = tempNode.getThreat();
         int h = this.DistanceToPlayer(currentVector);
         int f = this.ThreatWeight(tile);
         return f+h;

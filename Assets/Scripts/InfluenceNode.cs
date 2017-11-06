@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InfluenceNode : MonoBehaviour {
+public class InfluenceNode {
 
 	//0=wall, 1=fire, 2=poison, 3=oil 
-	int[] threats;
+	private int[] threats = new int[4];
 
 	public InfluenceNode(int threat){
-		for (int i = 0; i < threats.length; i++){
+		for (int i = 0; i < threats.Length; i++){
 			threats[i] = threat;
 		}
 	}
