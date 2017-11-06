@@ -60,15 +60,11 @@ public class InfluenceMap : MonoBehaviour {
 	}
 
 
-
+	
 	public InfluenceNode getInfluenceNode(Vector3 position){
 		IntVector2 conVec = worldPosToGrid(position);
-<<<<<<< HEAD
 
 		return influenceMap[conVec.y , conVec.x];
-=======
-		return influenceMap[(int) conVec.y , (int) conVec.x];
->>>>>>> a874a2c11cbdcb1621310b996f30555d245635b5
 	}
 
 	// these numbers need to be play tested; for now I'm just picking some
