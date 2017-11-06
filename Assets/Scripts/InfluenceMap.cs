@@ -21,8 +21,8 @@ public class InfluenceMap : MonoBehaviour {
 
 
 	public void Start(){
-		for(int i = 0; i < influenceMap.Length-1; i++){
-			for(int j = 0; j < influenceMap.Length-1; j++){
+		for(int i = 0; i < 80; i++){
+			for(int j = 0; j < 80; j++){
 				influenceMap[i,j] = new InfluenceNode(0);
 			}
 		}
