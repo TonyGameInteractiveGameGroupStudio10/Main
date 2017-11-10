@@ -92,17 +92,8 @@ public class InfluenceMap : MonoBehaviour {
 					if((center.x - spread) > 0){
 						influenceMap[center.y+i , center.x-spread].getThreat()[type] += threatVal * (decayFactor * spread);
 					}
-				}
-				
+				}	
 			}
-		}
-		
-		for (int i = 0; i < scaledLength; i++) {
-			for(int j =0; j < scaledWidth; j++){
-				Debug.Log(influenceMap[i,j]);
-			}
-			Debug.Log(System.Environment.NewLine);
 		}
 	}
-
 }

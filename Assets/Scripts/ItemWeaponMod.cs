@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemWeaponMod : MonoBehaviour {
 
 	// Index of Weapon Modifier
-	private int itemIndex = 123;
+	public int itemIndex = 123;
 
 	// Link to GameMaster
 	private GameObject theGameMaster;
