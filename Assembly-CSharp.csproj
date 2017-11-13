@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\Path.cs" />
      <Compile Include="Assets\Scripts\PathFinder.cs" />
      <Compile Include="Assets\Scripts\PlayerHUD.cs" />
+     <Compile Include="Assets\Scripts\TreeNode.cs" />
      <Compile Include="Assets\Scripts\UserAttackMod.cs" />
      <Compile Include="Assets\Scripts\UserClass.cs" />
      <Compile Include="Assets\Scripts\UserPotion.cs" />

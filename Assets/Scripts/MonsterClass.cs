@@ -85,13 +85,6 @@ public class MonsterClass : MonoBehaviour {
     ////////////////
     protected virtual void Update(){
         // Movement
-        /* Used to show that it works
-        if (listOfMovement != null){
-            listPosition += 1;
-            transform.position = listOfMovement[listPosition];
-        }
-        */
-        // Movement
         // Verify the list isn't empty
         if((listOfMovement != null) && (listOfMovement.Count > 1)){
             if (numberOfMoves < listOfMovement.Count) {
@@ -222,10 +215,22 @@ public class MonsterClass : MonoBehaviour {
         }
     }
 
-    // Path Finding
+    protected void positionRounder(float x){
+
+    }
+
+    // Decisions
     ///////////////
     protected void FindPath(){
        listOfMovement = movementPlan.FindPath(transform.position);
        numberOfMoves = 1;
     }
+
+    // Actions
+    ////////////////
+
+    // Building
+    ////////////////
+
+
 }

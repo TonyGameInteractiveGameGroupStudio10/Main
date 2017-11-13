@@ -143,12 +143,12 @@ public class PathFinder : MonoBehaviour {
         if (tile[0] > 99){ threatCounter += 1000; }
 
         // Fire
-        if (tile[3] > 99){ threatCounter += 5; }
-        if (tile[3] > 50){ threatCounter += 1; }
+        if (tile[1] > 99){ threatCounter += 5; }
+        if (tile[1] > 50){ threatCounter += 1; }
 
         // Poison
-        if (tile[3] > 99){ threatCounter += 5; }
-        if (tile[3] > 50){ threatCounter += 1; }
+        if (tile[2] > 99){ threatCounter += 5; }
+        if (tile[2] > 50){ threatCounter += 1; }
 
         // Oil
         if (tile[3] > 99){ threatCounter += 3; }
