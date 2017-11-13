@@ -825,6 +825,12 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114325295855067316, guid: 1d761c7744e7c41f18b75dee1a8d91cc,
+        type: 2}
+      propertyPath: environDrop
+      value: 
+      objectReference: {fileID: 1468543302838636, guid: 7f93273493bc144f8be655adfd760acd,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d761c7744e7c41f18b75dee1a8d91cc, type: 2}
   m_IsPrefabParent: 0

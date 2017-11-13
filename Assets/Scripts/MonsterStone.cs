@@ -110,22 +110,24 @@ public class MonsterStone : MonsterClass {
     ///////////////////////////////////
     // Health
     ////////////////
-    public int GetMaxHealth()
-    {
+    public int GetMaxHealth(){
         return this.maxHealth;
     }
    
-    public void SetMaxHealth(int newMaxHealth)
-    {
+    public void SetMaxHealth(int newMaxHealth){
         this.maxHealth = newMaxHealth;
     }
 
     // BoundAttack
     ////////////////
-    public void BoundAttack()
-    {
+    public void BoundAttack(){
         Vector2 newVector2 = playerLocation.position - this.transform.position;
         enemyBody.AddForce(newVector2 * currentSpeed * 25);
-        Debug.Log("YAYAYAYAYA");
+        Invoke("Stop",0.3f);
+        
     } 
+
+    public void Stop(){
+        enemyBody.velocity = new Vector3(0,0,0);
+    }
 }
