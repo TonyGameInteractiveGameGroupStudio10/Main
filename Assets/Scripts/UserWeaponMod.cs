@@ -50,7 +50,9 @@ public class UserWeaponMod : MonoBehaviour {
 		if(newAttackSpeed > 0.5){
 			newAttackSpeed = 0.5f;
 		}
-		attackSpeed = newAttackSpeed;
+		else{
+			attackSpeed -= newAttackSpeed;
+		}
 	}
 
 	// Firing Weapon
