@@ -220,7 +220,7 @@ public class MonsterClass : MonoBehaviour {
     ///////////////
     // Is the target in ray cast
     protected bool InRayCast(){
-        if (){
+        if (true == false){
             return true;
         } else {
             return false;
@@ -262,19 +262,31 @@ public class MonsterClass : MonoBehaviour {
     protected bool SpecialCheck(){
         int diceRoll = Random.Range(0,100);
         if (diceRoll > 5){
-            
+            return true;
+        } else {
+            return false;
         }
 
     }
 
     // Check if there are nearby friendlies
     protected bool FriendInRange(){
-
+        GameObject[] friendlies = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < friendlies.Length; i += 1){
+            // Verify the object isn't itself
+            if (!GameObject.ReferenceEquals(friendlies[i], this.gameObject)){
+                float distance = Vector3.Distance(this.transform.position, friendlies[i].transform.position);
+                if (distance < 2){
+                    return true;
+                }
+            }
+        }
+       return false;
     }
 
     // Check to see if the
     protected bool HPLow(){
-        float PercentagePool = (maxHealth*(0.15));
+        float PercentagePool = (maxHealth*(0.15f));
         if (PercentagePool >= healthPool) {
             return true;
         } else {
@@ -284,7 +296,7 @@ public class MonsterClass : MonoBehaviour {
 
     // Check to see if there a swarm
     protected bool SwarmHost(){
-        if () {
+        if (true == false) {
             return true;
         } else {
             return false;

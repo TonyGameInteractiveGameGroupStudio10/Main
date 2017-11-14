@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class MonsterDummy : MonsterClass {
 
-	// Stats
-    private int maxHealth = 100;
-
     ///////////////////////////////////
     // Unity Methods
     ///////////////////////////////////
@@ -14,6 +11,7 @@ public class MonsterDummy : MonsterClass {
     ////////////////
     protected override void Start() {
     	// Set Stats
+		this.maxHealth = 100;
     	this.healthPool = this.maxHealth;
         this.monsterSpeed = 4.2f;
     	this.currentSpeed = this.monsterSpeed;
