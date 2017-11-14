@@ -28,6 +28,7 @@ public class MonsterClass : MonoBehaviour {
     protected SpriteRenderer spriteSwitcher;
     protected PathFinder movementPlan;
     protected GameObject gameMaster;
+    protected TreeNode treeRoot;
 
     // Pathing
     ////////////////
@@ -411,6 +412,9 @@ public class MonsterClass : MonoBehaviour {
 
         swarmNode.SetRight(goToSwarmNode);
         swarmNode.SetLeft(retreatNode);
+
+        // Set the tree root
+        treeRoot = rayCastNode;
     }
 
 

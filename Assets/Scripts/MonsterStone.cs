@@ -93,7 +93,6 @@ public class MonsterStone : MonsterClass {
     {
         if(collider.gameObject.tag == "AttackDistance")
         {
-            Debug.Log("Hello");
             BoundAttack();
         }
     }
