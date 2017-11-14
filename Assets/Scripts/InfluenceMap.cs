@@ -79,13 +79,16 @@ public class InfluenceMap : MonoBehaviour {
 
 	public IntVector2 worldPosToGrid(Vector3 worldPos){
 		Vector2 conWorldPos = scaleWorldPos(worldPos);
-		return new IntVector2(((int)conWorldPos.x*2),((int)conWorldPos.y*2));
+		return new IntVector2(((int)(conWorldPos.x+20)*2),((int)(conWorldPos.y+20)*2));
 	}
 
 
 	
 	public InfluenceNode getInfluenceNode(Vector3 position){
 		IntVector2 conVec = worldPosToGrid(position);
+
+		Debug.Log(conVec.x + "x value");
+		Debug.Log(conVec.y + "y value");
 		return influenceMap[conVec.y , conVec.x];
 	}
 
