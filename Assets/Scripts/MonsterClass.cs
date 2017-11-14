@@ -74,6 +74,8 @@ public class MonsterClass : MonoBehaviour {
         movementPlan = GetComponent<PathFinder>();
 		gameMaster = GameObject.FindWithTag("GameMaster");
 
+        this.BuildTree();       
+
         // Locate Player
         thePlayer = GameObject.FindWithTag("Player");
         playerLocation = thePlayer.transform;
@@ -323,6 +325,8 @@ public class MonsterClass : MonoBehaviour {
 
     // Move towards the player
     protected void Advance(){
+        transform.right = playerLocation.position - transform.position;
+        transform.position = Vector2.MoveTowards(this.transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
 
     }
 
@@ -339,7 +343,74 @@ public class MonsterClass : MonoBehaviour {
     // Building
     ////////////////
     protected void BuildTree(){
+        // Decisions
+        TreeNode rayCastNode = new TreeNode();
+        rayCastNode.SetDecision(InRayCast);
 
+        TreeNode rangeNode = new TreeNode();
+        rangeNode.SetDecision(InRange);
+
+        TreeNode specialCheckNode = new TreeNode();
+        specialCheckNode.SetDecision(SpecialCheck);
+
+        TreeNode specialRangeNode = new TreeNode();
+        specialRangeNode.SetDecision(SpecialAttackRange);
+
+        TreeNode attackRangeNode = new TreeNode();
+        attackRangeNode.SetDecision(AttackRange);
+
+        TreeNode hpNode = new TreeNode();
+        hpNode.SetDecision(HPLow);
+
+        TreeNode friendNode = new TreeNode();
+        friendNode.SetDecision(FriendInRange);
+
+        TreeNode swarmNode = new TreeNode();
+        swarmNode.SetDecision(SwarmHost);
+
+        // Actions
+        TreeNode pathFindNode = new TreeNode();
+        pathFindNode.SetAction(FindPath);
+
+        TreeNode goToSwarmNode = new TreeNode();
+        goToSwarmNode.SetAction(GoToSwarm);
+
+		TreeNode attackNode = new TreeNode();
+		attackNode.SetAction (Attack);
+
+        TreeNode retreatNode = new TreeNode();
+        retreatNode.SetAction(Retreat);
+
+        TreeNode advanceNode = new TreeNode();
+        advanceNode.SetAction(Advance);
+
+        TreeNode specialNode = new TreeNode();
+        specialNode.SetAction(Special);
+
+        // Assemble
+        rayCastNode.SetRight(rangeNode);
+        rayCastNode.SetLeft(pathFindNode);
+
+        rangeNode.SetRight(attackRangeNode);
+        rangeNode.SetLeft(hpNode);
+
+        attackRangeNode.SetRight(attackNode);
+        attackRangeNode.SetLeft(specialRangeNode);
+
+        specialRangeNode.SetRight(specialCheckNode);
+        specialRangeNode.SetLeft(advanceNode);
+
+        specialCheckNode.SetRight(specialNode);
+        specialCheckNode.SetLeft(advanceNode);
+
+        hpNode.SetRight(friendNode);
+        hpNode.SetLeft(pathFindNode);
+
+        friendNode.SetRight(pathFindNode);
+        friendNode.SetLeft(swarmNode);
+
+        swarmNode.SetRight(goToSwarmNode);
+        swarmNode.SetLeft(retreatNode);
     }
 
 
