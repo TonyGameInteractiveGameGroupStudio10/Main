@@ -45,22 +45,40 @@ public class InfluenceMap : MonoBehaviour {
 	}
 
 
+	// takes the world position and scales it to the nearest .5
+	public Vector2 scaleWorldPos(Vector3 worldPos){
+		
+		Vector2 conVec = new Vector2(worldPos.x, worldPos.y);
+
+		int x = (int) worldPos.x;
+		int y = (int) worldPos.y;
+
+		if(conVec.x < x+0.3f){
+			conVec.x = (float) x;
+		}
+		else if (conVec.x > x+0.7f){
+			conVec.x = x + 1.0f;
+		}
+		else{
+			conVec.x = x + 0.5f;
+		}
+
+		if(conVec.y < y+0.3f){
+			conVec.y = (float) y;
+		}
+		else if(conVec.y > y+0.7f){
+			conVec.y = y + 1.0f;
+		}
+		else{
+			conVec.y = y + 0.5f;
+		}
+	}
+
+
+
 	public IntVector2 worldPosToGrid(Vector3 worldPos){
-		int x, y;
-
-		if(worldPos.x < 0) {
-			x = (int) (Mathf.Abs(worldPos.x * 2));
-		} else {
-			x = (int) (worldPos.x * 4);
-		}
-
-		if(worldPos.y < 0) {
-			y = (int) (Mathf.Abs(worldPos.x * 2));
-		} else {
-			y = (int) (worldPos.y * 4);
-		}
-
-		return new IntVector2(x,y);
+		Vector2 conWorldPos = scaleWorldPos(worldPos);
+		return new IntVector2(((int)conWorldPos.x*2),((int)conWorldPos.y*2));
 	}
 
 
