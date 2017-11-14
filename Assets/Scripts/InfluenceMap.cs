@@ -72,6 +72,7 @@ public class InfluenceMap : MonoBehaviour {
 		else{
 			conVec.y = y + 0.5f;
 		}
+		return conVec;
 	}
 
 
