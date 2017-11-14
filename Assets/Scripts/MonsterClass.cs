@@ -222,11 +222,18 @@ public class MonsterClass : MonoBehaviour {
     ///////////////
     // Is the target in ray cast
     protected bool InRayCast(){
-        if (true == false){
-            return true;
-        } else {
-            return false;
-        }
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, playerLocation.position);
+
+		if (Physics.Raycast (ray, out hit)) {
+			if (hit.collider.gameObject.tag == "Player") {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
     }
 
     // Is the target in range
