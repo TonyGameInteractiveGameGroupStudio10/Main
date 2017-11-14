@@ -230,7 +230,7 @@ public class MonsterClass : MonoBehaviour {
     // Is the target in range
     protected bool InRange(){
         float distance =  Vector3.Distance(this.transform.position, playerLocation.position);
-        if (distance < 8) {
+        if (distance < 10) {
             return true;
         } else {
             return false;
@@ -260,6 +260,10 @@ public class MonsterClass : MonoBehaviour {
 
     // Roll to see if you can cast special
     protected bool SpecialCheck(){
+        int diceRoll = Random.Range(0,100);
+        if (diceRoll > 5){
+            
+        }
 
     }
 
