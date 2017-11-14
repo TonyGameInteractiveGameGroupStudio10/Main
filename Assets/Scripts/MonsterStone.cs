@@ -10,7 +10,6 @@ public class MonsterStone : MonsterClass {
 
     // Stats
     public int Thrust = 50;
-    private int maxHealth = 30;
 
     // Sprite
     public Sprite smallSprite;
@@ -31,6 +30,7 @@ public class MonsterStone : MonsterClass {
         Physics2D.IgnoreCollision(enemyBody.GetComponent<Collider2D>(), thePlayer.GetComponent<CircleCollider2D>());
         // Set Stats
         monsterType = 0;
+        maxHealth = 30;
         healthPool = maxHealth;
         monsterSpeed = 2f;
         currentSpeed = monsterSpeed;

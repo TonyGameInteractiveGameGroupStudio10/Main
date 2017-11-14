@@ -9,9 +9,6 @@ using UnityEngine;
 // - Can't be poisoned
 public class MonsterPoison : MonsterClass {
 
-    // Stats
-    private int maxHealth = 20;
-
     // Sprite
     public Sprite smallSprite;
     public Sprite largeSprite;
@@ -27,6 +24,7 @@ public class MonsterPoison : MonsterClass {
 
         // Set Stats
         monsterType = 2;
+        maxHealth = 20
         healthPool = maxHealth;
         monsterSpeed = 3.5f;
         currentSpeed = monsterSpeed;
