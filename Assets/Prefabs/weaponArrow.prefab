@@ -50,8 +50,8 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1257318683815074}
-  m_BodyType: 0
-  m_Simulated: 1
+  m_BodyType: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.01
@@ -62,7 +62,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61539299439526582
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  firingDirection: {x: -0.06670227, y: 0.9977729}
+  firingDirection: {x: 0.9966477, y: 0.08181262}
   poison: 0
   vine: 0
   shock: 0

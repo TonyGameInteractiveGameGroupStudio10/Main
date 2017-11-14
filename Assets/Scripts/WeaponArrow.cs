@@ -33,7 +33,7 @@ public class WeaponArrow : WeaponType {
 
 	// Collision
 	////////////////
-	void OnCollisionEnter2D(Collision2D coll){
+	void OnTriggerEnter2D(Collider2D coll){
 		if ((coll.gameObject.tag == "Wall") || (coll.gameObject.tag == "DropWall")) {
 			this.QuakingEffect();
 			Destroy(gameObject);
