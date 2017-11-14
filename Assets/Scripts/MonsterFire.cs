@@ -9,9 +9,6 @@ using UnityEngine;
 // - Cant be stunned
 public class MonsterFire : MonsterClass {
 
-    // Stats
-    private int maxHealth = 15;
-
     // Sprite
     public Sprite smallSprite;
     public Sprite largeSprite;
@@ -27,6 +24,7 @@ public class MonsterFire : MonsterClass {
 
         // Set Stats
         monsterType = 1;
+        maxHealth = 15;
         healthPool = maxHealth;
         monsterSpeed = 4f;
         currentSpeed = monsterSpeed;

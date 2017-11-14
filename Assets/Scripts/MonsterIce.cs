@@ -8,9 +8,6 @@ using UnityEngine;
 // - Drops water/fuel/maybe ice?
 public class MonsterIce : MonsterClass {
 
-    // Stats
-    private int maxHealth = 30;
-
     // Sprite
     public Sprite smallSprite;
     public Sprite largeSprite;
@@ -25,6 +22,7 @@ public class MonsterIce : MonsterClass {
         base.Start();
 
         // Set Stats
+        maxHealth = 30;
         healthPool = maxHealth;
         monsterSpeed = 3.5f;
         currentSpeed = monsterSpeed;

@@ -9,6 +9,7 @@ public class MonsterClass : MonoBehaviour {
     ////////////////
     protected int monsterType;
     protected int healthPool;
+    protected int maxHealth;
     protected float currentSpeed;
     protected float monsterSpeed;
 
@@ -215,22 +216,119 @@ public class MonsterClass : MonoBehaviour {
         }
     }
 
-    protected void positionRounder(float x){
+    // Decisions
+    ///////////////
+    // Is the target in ray cast
+    protected bool InRayCast(){
+        if (){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Is the target in range
+    protected bool InRange(){
+        float distance =  Vector3.Distance(this.transform.position, playerLocation.position);
+        if (distance < 10) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Is the player in attack range
+    protected bool AttackRange(){
+        float distance =  Vector3.Distance(this.transform.position, playerLocation.position);
+        if (distance < 3) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
 
-    // Decisions
-    ///////////////
+    // If the target isn't close enough
+    protected bool SpecialAttackRange(){
+        float distance =  Vector3.Distance(this.transform.position, playerLocation.position);
+        if (distance < 5) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Roll to see if you can cast special
+    protected bool SpecialCheck(){
+        int diceRoll = Random.Range(0,100);
+        if (diceRoll > 5){
+            
+        }
+
+    }
+
+    // Check if there are nearby friendlies
+    protected bool FriendInRange(){
+
+    }
+
+    // Check to see if the
+    protected bool HPLow(){
+        float PercentagePool = (maxHealth*(0.15));
+        if (PercentagePool >= healthPool) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Check to see if there a swarm
+    protected bool SwarmHost(){
+        if () {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Actions
+    ////////////////
+    // Find the path
     protected void FindPath(){
        listOfMovement = movementPlan.FindPath(transform.position);
        numberOfMoves = 1;
     }
 
-    // Actions
-    ////////////////
+    // Attack the player
+    protected void Attack(){
+
+    }
+
+    // Run from the player
+    protected void Retreat(){
+
+    }
+
+    // Move towards the player
+    protected void Advance(){
+
+    }
+
+    // Cast the special
+    protected void Special(){
+
+    }
+
+    // Go to swarm
+    protected void GoToSwarm(){
+
+    }
 
     // Building
     ////////////////
+    protected void BuildTree(){
+
+    }
 
 
 }

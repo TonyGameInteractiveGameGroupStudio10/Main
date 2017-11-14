@@ -9,9 +9,6 @@ using UnityEngine;
 // - Can't Be Slowed
 public class MonsterOil : MonsterClass {
 
-    // Stats
-    private int maxHealth = 20;
-
     //Distance to player and temp location
     private int DistanceToPlayer;
     public Transform TempLocation;
@@ -31,6 +28,7 @@ public class MonsterOil : MonsterClass {
 
         // Set Stats
         monsterType = 3;
+        maxHealth = 20;
         healthPool = maxHealth;
         monsterSpeed = 2.5f;
         currentSpeed = monsterSpeed;
