@@ -303,15 +303,6 @@ public class MonsterClass : MonoBehaviour {
         }
     }
 
-    // Check to see if there a swarm
-    protected bool SwarmHost(){
-        if (true == false) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     // Actions
     ////////////////
     // Find the path
@@ -322,7 +313,8 @@ public class MonsterClass : MonoBehaviour {
 
     // Attack the player
     protected void Attack(){
-
+        transform.right = playerLocation.position - transform.position;
+        transform.position = Vector2.MoveTowards(this.transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
     }
 
     // Run from the player
@@ -334,17 +326,11 @@ public class MonsterClass : MonoBehaviour {
     protected void Advance(){
         transform.right = playerLocation.position - transform.position;
         transform.position = Vector2.MoveTowards(this.transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
-
     }
 
     // Cast the special
     protected void Special(){
-
-    }
-
-    // Go to swarm
-    protected void GoToSwarm(){
-
+        // cast speical
     }
 
     // Building
@@ -372,15 +358,9 @@ public class MonsterClass : MonoBehaviour {
         TreeNode friendNode = new TreeNode();
         friendNode.SetDecision(FriendInRange);
 
-        TreeNode swarmNode = new TreeNode();
-        swarmNode.SetDecision(SwarmHost);
-
         // Actions
         TreeNode pathFindNode = new TreeNode();
         pathFindNode.SetAction(FindPath);
-
-        TreeNode goToSwarmNode = new TreeNode();
-        goToSwarmNode.SetAction(GoToSwarm);
 
 		TreeNode attackNode = new TreeNode();
 		attackNode.SetAction (Attack);
@@ -414,10 +394,7 @@ public class MonsterClass : MonoBehaviour {
         hpNode.SetLeft(pathFindNode);
 
         friendNode.SetRight(pathFindNode);
-        friendNode.SetLeft(swarmNode);
-
-        swarmNode.SetRight(goToSwarmNode);
-        swarmNode.SetLeft(retreatNode);
+        friendNode.SetLeft(retreatNode);
 
         // Set the tree root
         treeRoot = rayCastNode;
