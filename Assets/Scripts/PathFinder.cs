@@ -144,13 +144,13 @@ public class PathFinder : MonoBehaviour {
 
         // Fire
         if (monsterType != 1){
-            if (tile[1] > 99){ threatCounter += 5; }
+            if (tile[1] > 99){ threatCounter += 6; }
             if (tile[1] > 50){ threatCounter += 1; }
         }
 
         // Poison
         if (monsterType != 2){
-            if (tile[2] > 99){ threatCounter += 5; }
+            if (tile[2] > 99){ threatCounter += 6; }
             if (tile[2] > 50){ threatCounter += 1; }
         }
         

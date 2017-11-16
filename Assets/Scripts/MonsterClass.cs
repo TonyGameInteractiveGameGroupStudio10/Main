@@ -128,7 +128,6 @@ public class MonsterClass : MonoBehaviour {
 
     public void TakeDamage(int incomingDamage){
         this.healthPool -= incomingDamage;
-		Debug.Log(incomingDamage);
     }
 
     public void Die(){
@@ -241,10 +240,8 @@ public class MonsterClass : MonoBehaviour {
         if (hit.collider == null){
             return false;
         } else if (hit.collider.gameObject.tag == "Player") {
-            Debug.Log("RayCast is true:");
 			return true;
 		} else {
-            Debug.Log("RayCast is false:" + hit.collider.gameObject.tag);
 			return false;
 		}
     }
@@ -347,7 +344,6 @@ public class MonsterClass : MonoBehaviour {
 
     // Cast the special
     protected void Special(){
-        Debug.Log("SPECIAL");
         inAction = true;
         this.SpecialMove();
     }
