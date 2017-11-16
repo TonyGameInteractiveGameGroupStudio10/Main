@@ -13,15 +13,17 @@ public class DropFire : MonoBehaviour {
 
     // Can fire tick
     private bool fire;
-
     // Timer before fire can tick
     private float fireTimer;
-
     // Grab game master for access to influenceMap
-    GameObject gameMaster = GameObject.FindWithTag("GameMaster");
+    private GameObject gameMaster;
 
     // Unity Methods
     ////////////////
+    void Start(){
+        gameMaster = GameObject.FindWithTag("GameMaster");
+    }
+
     void Update() {
         if(fireTimer > 0){
             fireTimer -= Time.deltaTime;
@@ -40,15 +42,18 @@ public class DropFire : MonoBehaviour {
         }
         // The fires spreads into the oil
         else if (coll.gameObject.tag == "DropOil"){
+            // Remove Oil
             Vector3 oilLocation = coll.gameObject.transform.position;
             Destroy(coll.gameObject);
-            gameMaster.GetComponent<InfluenceMap>().delNode(transform.position,3);
+            gameMaster.GetComponent<InfluenceMap>().delNode(oilLocation,3);
+            // Add Fire
             Instantiate(this, oilLocation, Quaternion.identity);
             gameMaster.GetComponent<InfluenceMap>().addNode(oilLocation,1); 
 
         }
         // The water/ice/juel puts out the fire
         else if (coll.gameObject.tag == "DropIce"){
+            // Remove Fire
             gameMaster.GetComponent<InfluenceMap>().delNode(transform.position,1);
             Destroy(gameObject);
         }

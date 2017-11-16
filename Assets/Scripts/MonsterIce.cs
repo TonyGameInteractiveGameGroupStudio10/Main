@@ -22,6 +22,7 @@ public class MonsterIce : MonsterClass {
         base.Start();
 
         // Set Stats
+        monsterType = 4;
         maxHealth = 30;
         healthPool = maxHealth;
         monsterSpeed = 3.5f;

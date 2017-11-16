@@ -10,8 +10,15 @@ using UnityEngine;
 // - Ice Loses, spread (HERE)
 public class DropOil : MonoBehaviour {
 
+    // Grab game master for access to influenceMap
+    private GameObject gameMaster;
+
     // Unity Methods
     ////////////////
+    void Start(){
+        gameMaster = GameObject.FindWithTag("GameMaster");
+    }
+
     void OnTriggerEnter2D(Collider2D coll){
         // Slow enemy 
         if (coll.gameObject.tag == "Enemy"){
@@ -25,9 +32,12 @@ public class DropOil : MonoBehaviour {
         }
         // The oil corrupts the water/ice/juel
         else if (coll.gameObject.tag == "DropIce"){
+            // Remove Water/Ice
             Vector3 iceLocation = coll.gameObject.transform.position;
             Destroy(coll.gameObject);
+            // Add Oil
             Instantiate(this, iceLocation, Quaternion.identity);
+            gameMaster.GetComponent<InfluenceMap>().addNode(iceLocation,3);
         }
     }
 

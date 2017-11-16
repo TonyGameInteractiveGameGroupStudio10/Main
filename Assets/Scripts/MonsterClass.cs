@@ -219,7 +219,10 @@ public class MonsterClass : MonoBehaviour {
         else if (this.environmentDrop == true){
             Vector3 scaledVector = gameMaster.GetComponent<InfluenceMap>().scaleWorldPos(transform.position);
             Instantiate(environDrop,scaledVector,Quaternion.identity);
-            gameMaster.GetComponent<InfluenceMap>().addNode(transform.position,monsterType);
+            // if the monster type isn't ice, add it to the map
+            if (monsterType != 4){
+                gameMaster.GetComponent<InfluenceMap>().addNode(transform.position,monsterType);
+            }
         }
     }
 

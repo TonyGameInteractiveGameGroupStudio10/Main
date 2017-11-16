@@ -13,12 +13,15 @@ public class DropPoison : MonoBehaviour {
     private bool poison;
     // Poison Tick Timer
     private float poisonTimer;
+    // Grab game master for access to influenceMap
+    private GameObject gameMaster;
 
     // Unity Methods
     ////////////////
     void Start(){
         this.poison = true;
         this.poisonTimer = 0f;
+        gameMaster = GameObject.FindWithTag("GameMaster");
     }
 
     void Update() {
@@ -41,19 +44,28 @@ public class DropPoison : MonoBehaviour {
         }
         // The poison burns away if touches fire
         else if (coll.gameObject.tag == "DropFire"){
+            // Remove Poison
+            gameMaster.GetComponent<InfluenceMap>().delNode(transform.position,2);
             Destroy(gameObject);
         }
         // The poison spreads into the oil if it touches it
         else if (coll.gameObject.tag == "DropOil"){
+            // Remove Oil
             Vector3 oilLocation = coll.gameObject.transform.position;
+            gameMaster.GetComponent<InfluenceMap>().delNode(oilLocation,3);
             Destroy(coll.gameObject);
-            Instantiate(this, oilLocation, Quaternion.identity); 
+            // Add Poision
+            Instantiate(this, oilLocation, Quaternion.identity);
+            gameMaster.GetComponent<InfluenceMap>().addNode(oilLocation,2); 
         }
         // The poison corrupts the water/ice/juel
         else if (coll.gameObject.tag == "DropIce"){
+            // Remove Water/Ice
             Vector3 iceLocation = coll.gameObject.transform.position;
             Destroy(coll.gameObject);
+            // Add Poison
             Instantiate(this, iceLocation, Quaternion.identity);
+            gameMaster.GetComponent<InfluenceMap>().addNode(iceLocation,2);
         }
     }
     
