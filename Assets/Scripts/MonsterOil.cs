@@ -108,6 +108,13 @@ public class MonsterOil : MonsterClass {
     {
         this.maxHealth = newMaxHealth;
     }
+
+    // Attack
+    ////////////////
+    public override void SpecialMove(){
+        // Special Move goes here
+    }
+
     //private void OilBomb();
     //{
     //     transform.right = playerLocation.position - transform.position;

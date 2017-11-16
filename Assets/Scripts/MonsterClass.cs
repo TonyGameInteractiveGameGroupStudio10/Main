@@ -89,7 +89,7 @@ public class MonsterClass : MonoBehaviour {
     ////////////////
     protected virtual void Update(){
         // Movement
-        // Verify the list isn't empty
+        // Verify the list isn't empty, more then current square
         if((listOfMovement != null) && (listOfMovement.Count > 1)){
             if (numberOfMoves < listOfMovement.Count) {
                 goalPosition = listOfMovement[numberOfMoves];
@@ -100,6 +100,8 @@ public class MonsterClass : MonoBehaviour {
                 }
             }
         }
+        // Rotate to face the player
+        transform.right = playerLocation.position - transform.position;
 
         // if HP is less then 0
         if (healthPool <= 0){
@@ -218,6 +220,10 @@ public class MonsterClass : MonoBehaviour {
         }
     }
 
+    public virtual void SpecialMove(){
+        // empty for easy sake.
+    }
+
     // Decisions
     ///////////////
     // Decision Start/Selector
@@ -227,16 +233,14 @@ public class MonsterClass : MonoBehaviour {
 
     // Is the target in ray cast
     protected bool InRayCast(){
-        RaycastHit hit;
-        Ray ray = new Ray(transform.position, playerLocation.position);
-
-		if (Physics.Raycast (ray, out hit)) {
-			if (hit.collider.gameObject.tag == "Player") {
-				return true;
-			} else {
-				return false;
-			}
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, playerLocation.position);
+        if (hit.collider == null){
+            return false;
+        } else if (hit.collider.gameObject.tag == "Player") {
+            Debug.Log("RayCast is true:");
+			return true;
 		} else {
+            Debug.Log("RayCast is false:" + hit.collider.gameObject.tag);
 			return false;
 		}
     }
@@ -265,7 +269,7 @@ public class MonsterClass : MonoBehaviour {
     // If the target isn't close enough
     protected bool SpecialAttackRange(){
         float distance =  Vector3.Distance(this.transform.position, playerLocation.position);
-        if (distance < 1) {
+        if (distance < 5) {
             return true;
         } else {
             return false;
@@ -275,7 +279,7 @@ public class MonsterClass : MonoBehaviour {
     // Roll to see if you can cast special
     protected bool SpecialCheck(){
         int diceRoll = Random.Range(0,100);
-        if (diceRoll > 5){
+        if (diceRoll < 100){
             return true;
         } else {
             return false;
@@ -312,8 +316,8 @@ public class MonsterClass : MonoBehaviour {
     ////////////////
     // Find the path
     protected void FindPath(){
-       listOfMovement = movementPlan.FindPath(transform.position, monsterType);
-       numberOfMoves = 1;
+        listOfMovement = movementPlan.FindPath(transform.position, monsterType);
+        numberOfMoves = 1;
     }
 
     // Attack the player
@@ -324,7 +328,7 @@ public class MonsterClass : MonoBehaviour {
 
     // Run from the player
     protected void Retreat(){
-
+        // RUN AWAY
     }
 
     // Move towards the player
@@ -335,7 +339,8 @@ public class MonsterClass : MonoBehaviour {
 
     // Cast the special
     protected void Special(){
-        // cast speical
+        Debug.Log("SPECIAL");
+        this.SpecialMove();
     }
 
     // Building The Tree

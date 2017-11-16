@@ -77,4 +77,10 @@ public class MonsterPoison : MonsterClass {
     {
         this.maxHealth = newMaxHealth;
     }
+
+    // Attack
+    ////////////////
+    public override void SpecialMove(){
+
+    }
 }

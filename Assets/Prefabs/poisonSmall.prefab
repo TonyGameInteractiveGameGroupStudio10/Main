@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50839095157638794}
   - component: {fileID: 114757054859467790}
   - component: {fileID: 114050546082190032}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: poisonSmall
   m_TagString: Enemy
   m_Icon: {fileID: 0}

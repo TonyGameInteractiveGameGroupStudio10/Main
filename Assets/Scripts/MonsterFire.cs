@@ -99,6 +99,13 @@ public class MonsterFire : MonsterClass {
     {
         this.maxHealth = newMaxHealth;
     }
+
+    // Attack
+    ////////////////
+    public override void SpecialMove(){
+        // special Move goes here
+    }
+
     //private void BlastingCannon()
     //{
             

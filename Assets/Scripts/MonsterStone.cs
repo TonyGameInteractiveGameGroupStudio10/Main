@@ -89,14 +89,6 @@ public class MonsterStone : MonsterClass {
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if(collider.gameObject.tag == "AttackDistance")
-        {
-            BoundAttack();
-        }
-    }
-
     // Fixed Update
     ////////////////
     void FixedUpdate() {
@@ -117,8 +109,12 @@ public class MonsterStone : MonsterClass {
         this.maxHealth = newMaxHealth;
     }
 
-    // BoundAttack
+    // Attack
     ////////////////
+    public override void SpecialMove(){
+        this.BoundAttack();
+    }
+
     public void BoundAttack(){
         Vector2 newVector2 = playerLocation.position - this.transform.position;
         enemyBody.AddForce(newVector2 * currentSpeed * 25);

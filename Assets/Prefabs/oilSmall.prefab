@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61801143681071994}
   - component: {fileID: 114752526739917010}
   - component: {fileID: 114509977244957842}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: oilSmall
   m_TagString: Enemy
   m_Icon: {fileID: 0}

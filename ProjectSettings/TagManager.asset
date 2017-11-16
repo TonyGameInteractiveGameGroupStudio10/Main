@@ -17,6 +17,8 @@ TagManager:
   - DropFire
   - DropOil
   - DropIce
+  - AttackDistance
+  - HealthLength
   layers:
   - Default
   - TransparentFX
@@ -30,7 +32,7 @@ TagManager:
   - Environment
   - WeaponMod
   - Attackmod
-  - 
+  - Enemy
   - 
   - 
   - 

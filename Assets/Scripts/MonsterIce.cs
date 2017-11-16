@@ -92,4 +92,10 @@ public class MonsterIce : MonsterClass {
     {
         this.maxHealth = newMaxHealth;
     }
+
+    // Attack
+    ////////////////
+    public override void SpecialMove(){
+        // Special Move goes here
+    }
 }
