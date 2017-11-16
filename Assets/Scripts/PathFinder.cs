@@ -21,7 +21,7 @@ public class PathFinder : MonoBehaviour {
     ////////////////
     // Path Finding
     ////////////////
-    public List<Vector3> FindPath(Vector3 startingVector){
+    public List<Vector3> FindPath(Vector3 startingVector, int monsterType){
         this.RunSetup();
         // Data Set up
         bool pathFound = false;
@@ -29,7 +29,7 @@ public class PathFinder : MonoBehaviour {
         Vector3[] adjacentVectors = new Vector3[4];
         Path adjacentPath;
         Path smallestPath;
-        Path currentPath = new Path(currentVector, null, TileWeight(currentVector));
+        Path currentPath = new Path(currentVector, null, TileWeight(currentVector, monsterType));
 
         // Add starting path to open list
         openList.Add(currentPath);
@@ -62,7 +62,7 @@ public class PathFinder : MonoBehaviour {
             for (int i = 0; i < 4; i += 1){
                 // check if its out of bounds
 				if ((adjacentVectors[i].x >= -20) && (adjacentVectors[i].x <= 20) && (adjacentVectors[i].y >= -20) && (adjacentVectors[i].y <= 20)){
-					int adjacentScore = TileWeight(adjacentVectors[i]);
+					int adjacentScore = TileWeight(adjacentVectors[i], monsterType);
                     // Verify we want to go there (wall)
                     if (adjacentScore < 1000){
 						adjacentPath = new Path(adjacentVectors[i],currentPath,adjacentScore);
@@ -121,11 +121,11 @@ public class PathFinder : MonoBehaviour {
 
     // Calculating Weights
     ////////////////
-    private int TileWeight(Vector3 currentVector){
+    private int TileWeight(Vector3 currentVector, int monsterType){
         InfluenceNode tempNode = threatMap.getInfluenceNode(currentVector); 
         int[] tile = tempNode.getThreat();
         int h = this.DistanceToPlayer(currentVector);
-        int f = this.ThreatWeight(tile);
+        int f = this.ThreatWeight(tile, monsterType);
         return (f+h);
     }
 
@@ -135,7 +135,7 @@ public class PathFinder : MonoBehaviour {
         return (xDifference+yDifference);
     }
 
-    private int ThreatWeight(int[] tile){
+    private int ThreatWeight(int[] tile, int monsterType){
         // Threat Types: 0 - wall; 1- fire ; 2 - poison; 3 - oil
         int threatCounter = 0;
 
@@ -143,16 +143,23 @@ public class PathFinder : MonoBehaviour {
         if (tile[0] > 99){ threatCounter += 1000; }
 
         // Fire
-        if (tile[1] > 99){ threatCounter += 5; }
-        if (tile[1] > 50){ threatCounter += 1; }
+        if (monsterType != 1){
+            if (tile[1] > 99){ threatCounter += 5; }
+            if (tile[1] > 50){ threatCounter += 1; }
+        }
 
         // Poison
-        if (tile[2] > 99){ threatCounter += 5; }
-        if (tile[2] > 50){ threatCounter += 1; }
+        if (monsterType != 2){
+            if (tile[2] > 99){ threatCounter += 5; }
+            if (tile[2] > 50){ threatCounter += 1; }
+        }
+        
 
         // Oil
-        if (tile[3] > 99){ threatCounter += 3; }
-        if (tile[3] > 50){ threatCounter += 1; }
+        if (monsterType != 3){
+            if (tile[3] > 99){ threatCounter += 3; }
+            if (tile[3] > 50){ threatCounter += 1; }
+        }
         
         return threatCounter;
     }

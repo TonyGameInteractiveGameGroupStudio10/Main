@@ -82,7 +82,7 @@ public class MonsterClass : MonoBehaviour {
         playerLocation = thePlayer.transform;
 
         // Find the first path, then search every second
-        InvokeRepeating("FindPath", 1f, 0.2f);
+        InvokeRepeating("MakeDecision", 1f, 0.2f);
     }
 
     // Update
@@ -220,6 +220,11 @@ public class MonsterClass : MonoBehaviour {
 
     // Decisions
     ///////////////
+    // Decision Start/Selector
+    protected void MakeDecision(){
+        treeRoot.Search();
+    }
+
     // Is the target in ray cast
     protected bool InRayCast(){
         RaycastHit hit;
@@ -260,7 +265,7 @@ public class MonsterClass : MonoBehaviour {
     // If the target isn't close enough
     protected bool SpecialAttackRange(){
         float distance =  Vector3.Distance(this.transform.position, playerLocation.position);
-        if (distance < 5) {
+        if (distance < 1) {
             return true;
         } else {
             return false;
@@ -307,7 +312,7 @@ public class MonsterClass : MonoBehaviour {
     ////////////////
     // Find the path
     protected void FindPath(){
-       listOfMovement = movementPlan.FindPath(transform.position);
+       listOfMovement = movementPlan.FindPath(transform.position, monsterType);
        numberOfMoves = 1;
     }
 
@@ -333,8 +338,8 @@ public class MonsterClass : MonoBehaviour {
         // cast speical
     }
 
-    // Building
-    ////////////////
+    // Building The Tree
+    ////////////////////////
     protected void BuildTree(){
         // Decisions
         TreeNode rayCastNode = new TreeNode();
