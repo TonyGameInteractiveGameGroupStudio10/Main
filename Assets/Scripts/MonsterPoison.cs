@@ -81,6 +81,6 @@ public class MonsterPoison : MonsterClass {
     // Attack
     ////////////////
     public override void SpecialMove(){
-
+        inSpecial = false;
     }
 }

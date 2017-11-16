@@ -118,11 +118,12 @@ public class MonsterStone : MonsterClass {
     public void BoundAttack(){
         Vector2 newVector2 = playerLocation.position - this.transform.position;
         enemyBody.AddForce(newVector2 * currentSpeed * 25);
-        Invoke("Stop",0.3f);
+        Invoke("Stop",0.5f);
         
     } 
 
     public void Stop(){
         enemyBody.velocity = new Vector3(0,0,0);
+        inSpecial = false;
     }
 }

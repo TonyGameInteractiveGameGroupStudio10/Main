@@ -103,7 +103,7 @@ public class MonsterFire : MonsterClass {
     // Attack
     ////////////////
     public override void SpecialMove(){
-        // special Move goes here
+        inSpecial = false;
     }
 
     //private void BlastingCannon()

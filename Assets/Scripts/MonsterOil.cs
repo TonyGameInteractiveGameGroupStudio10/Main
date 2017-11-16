@@ -112,7 +112,7 @@ public class MonsterOil : MonsterClass {
     // Attack
     ////////////////
     public override void SpecialMove(){
-        // Special Move goes here
+        inSpecial = false;
     }
 
     //private void OilBomb();

@@ -96,6 +96,6 @@ public class MonsterIce : MonsterClass {
     // Attack
     ////////////////
     public override void SpecialMove(){
-        // Special Move goes here
+        inSpecial = false;
     }
 }

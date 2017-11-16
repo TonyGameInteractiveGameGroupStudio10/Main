@@ -30,11 +30,13 @@ public class MonsterClass : MonoBehaviour {
     protected GameObject gameMaster;
     protected TreeNode treeRoot;
 
-    // Pathing
-    ////////////////
+    // Pathing/Decisions
+    //////////////////////
     protected int numberOfMoves = 0;
     protected Vector3 goalPosition;
     protected List<Vector3> listOfMovement;
+    protected bool inAction;
+    protected bool inSpecial;
 
     // Player
     ////////////////
@@ -82,15 +84,19 @@ public class MonsterClass : MonoBehaviour {
         playerLocation = thePlayer.transform;
 
         // Find the first path, then search every second
-        InvokeRepeating("MakeDecision", 1f, 0.2f);
+        inAction = false;
     }
 
     // Update
     ////////////////
     protected virtual void Update(){
+        // Make a decision
+        if (inSpecial == false){
+            this.MakeDecision();
+        }
         // Movement
-        // Verify the list isn't empty, more then current square
-        if((listOfMovement != null) && (listOfMovement.Count > 1)){
+        // Verify the list isn't empty, more then current square, and isn't in action
+        if((listOfMovement != null) && (listOfMovement.Count > 1) && (inAction == false)){
             if (numberOfMoves < listOfMovement.Count) {
                 goalPosition = listOfMovement[numberOfMoves];
                 transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), goalPosition, (currentSpeed * Time.deltaTime));
@@ -100,8 +106,6 @@ public class MonsterClass : MonoBehaviour {
                 }
             }
         }
-        // Rotate to face the player
-        transform.right = playerLocation.position - transform.position;
 
         // if HP is less then 0
         if (healthPool <= 0){
@@ -221,7 +225,7 @@ public class MonsterClass : MonoBehaviour {
     }
 
     public virtual void SpecialMove(){
-        // empty for easy sake.
+        // method is overridden in the children classes
     }
 
     // Decisions
@@ -279,7 +283,8 @@ public class MonsterClass : MonoBehaviour {
     // Roll to see if you can cast special
     protected bool SpecialCheck(){
         int diceRoll = Random.Range(0,100);
-        if (diceRoll < 100){
+        if (diceRoll < 1){
+            inSpecial = true;
             return true;
         } else {
             return false;
@@ -316,12 +321,14 @@ public class MonsterClass : MonoBehaviour {
     ////////////////
     // Find the path
     protected void FindPath(){
+        inAction = false;
         listOfMovement = movementPlan.FindPath(transform.position, monsterType);
         numberOfMoves = 1;
     }
 
     // Attack the player
     protected void Attack(){
+        inAction = true;
         transform.right = playerLocation.position - transform.position;
         transform.position = Vector2.MoveTowards(this.transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
     }
@@ -333,6 +340,7 @@ public class MonsterClass : MonoBehaviour {
 
     // Move towards the player
     protected void Advance(){
+        inAction = true;
         transform.right = playerLocation.position - transform.position;
         transform.position = Vector2.MoveTowards(this.transform.position, playerLocation.position, currentSpeed * Time.deltaTime);
     }
@@ -340,6 +348,7 @@ public class MonsterClass : MonoBehaviour {
     // Cast the special
     protected void Special(){
         Debug.Log("SPECIAL");
+        inAction = true;
         this.SpecialMove();
     }
 
