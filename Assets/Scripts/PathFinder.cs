@@ -61,7 +61,7 @@ public class PathFinder : MonoBehaviour {
             // for loop through the adjacent square
             for (int i = 0; i < 4; i += 1){
                 // check if its out of bounds
-				if ((adjacentVectors[i].x >= -20) && (adjacentVectors[i].x <= 20) && (adjacentVectors[i].y >= -20) && (adjacentVectors[i].y <= 20)){
+				if ((adjacentVectors[i].x > -20) && (adjacentVectors[i].x < 20) && (adjacentVectors[i].y > -20) && (adjacentVectors[i].y < 20)){
 					int adjacentScore = TileWeight(adjacentVectors[i], monsterType);
                     // Verify we want to go there (wall)
                     if (adjacentScore < 1000){
@@ -145,20 +145,23 @@ public class PathFinder : MonoBehaviour {
         // Fire
         if (monsterType != 1){
             if (tile[1] > 99){ threatCounter += 6; }
-            if (tile[1] > 50){ threatCounter += 1; }
+            else if (tile[1] > 49){ threatCounter += 2; }
+            else if (tile[1] > 24){ threatCounter += 1; }
         }
 
         // Poison
         if (monsterType != 2){
             if (tile[2] > 99){ threatCounter += 6; }
-            if (tile[2] > 50){ threatCounter += 1; }
+            else if (tile[2] > 49){ threatCounter += 3; }
+            else if (tile[2] > 24){ threatCounter += 1; }
         }
         
 
         // Oil
         if (monsterType != 3){
             if (tile[3] > 99){ threatCounter += 3; }
-            if (tile[3] > 50){ threatCounter += 1; }
+            else if (tile[3] > 49){ threatCounter += 1; }
+            else if (tile[3] > 24){ threatCounter += 1; }
         }
         
         return threatCounter;
