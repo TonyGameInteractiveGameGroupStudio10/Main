@@ -12,8 +12,8 @@ public class UserClass : MonoBehaviour {
 	////////////////
 	private int healthPool;  
 	private int maxHealthPool; // 40
-	private float currentSpeed;
-	private float playerSpeed; // 4f
+	public float playerSpeed;
+	private float maxSpeed; // 4f
 	private Vector2 targetVelocity;
 
     // Status Effects
@@ -71,12 +71,15 @@ public class UserClass : MonoBehaviour {
 	////////////////
 	void Update(){
 		// Potions
-		// c - clear ; x - speed
-		if (Input.GetKeyDown("c")) { 
+		// r - clear ; e - speed; q - health
+		if (Input.GetKeyDown("r")) { 
 			this.UsePotion(0); 
 		}
-		else if (Input.GetKeyDown ("x")) { 
+		else if (Input.GetKeyDown ("e")) { 
 			this.UsePotion(1); 
+		}
+		else if (Input.GetKeyDown("q")){
+			this.UsePotion(2);
 		}
 
 		// Fire
@@ -120,7 +123,7 @@ public class UserClass : MonoBehaviour {
 	void FixedUpdate(){
 		// Movement
 		this.targetVelocity = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-		GetComponent<Rigidbody2D>().velocity = targetVelocity * currentSpeed;
+		GetComponent<Rigidbody2D>().velocity = targetVelocity * playerSpeed;
 
 		// Rotate
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -184,17 +187,17 @@ public class UserClass : MonoBehaviour {
 		this.playerSpeed = newSpeed;
 	}
 
-	public float GetCurrentSpeed(){
-		return this.currentSpeed;
+	public float GetMaxSpeed(){
+		return this.maxSpeed;
 	}
 
-	public void SetCurrentSpeed(float newSpeed){
-		this.currentSpeed = newSpeed;
+	public void SetMaxSpeed(float newSpeed){
+		this.maxSpeed = newSpeed;
 	}
 
 	public void ResetSpeed(){
 		this.SetSpeed(4f);
-		this.SetCurrentSpeed(4f);
+		this.SetMaxSpeed(4f);
 	}
 
 	// Potion
@@ -223,7 +226,8 @@ public class UserClass : MonoBehaviour {
 		}
 		else {
 			this.potion[outgoingPotion] -= 1; 
-			// send to potion module ---->
+			// send to potion module
+			potionModule.Potion(outgoingPotion);
 		}
 	}
 

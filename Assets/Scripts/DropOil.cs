@@ -27,8 +27,8 @@ public class DropOil : MonoBehaviour {
         }
         // Slow Player
         else if (coll.gameObject.tag == "Player") {
-            float objectSpeed = coll.gameObject.GetComponent<UserClass>().GetCurrentSpeed();
-            coll.gameObject.GetComponent<UserClass>().SetCurrentSpeed(objectSpeed/2);
+            float objectSpeed = coll.gameObject.GetComponent<UserClass>().GetSpeed();
+            coll.gameObject.GetComponent<UserClass>().SetSpeed(objectSpeed/2);
         }
         // The oil corrupts the water/ice/juel
         else if (coll.gameObject.tag == "DropIce"){
@@ -47,8 +47,8 @@ public class DropOil : MonoBehaviour {
             coll.gameObject.GetComponent<MonsterClass>().SetCurrentSpeed(objectFullSpeedE);
         }
         else if (coll.gameObject.tag == "Player") {
-            float objectFullSpeedP = coll.gameObject.GetComponent<UserClass>().GetSpeed();
-            coll.gameObject.GetComponent<UserClass>().SetCurrentSpeed(objectFullSpeedP);
+            float objectFullSpeedP = coll.gameObject.GetComponent<UserClass>().GetMaxSpeed();
+            coll.gameObject.GetComponent<UserClass>().SetSpeed(objectFullSpeedP);
         }
     }
 }

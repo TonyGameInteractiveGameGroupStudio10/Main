@@ -1,4 +1,4 @@
-﻿    using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +15,7 @@ public class PlayerHUD : UserClass {
 
     // Use this for initialization
     void Start () {    
-        HealthBar= GameObject.FindGameObjectWithTag("HealthLength");
+        HealthBar = GameObject.FindWithTag("HealthLength");
         currHealth = maxHealth;
     }
     private void Update()
