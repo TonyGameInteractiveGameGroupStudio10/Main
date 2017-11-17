@@ -16,8 +16,8 @@ public class GameMaster : MonoBehaviour {
 
 	// Sprite Containers
 	public Sprite[] potionSprites = new Sprite[3];
-	public Sprite[] weaponSprites;
-	public Sprite[] attackSprites;
+	public Sprite[] weaponSprites = new Sprite[1];
+	public Sprite[] attackSprites = new Sprite[5];
 
 	///////////////////////////////////
 	// Unity Methods
@@ -27,12 +27,6 @@ public class GameMaster : MonoBehaviour {
 	void Start(){
 		// Store all the Spawn Points
 		spawner = GameObject.FindGameObjectsWithTag("Spawner");
-	}
-
-	// Start
-	////////////////
-	void Update(){
-
 	}
 
 	///////////////////////////////////

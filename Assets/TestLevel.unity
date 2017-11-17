@@ -1803,6 +1803,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114210010938429020, guid: 4b685dcf9bb6d43b8b6f9fbc6684c628,
+        type: 2}
+      propertyPath: weaponSprites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4683520442958076, guid: 4b685dcf9bb6d43b8b6f9fbc6684c628, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1835,6 +1840,24 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 114210010938429020, guid: 4b685dcf9bb6d43b8b6f9fbc6684c628,
+        type: 2}
+      propertyPath: attackSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: cafdb1cfc273b4f588d2a023d3a75ec1,
+        type: 3}
+    - target: {fileID: 114210010938429020, guid: 4b685dcf9bb6d43b8b6f9fbc6684c628,
+        type: 2}
+      propertyPath: attackSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: c5f45b6870fd0470abd087b8ef07e4c5,
+        type: 3}
+    - target: {fileID: 114210010938429020, guid: 4b685dcf9bb6d43b8b6f9fbc6684c628,
+        type: 2}
+      propertyPath: attackSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 8b9c8a9d4ffb447e980f05a5b39c4709,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b685dcf9bb6d43b8b6f9fbc6684c628, type: 2}
   m_IsPrefabParent: 0
