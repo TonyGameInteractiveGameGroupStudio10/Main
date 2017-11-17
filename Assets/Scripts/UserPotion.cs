@@ -8,8 +8,9 @@ public class UserPotion : MonoBehaviour {
 	// variables for potions
 	private bool hasteActive = false;
 	private float timer;
+	public GameObject clear;
 
-	void update(){
+	void Update(){
 		if (timer > 0){
 			timer -= Time.deltaTime;
 		}
@@ -26,7 +27,7 @@ public class UserPotion : MonoBehaviour {
 		}
 		// 0 - clear; 1 - haste; 2 - health
 		if (outgoingPotion == 0){
-
+			Instantiate(clear, transform.position, Quaternion.identity);
 		} else if (outgoingPotion == 1){
 			player.SetSpeed(player.GetSpeed()+1f);
 			hasteActive = true;
