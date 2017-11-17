@@ -9,6 +9,7 @@ using UnityEngine;
 // - Poison Wins, spread (poison)
 public class DropIce : MonoBehaviour {
 
-    // The world interacts with me, I do not interact with the world.
-
+    public void DestroySelf(){
+    	Destroy(gameObject);
+    }
 }

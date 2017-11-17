@@ -45,15 +45,13 @@ public class DropPoison : MonoBehaviour {
         // The poison burns away if touches fire
         else if (coll.gameObject.tag == "DropFire"){
             // Remove Poison
-            gameMaster.GetComponent<InfluenceMap>().delNode(transform.position,2);
-            Destroy(gameObject);
+            this.DestroySelf();
         }
         // The poison spreads into the oil if it touches it
         else if (coll.gameObject.tag == "DropOil"){
             // Remove Oil
             Vector3 oilLocation = coll.gameObject.transform.position;
-            gameMaster.GetComponent<InfluenceMap>().delNode(oilLocation,3);
-            Destroy(coll.gameObject);
+            coll.gameObject.GetComponent<DropOil>().DestroySelf();
             // Add Poision
             Instantiate(this, oilLocation, Quaternion.identity);
             gameMaster.GetComponent<InfluenceMap>().addNode(oilLocation,2); 
@@ -62,7 +60,7 @@ public class DropPoison : MonoBehaviour {
         else if (coll.gameObject.tag == "DropIce"){
             // Remove Water/Ice
             Vector3 iceLocation = coll.gameObject.transform.position;
-            Destroy(coll.gameObject);
+            coll.gameObject.GetComponent<DropIce>().DestroySelf();
             // Add Poison
             Instantiate(this, iceLocation, Quaternion.identity);
             gameMaster.GetComponent<InfluenceMap>().addNode(iceLocation,2);
@@ -79,5 +77,12 @@ public class DropPoison : MonoBehaviour {
             }
             this.poison = false;
         }
+    }
+
+    // Methods
+    ////////////////
+    public void DestroySelf(){
+            gameMaster.GetComponent<InfluenceMap>().delNode(transform.position,2);
+            Destroy(gameObject);
     }
 }

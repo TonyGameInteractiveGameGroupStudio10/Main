@@ -34,7 +34,7 @@ public class DropOil : MonoBehaviour {
         else if (coll.gameObject.tag == "DropIce"){
             // Remove Water/Ice
             Vector3 iceLocation = coll.gameObject.transform.position;
-            Destroy(coll.gameObject);
+            coll.gameObject.GetComponent<DropIce>().DestroySelf();
             // Add Oil
             Instantiate(this, iceLocation, Quaternion.identity);
             gameMaster.GetComponent<InfluenceMap>().addNode(iceLocation,3);
@@ -50,5 +50,12 @@ public class DropOil : MonoBehaviour {
             float objectFullSpeedP = coll.gameObject.GetComponent<UserClass>().GetMaxSpeed();
             coll.gameObject.GetComponent<UserClass>().SetSpeed(objectFullSpeedP);
         }
+    }
+
+    // Unity Methods
+    ////////////////
+    public void DestroySelf(){
+        gameMaster.GetComponent<InfluenceMap>().delNode(transform.position,3);
+        Destroy(gameObject);
     }
 }

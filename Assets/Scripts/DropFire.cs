@@ -44,8 +44,7 @@ public class DropFire : MonoBehaviour {
         else if (coll.gameObject.tag == "DropOil"){
             // Remove Oil
             Vector3 oilLocation = coll.gameObject.transform.position;
-            Destroy(coll.gameObject);
-            gameMaster.GetComponent<InfluenceMap>().delNode(oilLocation,3);
+            coll.gameObject.GetComponent<DropOil>().DestroySelf();
             // Add Fire
             Instantiate(this, oilLocation, Quaternion.identity);
             gameMaster.GetComponent<InfluenceMap>().addNode(oilLocation,1); 
@@ -54,8 +53,7 @@ public class DropFire : MonoBehaviour {
         // The water/ice/juel puts out the fire
         else if (coll.gameObject.tag == "DropIce"){
             // Remove Fire
-            gameMaster.GetComponent<InfluenceMap>().delNode(transform.position,1);
-            Destroy(gameObject);
+            this.DestroySelf();
         }
     }
 
@@ -69,5 +67,12 @@ public class DropFire : MonoBehaviour {
             }
             this.fire = false;
         }
+    }
+
+    // Methods
+    ////////////////
+    public void DestroySelf(){
+            gameMaster.GetComponent<InfluenceMap>().delNode(transform.position,1);
+            Destroy(gameObject);
     }
 }
