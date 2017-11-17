@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212733315717233572}
   - component: {fileID: 61227613593107422}
   - component: {fileID: 50182060385089678}
+  - component: {fileID: 114029410366004848}
   m_Layer: 0
   m_Name: DropIce
   m_TagString: DropIce
@@ -87,6 +88,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.482437, y: 5.4904737}
   m_EdgeRadius: 0
+--- !u!114 &114029410366004848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1468543302838636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffdb5bb1029b2425abc2f20044da6c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212733315717233572
 SpriteRenderer:
   m_ObjectHideFlags: 1

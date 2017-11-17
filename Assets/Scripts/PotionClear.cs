@@ -8,7 +8,7 @@ public class PotionClear : MonoBehaviour {
         Invoke("DestroySelf", 1f);
     }
 
-    void OnCollisionEnter2D(Collision2D coll){
+    void OnTriggerEnter2D(Collider2D coll){
         // Destroy Wall
         if (coll.gameObject.tag == "DropWall"){
             coll.gameObject.GetComponent<DropWall>().DestroySelf();
@@ -26,6 +26,11 @@ public class PotionClear : MonoBehaviour {
         // Destroy Oil
         if (coll.gameObject.tag == "DropOil"){
             coll.gameObject.GetComponent<DropOil>().DestroySelf();
+        }
+
+        // Destroy Ice
+        if (coll.gameObject.tag == "DropIce"){
+            coll.gameObject.GetComponent<DropIce>().DestroySelf();
         }
     }
 

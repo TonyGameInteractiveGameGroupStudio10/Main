@@ -155,9 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bea7ad002bc49ce921a4b5aab29ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPotions: 0
-  hastePotions: 0
-  clearPotions: 0
+  clear: {fileID: 1596651553683818, guid: 942d5c93c269f478f9e94af7c23c94c6, type: 2}
 --- !u!114 &114747665306272302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4503778e4e60145b786482ee67d1ba93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSpeed: 0
   attackMod: 0000000000000000000000000000000000000000
 --- !u!212 &212854429141687082
 SpriteRenderer:
