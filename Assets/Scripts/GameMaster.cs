@@ -35,7 +35,6 @@ public class GameMaster : MonoBehaviour {
 	// Sprites
 	////////////////
 	// Only One thing can be message passed, so passing an array of objects
-	// [0] - sprite index; [1] - sender
 	public Sprite GetPotionSprite(int index){
 		return potionSprites[index];
 	}
