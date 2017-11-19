@@ -12,6 +12,9 @@ public class MonsterFire : MonsterClass {
     // Sprite
     public Sprite smallSprite;
     public Sprite largeSprite;
+    public GameObject FlameSpit;
+    public Transform FlameMouth;
+    private Vector2 FiringDirection;
 
     ///////////////////////////////////
     // Unity Methods
@@ -44,7 +47,7 @@ public class MonsterFire : MonsterClass {
     // Update
     ////////////////
     protected override void Update(){
-        // Rune MonsterClass Update()
+        // Run MonsterClass Update()
 		base.Update();
 
         //if(DistanceToPlayer == 2.0f && charged == true)
@@ -103,11 +106,18 @@ public class MonsterFire : MonsterClass {
     // Attack
     ////////////////
     public override void SpecialMove(){
+        BlastingCannon();
         inSpecial = false;
     }
 
-    //private void BlastingCannon()
-    //{
-            
-    //}
+    private void BlastingCannon()
+      {
+        FiringDirection = (playerLocation.position - FlameMouth.position).normalized;
+        FlameSpit.GetComponent<WeaponFire>().setFiringDirection(FiringDirection);
+        GameObject tempShot;
+        tempShot = Instantiate(FlameSpit, FlameMouth.position, FlameMouth.rotation) ;
+        tempShot.transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), FiringDirection);
+        
+        inSpecial = false;
+    }
 }
