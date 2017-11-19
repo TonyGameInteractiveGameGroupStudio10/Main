@@ -16,8 +16,8 @@ public class GameMaster : MonoBehaviour {
 
 	// Sprite Containers
 	public Sprite[] potionSprites = new Sprite[3];
-	public Sprite[] weaponSprites;
-	public Sprite[] attackSprites;
+	public Sprite[] weaponSprites = new Sprite[1];
+	public Sprite[] attackSprites = new Sprite[5];
 
 	///////////////////////////////////
 	// Unity Methods
@@ -29,19 +29,12 @@ public class GameMaster : MonoBehaviour {
 		spawner = GameObject.FindGameObjectsWithTag("Spawner");
 	}
 
-	// Start
-	////////////////
-	void Update(){
-
-	}
-
 	///////////////////////////////////
 	// Methods
 	///////////////////////////////////
 	// Sprites
 	////////////////
 	// Only One thing can be message passed, so passing an array of objects
-	// [0] - sprite index; [1] - sender
 	public Sprite GetPotionSprite(int index){
 		return potionSprites[index];
 	}
