@@ -25,7 +25,7 @@ public class ItemAttackMod : MonoBehaviour {
 	void Update(){
 		// If that index has been changed/set
 		if ((askedForSprite == false) && (itemIndex != 123)) {
-			//theGameMaster.GetComponent<GameMaster>().GetAttackSprite(itemIndex); <------ TURN THIS ON
+			spriteRenderer.sprite = theGameMaster.GetComponent<GameMaster>().GetAttackSprite(itemIndex);
 			askedForSprite = true;
 		}
 	}
