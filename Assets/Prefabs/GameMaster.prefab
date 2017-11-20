@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4503823094240220}
   m_Layer: 0
   m_Name: spawn1-2
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 7240890024493199768, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4212710404213878}
   m_Layer: 0
   m_Name: spawn1-1
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 7240890024493199768, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 4741651596298684}
   m_Layer: 0
   m_Name: spawn1-4
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 7240890024493199768, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 4453279150620650}
   m_Layer: 0
   m_Name: spawn1-3
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 7240890024493199768, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1603481964931380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.68, y: 8.37, z: 0}
+  m_LocalPosition: {x: -17.29, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4003785327452664}
@@ -125,7 +125,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1977671664313672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.82, y: 7.42, z: 0}
+  m_LocalPosition: {x: 0.03, y: -17.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4003785327452664}
@@ -138,7 +138,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1516583727867968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.6, y: 8.21, z: 0}
+  m_LocalPosition: {x: 17.39, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4003785327452664}
@@ -151,7 +151,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1659320254665438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.6, y: 9.08, z: 0}
+  m_LocalPosition: {x: -0.05, y: 17.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4003785327452664}
@@ -173,11 +173,12 @@ MonoBehaviour:
   - {fileID: 1603481964931380}
   - {fileID: 1977671664313672}
   - {fileID: 1659320254665438}
-  monsterFire: {fileID: 0}
-  monsterIce: {fileID: 0}
-  monsterOil: {fileID: 0}
-  monsterStone: {fileID: 0}
-  monsterPoison: {fileID: 0}
+  monsters:
+  - {fileID: 1633296544280098, guid: 5bf5f8fd19aee4c4faea61f885ec7abb, type: 2}
+  - {fileID: 1851021034509096, guid: 02718a501b16547fda830f0d31b7acdf, type: 2}
+  - {fileID: 1975939147600220, guid: 1fe13d18e9fe444418c8af73ca631df6, type: 2}
+  - {fileID: 1918411757117298, guid: 1d761c7744e7c41f18b75dee1a8d91cc, type: 2}
+  - {fileID: 1624527080125814, guid: 1ea3ec849d3a44cdfb1b7cd2902bfb9b, type: 2}
   potionSprites:
   - {fileID: 21300000, guid: 101c38257fc1647de9d9a3ebd8ff94c3, type: 3}
   - {fileID: 21300000, guid: f08c7dbdffa924b8ea65e6c7de14a7b0, type: 3}
@@ -185,9 +186,9 @@ MonoBehaviour:
   weaponSprites:
   - {fileID: 0}
   attackSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: cafdb1cfc273b4f588d2a023d3a75ec1, type: 3}
+  - {fileID: 21300000, guid: 8b9c8a9d4ffb447e980f05a5b39c4709, type: 3}
+  - {fileID: 21300000, guid: c5f45b6870fd0470abd087b8ef07e4c5, type: 3}
   - {fileID: 0}
   - {fileID: 0}
 --- !u!114 &114412377226572816

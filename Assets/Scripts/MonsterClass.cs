@@ -90,19 +90,21 @@ public class MonsterClass : MonoBehaviour {
     // Update
     ////////////////
     protected virtual void Update(){
-        // Make a decision
-        if (inSpecial == false){
-            this.MakeDecision();
-        }
-        // Movement
-        // Verify the list isn't empty, more then current square, and isn't in action
-        if((listOfMovement != null) && (listOfMovement.Count > 1) && (inAction == false)){
-            if (numberOfMoves < listOfMovement.Count) {
-                goalPosition = listOfMovement[numberOfMoves];
-                transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), goalPosition, (currentSpeed * Time.deltaTime));
 
-                if ((transform.position.x == goalPosition.x) && (transform.position.y == goalPosition.y)){
+        // if not stunned
+        if (stunned == false){
+            // Make a decision
+            if (inSpecial == false) {
+                this.MakeDecision();
+            }
+            // Verify the list isn't empty, more then current square, and isn't in action
+            if((listOfMovement != null) && (listOfMovement.Count > 1) && (inAction == false)){
+                if (numberOfMoves < listOfMovement.Count) {
+                    goalPosition = listOfMovement[numberOfMoves];
+                    transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), goalPosition, (currentSpeed * Time.deltaTime));
+                    if ((transform.position.x == goalPosition.x) && (transform.position.y == goalPosition.y)){
                         numberOfMoves += 1;
+                    }
                 }
             }
         }
@@ -180,22 +182,22 @@ public class MonsterClass : MonoBehaviour {
     protected void effectRoller(){
         int diceRoll = Random.Range(1,101);
         // Roll values are currently temp, this is more of a skeleton
-        if (diceRoll <= 2){ // 2
+        if (diceRoll <= 2){ // 2 2%
             this.potionDrop = true; 
             // 0 - clear; 1 - haste; 2 - health;
             this.dropIndex = Random.Range(0,3);
         }
-        else if (diceRoll >= 3 && diceRoll <= 4){ // 3 4
+        else if (diceRoll >= 3 && diceRoll <= 4){ // 3 4 2%
             this.weaponModDrop = true;
             // 0 -  Attack Speed ;
             this.dropIndex = 0;
         }
-        else if (diceRoll >= 5 && diceRoll <= 6){ // 5 6
+        else if (diceRoll >= 5 && diceRoll <= 6){ // 5 6 2%
             this.attackModDrop = true;
             // 0 - Posion ; 1 - vine ; 2 - shock ; 3 - quaking ; 4 - ricochet;
             this.dropIndex = Random.Range(0,5);
         }
-        else if (diceRoll >= 7 && diceRoll <= 12){ // 7 12
+        else if (diceRoll >= 7 && diceRoll <= 32){ // 7 32 25%
             // doesn't have a drop table because each environment drop is unique to
             // the monster that it is being dropped by
             this.environmentDrop = true;

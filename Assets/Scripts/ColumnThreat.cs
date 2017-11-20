@@ -29,11 +29,11 @@ public class ColumnThreat : MonoBehaviour {
 		Debug.DrawLine (middleLeft, middleRight, Color.red, 100, false);
 
 
-        gameMaster.GetComponent<InfluenceMap>().addNode(topLeft, 0);
-        gameMaster.GetComponent<InfluenceMap>().addNode(topRight, 0);
-        gameMaster.GetComponent<InfluenceMap>().addNode(middleLeft, 0);
-        gameMaster.GetComponent<InfluenceMap>().addNode(middleRight, 0);
-        gameMaster.GetComponent<InfluenceMap>().addNode(bottomLeft, 0);
-        gameMaster.GetComponent<InfluenceMap>().addNode(bottomRight, 0);
+        //gameMaster.GetComponent<InfluenceMap>().addNode(topLeft, 0);
+        //gameMaster.GetComponent<InfluenceMap>().addNode(topRight, 0);
+        //gameMaster.GetComponent<InfluenceMap>().addNode(middleLeft, 0);
+        //gameMaster.GetComponent<InfluenceMap>().addNode(middleRight, 0);
+        //gameMaster.GetComponent<InfluenceMap>().addNode(bottomLeft, 0);
+        //gameMaster.GetComponent<InfluenceMap>().addNode(bottomRight, 0);
     }
 }
