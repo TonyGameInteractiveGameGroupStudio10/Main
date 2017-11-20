@@ -19,6 +19,18 @@ public class CameraController : MonoBehaviour {
 		} else{
 			float playerx = player.transform.position.x;
 			float playery = player.transform.position.y;
+			//Limiters
+			if (playerx > 6.5){
+				playerx = 6.5f;
+			} else if (playerx < -6.5) {
+				playerx = -6.5f;
+			}
+			if (playery > 12){
+				playery = 12f;
+			} else if (playery < -12) {
+				playery = -12f;
+			}
+
 			this.transform.position = new Vector3 (playerx, playery, -10);
 			cameraComp.orthographicSize = 7;
 		}
