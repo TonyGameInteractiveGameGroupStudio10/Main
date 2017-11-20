@@ -137,6 +137,10 @@ public class MonsterClass : MonoBehaviour {
         Destroy(gameObject);
     }
 
+    public int getType(){
+        return this.monsterType;
+    }
+
     // Speed
     ////////////////
     public float GetCurrentSpeed(){

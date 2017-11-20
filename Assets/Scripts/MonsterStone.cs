@@ -29,7 +29,7 @@ public class MonsterStone : MonsterClass {
         base.Start();
         // Set Stats
         monsterType = 0;
-        maxHealth = 30;
+        maxHealth = 25;
         healthPool = maxHealth;
         monsterSpeed = 2f;
         currentSpeed = monsterSpeed;
