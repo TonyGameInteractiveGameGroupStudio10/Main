@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour {
 			float playerx = player.transform.position.x;
 			float playery = player.transform.position.y;
 			this.transform.position = new Vector3 (playerx, playery, -10);
-			cameraComp.orthographicSize = 5;
+			cameraComp.orthographicSize = 7;
 		}
 	}
 }
