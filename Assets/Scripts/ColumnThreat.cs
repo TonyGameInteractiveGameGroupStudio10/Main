@@ -4,10 +4,27 @@ using UnityEngine;
 
 // Updated Threat Map for Colums
 public class ColumnThreat : MonoBehaviour {
+	
+    // Game Master for access to the influence map
+    GameObject gameMaster;
 
-    // Add this wall to the threat map
+    // Find the Game Master
     void Start(){
-        //GameObject.FindWithTag("GameMaster").GetComponent<InfluenceMap>().addNode(transform.position, 0);
-    }
+        gameMaster = GameObject.FindWithTag("GameMaster");
+        Renderer rend = GetComponent<Renderer>();
+        Vector3 topLeft = new Vector3(rend.bounds.min.x, rend.bounds.max.y, 0);
+        Vector3 topRight = new Vector3(rend.bounds.max.x, rend.bounds.max.y, 0);
+        float middle = ((rend.bounds.max.y + rend.bounds.min.y)/2);
+        Vector3 middleRight = new Vector3(rend.bounds.max.x,middle,0);
+        Vector3 middleLeft = new Vector3(rend.bounds.min.x,middle,0);
+        Vector3 bottemLeft = new Vector3(rend.bounds.min.x, rend.bounds.min.y, 0);
+        Vector3 bottemRight = new Vector3(rend.bounds.max.x, rend.bounds.min.y, 0);
 
+        gameMaster.GetComponent<InfluenceMap>().addNode(topLeft, 0);
+        gameMaster.GetComponent<InfluenceMap>().addNode(topRight, 0);
+        gameMaster.GetComponent<InfluenceMap>().addNode(middleLeft, 0);
+        gameMaster.GetComponent<InfluenceMap>().addNode(middleRight, 0);
+        gameMaster.GetComponent<InfluenceMap>().addNode(bottemLeft, 0);
+        gameMaster.GetComponent<InfluenceMap>().addNode(bottemRight, 0);
+    }
 }
