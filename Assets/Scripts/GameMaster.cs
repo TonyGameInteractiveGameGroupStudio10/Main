@@ -37,7 +37,7 @@ public class GameMaster : MonoBehaviour {
 		for (int i = 0; i < waves; i += 1){
 			waveTimer[i] = 120;
 		}
-		InvokeRepeating("MonsterSpawning", 2f, 2f);
+		InvokeRepeating("MonsterSpawning", 2f, 4f);
 	}
 
 	void Update(){

@@ -140,7 +140,7 @@ public class PathFinder : MonoBehaviour {
         int threatCounter = 0;
 
         // Wall
-        if (tile[0] > 99){ threatCounter += 1000; }
+        if (tile[0] > 99){ threatCounter += 60; }
 
         // Fire
         if (monsterType != 1){
