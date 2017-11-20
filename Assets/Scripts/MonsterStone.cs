@@ -27,7 +27,6 @@ public class MonsterStone : MonsterClass {
     protected override void Start() {
         // Run MonsterClass Start()
         base.Start();
-        Physics2D.IgnoreCollision(enemyBody.GetComponent<Collider2D>(), thePlayer.GetComponent<CircleCollider2D>());
         // Set Stats
         monsterType = 0;
         maxHealth = 30;
@@ -76,11 +75,6 @@ public class MonsterStone : MonsterClass {
             if (this.stunTimer <= 0){
                 this.stunned = false;
             }
-        }
-
-        // if HP is less then 0
-        if (healthPool <= 0){
-            this.Die();
         }
     }
 

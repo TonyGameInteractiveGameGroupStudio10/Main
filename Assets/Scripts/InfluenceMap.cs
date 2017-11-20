@@ -100,11 +100,13 @@ public class InfluenceMap : MonoBehaviour {
 			threatVal = -threatVal;
 		}
 
+		/*
 		// walls don't spread influence for now
 		if (type == 0){
 			influenceMap[center.y, center.x].getThreat()[type] += threatVal;
 			return;
 		}
+		*/
 
 		for(int i = -3; i <= radius; i++) {
 			if(((center.y + i) < scaledLength) && ((center.y + i) > 0)) {
