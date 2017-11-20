@@ -102,7 +102,7 @@ public class InfluenceMap : MonoBehaviour {
 
 		// walls don't spread influence for now
 		if (type == 0){
-			influenceMap[center.y][center.x] += threatVal;
+			influenceMap[center.y, center.x].getThreat()[type] += threatVal;
 			return;
 		}
 
