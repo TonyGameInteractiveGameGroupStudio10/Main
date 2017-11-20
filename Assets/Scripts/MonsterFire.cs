@@ -50,11 +50,6 @@ public class MonsterFire : MonsterClass {
         // Run MonsterClass Update()
 		base.Update();
 
-        //if(DistanceToPlayer == 2.0f && charged == true)
-        //{
-            //BlastingCannon();  
-        //}
-
         // Poison Timer
         if (this.poisonTimer > 0){
             this.poisonTimer -= Time.deltaTime;

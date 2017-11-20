@@ -52,11 +52,6 @@ public class MonsterStone : MonsterClass {
     protected override void Update(){
         // Run MonsterClass Update()
         base.Update();
-        //DistanceToPlayer = playerLocation - enemyPosition;
-       // if (gameObject.transform == playerLocation)
-        //{
-          //  BoundAttack();
-        //}
 
         // Poison Timer
         if (this.poisonTimer > 0){

@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class InfluenceMap : MonoBehaviour {
 
 	// the world unit length and width of our game

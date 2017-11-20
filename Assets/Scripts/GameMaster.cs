@@ -19,6 +19,12 @@ public class GameMaster : MonoBehaviour {
 	public Sprite[] weaponSprites = new Sprite[1];
 	public Sprite[] attackSprites = new Sprite[5];
 
+	// Wave Timer
+	private float gameTimer;
+	private int waves;
+	private int currentWave;
+	private float[] waveTimer;
+
 	///////////////////////////////////
 	// Unity Methods
 	///////////////////////////////////
@@ -27,6 +33,30 @@ public class GameMaster : MonoBehaviour {
 	void Start(){
 		// Store all the Spawn Points
 		spawner = GameObject.FindGameObjectsWithTag("Spawner");
+		// Set up the wave timers
+		currentWave = 0;
+		waves = 5;
+		waveTimer = new int[round];
+		gameTimer  = waves*120;
+		for (int i = 0; i < waves; i += 1){
+			waveTimer[i] = 120;
+		}
+	}
+
+	void Update(){
+
+		if(gameTimer > 0){
+			gameTimer -= Time.deltaTime;
+		} else {
+			// YOU WIN
+		}
+
+		if(waveTimer[currentWave] > 0){
+			waveTimer[currentWave] -= Time.deltaTime;
+		} else {
+			currentWave += 1;
+		}
+
 	}
 
 	///////////////////////////////////
@@ -52,5 +82,21 @@ public class GameMaster : MonoBehaviour {
 	private GameObject SpawnSelector(){
 		return spawner[Random.Range(0, 10)];
 	}
+
+	// Wave One
+	////////////////
+
+	// Wave Two
+	////////////////
+
+	// Wave Three
+	////////////////
+
+	// Wave Four
+	////////////////
+
+	// Wave Five
+	////////////////
+
 
 }

@@ -43,7 +43,7 @@ public class MonsterIce : MonsterClass {
     // Update
     ////////////////
     protected override void Update(){
-        // Rune MonsterClass Update()
+        // Run MonsterClass Update()
         base.Update();
 
         // Poison Timer
