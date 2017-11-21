@@ -129,6 +129,12 @@ public class MonsterClass : MonoBehaviour {
         }
     }
 
+    void OnCollisionEnter2D(Collision2D coll){
+        if (coll.gameObject.tag == "Player"){
+			coll.gameObject.GetComponent<UserClass>().TakeDamage(5);
+        }
+    }
+
     ///////////////////////////////////
     // Methods
     ///////////////////////////////////
@@ -440,6 +446,4 @@ public class MonsterClass : MonoBehaviour {
         // Set the tree root
         treeRoot = rayCastNode;
     }
-
-
 }

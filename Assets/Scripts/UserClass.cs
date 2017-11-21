@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Requirments:
 [RequireComponent (typeof (Rigidbody2D))]
@@ -11,16 +12,24 @@ public class UserClass : MonoBehaviour {
 	// Stats
 	////////////////
 	private int healthPool;  
-	private int maxHealthPool; // 40
-	public float playerSpeed;
+	private int maxHealthPool; // 50
+	private float playerSpeed;
 	private float maxSpeed; // 4f
 	private Vector2 targetVelocity;
 
+	// UI
+	///////////////
+	public Slider hpSlider;
+	private bool damaged;
+	public Image damageImage;
+	private Color flashColour = new Color(1f,0f,0f,0.1f);
+	private float flashSpeed = 5f;
+
     // Status Effects
     ///////////////
-    protected int poison;
-    protected float poisonTimer; // 6 seconds
-    protected bool[] poisonDamage = new bool[3];
+    private int poison;
+    private float poisonTimer; // 6 seconds
+    private bool[] poisonDamage = new bool[3];
 
 	// Items
 	////////////////
@@ -32,7 +41,7 @@ public class UserClass : MonoBehaviour {
 	private UserWeaponMod weaponModule; //
 	// 0 - Posion ; 1 - vine ; 2 - shock ;
 	// 3 - quaking ; 4 - ricochet
-	public int[] attackMod = new int[5];
+	private int[] attackMod = new int[5];
 	private UserAttackMod attackModule;
 
 	// Arrow
@@ -112,10 +121,13 @@ public class UserClass : MonoBehaviour {
             }
         }
 
-        // Death
-        if (healthPool <= 0){
-        	
+        // Health Stuff
+        if (damaged == true){
+        	damageImage.color = flashColour;
+        } else {
+        	damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
+        damaged = false;
 	}
 
 	// Fixed Update
@@ -170,10 +182,16 @@ public class UserClass : MonoBehaviour {
 
 	public void TakeDamage(int incomingDamage){ 
 		this.healthPool -= incomingDamage;
+		damaged = true;
+		hpSlider.value = healthPool;
+		// Death
+        if (healthPool <= 0){
+        	
+        }
 	}
 
 	public void ResetHealth(){
-		this.SetMaxHealth(40);
+		this.SetMaxHealth(50);
 		this.SetHealth(maxHealthPool);
 	}
 
