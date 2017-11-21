@@ -37,6 +37,7 @@ public class MonsterClass : MonoBehaviour {
     protected List<Vector3> listOfMovement;
     protected float timerBeforeNextFind;
     protected bool inAction;
+    protected float specialTimer;
     protected bool inSpecial;
 
     // Player
@@ -87,6 +88,7 @@ public class MonsterClass : MonoBehaviour {
         // Find the first path, then search every second
         inAction = false;
         timerBeforeNextFind = 0f;
+        specialTimer = 0f;
     }
 
     // Update
@@ -115,6 +117,10 @@ public class MonsterClass : MonoBehaviour {
             timerBeforeNextFind -= Time.deltaTime;
         } else {
             timerBeforeNextFind = 1f;
+        }
+
+        if (specialTimer > 0){
+            specialTimer -= Time.deltaTime;
         }
 
         // if HP is less then 0
@@ -297,8 +303,9 @@ public class MonsterClass : MonoBehaviour {
     // Roll to see if you can cast special
     protected bool SpecialCheck(){
         int diceRoll = Random.Range(0,100);
-        if (diceRoll < 2){
+        if ((diceRoll < 1) && (specialTimer <= 0)){
             inSpecial = true;
+            specialTimer = 5f;
             return true;
         } else {
             return false;
