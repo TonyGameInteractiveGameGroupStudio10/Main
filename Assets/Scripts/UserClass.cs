@@ -24,6 +24,9 @@ public class UserClass : MonoBehaviour {
 	public Image damageImage;
 	private Color flashColour = new Color(1f,0f,0f,0.1f);
 	private float flashSpeed = 5f;
+	public Text healthPotionCount;
+	public Text hastePotionCount;
+	public Text clearPotionCount;
 
     // Status Effects
     ///////////////
@@ -230,6 +233,15 @@ public class UserClass : MonoBehaviour {
 
 	public void GivePotion(int incomingPotion){ 
 		this.potion[incomingPotion] += 1;
+		// 0 - clear; 1 - haste; 2 - health
+		if (incomingPotion == 0){
+			clearPotionCount.text = this.GetPotion(incomingPotion).ToString();
+		} else if (incomingPotion == 1){
+			hastePotionCount.text = this.GetPotion(incomingPotion).ToString();
+		} else {
+			healthPotionCount.text = this.GetPotion(incomingPotion).ToString();
+			hpSlider.value = healthPool;
+		}
 	}
 
 	public void ResetPotions(){
@@ -239,13 +251,21 @@ public class UserClass : MonoBehaviour {
 	}
 
 	public void UsePotion(int outgoingPotion){ 
-		if (this.GetPotion(outgoingPotion) <= 0){
-			// Notify GM to display "out of potion message"
-		}
-		else {
+		// if they have a potion use it
+		if (this.GetPotion(outgoingPotion) > 0) {
+			// remove one from inventory
 			this.potion[outgoingPotion] -= 1; 
 			// send to potion module
 			potionModule.Potion(outgoingPotion);
+			// Update UI
+			if (outgoingPotion == 0){
+				clearPotionCount.text = this.GetPotion(outgoingPotion).ToString();
+			} else if (outgoingPotion == 1){
+				hastePotionCount.text = this.GetPotion(outgoingPotion).ToString();
+			} else {
+				healthPotionCount.text = this.GetPotion(outgoingPotion).ToString();
+
+			}
 		}
 	}
 

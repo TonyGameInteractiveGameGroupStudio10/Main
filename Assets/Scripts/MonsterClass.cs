@@ -206,22 +206,22 @@ public class MonsterClass : MonoBehaviour {
     protected void effectRoller(){
         int diceRoll = Random.Range(1,101);
         // Roll values are currently temp, this is more of a skeleton
-        if (diceRoll <= 2){ // 2 2%
+        if (diceRoll <= 5){ // 5 5%
             this.potionDrop = true; 
             // 0 - clear; 1 - haste; 2 - health;
             this.dropIndex = Random.Range(0,3);
         }
-        else if (diceRoll >= 3 && diceRoll <= 4){ // 3 4 2%
+        else if (diceRoll <= 6){ // 5 6 1%
             this.weaponModDrop = true;
             // 0 -  Attack Speed ;
             this.dropIndex = 0;
         }
-        else if (diceRoll >= 5 && diceRoll <= 6){ // 5 6 2%
+        else if (diceRoll <= 8){ // 7 8 2%
             this.attackModDrop = true;
             // 0 - Posion ; 1 - vine ; 2 - shock ; 3 - quaking ; 4 - ricochet;
             this.dropIndex = Random.Range(0,5);
         }
-        else if (diceRoll >= 7 && diceRoll <= 57){ // 7 57 50%
+        else if (diceRoll <= 68){ // 9 68 60%
             // doesn't have a drop table because each environment drop is unique to
             // the monster that it is being dropped by
             this.environmentDrop = true;
