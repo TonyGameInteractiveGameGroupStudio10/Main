@@ -17,8 +17,22 @@ public class CameraController : MonoBehaviour {
 			this.transform.position = new Vector3(0,0, -10);
 			cameraComp.orthographicSize = 11;
 		} else{
-			this.transform.position = player.transform.position;
-			cameraComp.orthographicSize = 5;
+			float playerx = player.transform.position.x;
+			float playery = player.transform.position.y;
+			//Limiters
+			if (playerx > 6.5){
+				playerx = 6.5f;
+			} else if (playerx < -6.5) {
+				playerx = -6.5f;
+			}
+			if (playery > 12){
+				playery = 12f;
+			} else if (playery < -12) {
+				playery = -12f;
+			}
+
+			this.transform.position = new Vector3 (playerx, playery, -10);
+			cameraComp.orthographicSize = 7;
 		}
 	}
 }

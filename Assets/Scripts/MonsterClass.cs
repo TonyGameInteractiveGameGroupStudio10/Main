@@ -35,7 +35,9 @@ public class MonsterClass : MonoBehaviour {
     protected int numberOfMoves = 0;
     protected Vector3 goalPosition;
     protected List<Vector3> listOfMovement;
+    protected float timerBeforeNextFind;
     protected bool inAction;
+    protected float specialTimer;
     protected bool inSpecial;
 
     // Player
@@ -85,26 +87,40 @@ public class MonsterClass : MonoBehaviour {
 
         // Find the first path, then search every second
         inAction = false;
+        timerBeforeNextFind = 0f;
+        specialTimer = 0f;
     }
 
     // Update
     ////////////////
     protected virtual void Update(){
-        // Make a decision
-        if (inSpecial == false){
-            this.MakeDecision();
-        }
-        // Movement
-        // Verify the list isn't empty, more then current square, and isn't in action
-        if((listOfMovement != null) && (listOfMovement.Count > 1) && (inAction == false)){
-            if (numberOfMoves < listOfMovement.Count) {
-                goalPosition = listOfMovement[numberOfMoves];
-                transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), goalPosition, (currentSpeed * Time.deltaTime));
 
-                if ((transform.position.x == goalPosition.x) && (transform.position.y == goalPosition.y)){
+        // if not stunned, and not in special
+        if ((stunned == false) && (inSpecial == false)){
+            // Make a decision
+            this.MakeDecision();
+
+            // Verify the list isn't empty, more then current square, and isn't in action
+            if((listOfMovement != null) && (listOfMovement.Count > 1) && (inAction == false)){
+                if (numberOfMoves < listOfMovement.Count) {
+                    goalPosition = listOfMovement[numberOfMoves];
+                    transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), goalPosition, (currentSpeed * Time.deltaTime));
+                    if ((transform.position.x == goalPosition.x) && (transform.position.y == goalPosition.y)){
                         numberOfMoves += 1;
+                    }
                 }
             }
+        }
+
+        // Path Timer
+        if (timerBeforeNextFind > 0){
+            timerBeforeNextFind -= Time.deltaTime;
+        } else {
+            timerBeforeNextFind = 1f;
+        }
+
+        if (specialTimer > 0){
+            specialTimer -= Time.deltaTime;
         }
 
         // if HP is less then 0
@@ -133,6 +149,10 @@ public class MonsterClass : MonoBehaviour {
     public void Die(){
         this.effectDropper();
         Destroy(gameObject);
+    }
+
+    public int getType(){
+        return this.monsterType;
     }
 
     // Speed
@@ -180,22 +200,22 @@ public class MonsterClass : MonoBehaviour {
     protected void effectRoller(){
         int diceRoll = Random.Range(1,101);
         // Roll values are currently temp, this is more of a skeleton
-        if (diceRoll <= 2){ // 2
+        if (diceRoll <= 2){ // 2 2%
             this.potionDrop = true; 
             // 0 - clear; 1 - haste; 2 - health;
             this.dropIndex = Random.Range(0,3);
         }
-        else if (diceRoll >= 3 && diceRoll <= 4){ // 3 4
+        else if (diceRoll >= 3 && diceRoll <= 4){ // 3 4 2%
             this.weaponModDrop = true;
             // 0 -  Attack Speed ;
             this.dropIndex = 0;
         }
-        else if (diceRoll >= 5 && diceRoll <= 6){ // 5 6
+        else if (diceRoll >= 5 && diceRoll <= 6){ // 5 6 2%
             this.attackModDrop = true;
             // 0 - Posion ; 1 - vine ; 2 - shock ; 3 - quaking ; 4 - ricochet;
             this.dropIndex = Random.Range(0,5);
         }
-        else if (diceRoll >= 7 && diceRoll <= 100){ // 7 12
+        else if (diceRoll >= 7 && diceRoll <= 57){ // 7 57 50%
             // doesn't have a drop table because each environment drop is unique to
             // the monster that it is being dropped by
             this.environmentDrop = true;
@@ -262,7 +282,7 @@ public class MonsterClass : MonoBehaviour {
     // Is the player in attack range
     protected bool AttackRange(){
         float distance =  Vector3.Distance(this.transform.position, playerLocation.position);
-        if (distance < 3) {
+        if (distance < 2) {
             return true;
         } else {
             return false;
@@ -270,10 +290,10 @@ public class MonsterClass : MonoBehaviour {
 
     }
 
-    // If the target isn't close enough
+    // If the target isn't close enough to attack, then do is it in range for special
     protected bool SpecialAttackRange(){
         float distance =  Vector3.Distance(this.transform.position, playerLocation.position);
-        if (distance < 5) {
+        if (distance < 4) {
             return true;
         } else {
             return false;
@@ -283,8 +303,9 @@ public class MonsterClass : MonoBehaviour {
     // Roll to see if you can cast special
     protected bool SpecialCheck(){
         int diceRoll = Random.Range(0,100);
-        if (diceRoll < 1){
+        if ((diceRoll < 1) && (specialTimer <= 0)){
             inSpecial = true;
+            specialTimer = 5f;
             return true;
         } else {
             return false;
@@ -322,8 +343,10 @@ public class MonsterClass : MonoBehaviour {
     // Find the path
     protected void FindPath(){
         inAction = false;
-        listOfMovement = movementPlan.FindPath(transform.position, monsterType);
-        numberOfMoves = 1;
+        if (timerBeforeNextFind <= 0){
+            listOfMovement = movementPlan.FindPath(transform.position, monsterType);
+            numberOfMoves = 1;
+        }
     }
 
     // Attack the player

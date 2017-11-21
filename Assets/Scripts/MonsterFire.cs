@@ -29,7 +29,7 @@ public class MonsterFire : MonsterClass {
         monsterType = 1;
         maxHealth = 15;
         healthPool = maxHealth;
-        monsterSpeed = 3.8f;
+        monsterSpeed = 3.5f;
         currentSpeed = monsterSpeed;
 
         // Check to see if we drop something
@@ -49,11 +49,6 @@ public class MonsterFire : MonsterClass {
     protected override void Update(){
         // Run MonsterClass Update()
 		base.Update();
-
-        //if(DistanceToPlayer == 2.0f && charged == true)
-        //{
-            //BlastingCannon();  
-        //}
 
         // Poison Timer
         if (this.poisonTimer > 0){
@@ -107,7 +102,6 @@ public class MonsterFire : MonsterClass {
     ////////////////
     public override void SpecialMove(){
         BlastingCannon();
-        inSpecial = false;
     }
 
     private void BlastingCannon()

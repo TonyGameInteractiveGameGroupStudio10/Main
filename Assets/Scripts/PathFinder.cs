@@ -25,7 +25,7 @@ public class PathFinder : MonoBehaviour {
         this.RunSetup();
         // Data Set up
         bool pathFound = false;
-        Vector3 currentVector = startingVector;
+        Vector3 currentVector = threatMap.scaleWorldPos(startingVector);
         Vector3[] adjacentVectors = new Vector3[4];
         Path adjacentPath;
         Path smallestPath;
@@ -45,18 +45,18 @@ public class PathFinder : MonoBehaviour {
 
             // Check to see if we arrived at destination
             currentVector = smallestPath.GetPosition();
-            if ((currentVector.x > playerLocation.x-0.5f) && (currentVector.x < playerLocation.x+0.5f)){
-                if  ((currentVector.y > playerLocation.y-0.5f) && (currentVector.y < playerLocation.y+0.5f)) {
+            if ((currentVector.x > playerLocation.x-1f) && (currentVector.x < playerLocation.x+1f)){
+                if  ((currentVector.y > playerLocation.y-1f) && (currentVector.y < playerLocation.y+1f)) {
                     pathFound = true;
                     break;
                 }
             }
 
             // retreive all adjacent squares
-			adjacentVectors[0] = new Vector3(currentVector.x,currentVector.y+0.5f,0);
-			adjacentVectors[1] = new Vector3(currentVector.x,currentVector.y-0.5f,0);
-			adjacentVectors[2] = new Vector3(currentVector.x+0.5f,currentVector.y,0);
-			adjacentVectors[3] = new Vector3(currentVector.x-0.5f,currentVector.y,0);
+			adjacentVectors[0] = new Vector3(currentVector.x,currentVector.y+1f,0);
+			adjacentVectors[1] = new Vector3(currentVector.x,currentVector.y-1f,0);
+			adjacentVectors[2] = new Vector3(currentVector.x+1f,currentVector.y,0);
+			adjacentVectors[3] = new Vector3(currentVector.x-1f,currentVector.y,0);
 
             // for loop through the adjacent square
             for (int i = 0; i < 4; i += 1){
@@ -145,15 +145,15 @@ public class PathFinder : MonoBehaviour {
         // Fire
         if (monsterType != 1){
             if (tile[1] > 99){ threatCounter += 6; }
-            else if (tile[1] > 49){ threatCounter += 2; }
-            else if (tile[1] > 24){ threatCounter += 1; }
+            else if (tile[1] > 49){ threatCounter += 6; }
+            else if (tile[1] > 24){ threatCounter += 6; }
         }
 
         // Poison
         if (monsterType != 2){
             if (tile[2] > 99){ threatCounter += 6; }
-            else if (tile[2] > 49){ threatCounter += 3; }
-            else if (tile[2] > 24){ threatCounter += 1; }
+            else if (tile[2] > 49){ threatCounter += 6; }
+            else if (tile[2] > 24){ threatCounter += 6; }
         }
         
 

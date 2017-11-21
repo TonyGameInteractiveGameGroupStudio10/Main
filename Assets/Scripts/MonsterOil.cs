@@ -48,7 +48,7 @@ public class MonsterOil : MonsterClass {
     // Update
     ////////////////
     protected override void Update(){
-        // Rune MonsterClass Update()
+        // Run MonsterClass Update()
         base.Update();
 
         //Attack

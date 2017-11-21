@@ -44,7 +44,7 @@ public class MonsterPoison : MonsterClass {
     // Update
     ////////////////
     protected override void Update(){
-        // Rune MonsterClass Update()
+        // Run MonsterClass Update()
         base.Update();
 
         // Stun Timer

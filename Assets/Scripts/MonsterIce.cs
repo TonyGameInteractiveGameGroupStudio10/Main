@@ -23,9 +23,9 @@ public class MonsterIce : MonsterClass {
 
         // Set Stats
         monsterType = 4;
-        maxHealth = 30;
+        maxHealth = 20;
         healthPool = maxHealth;
-        monsterSpeed = 3.5f;
+        monsterSpeed = 3.4f;
         currentSpeed = monsterSpeed;
 
         // Check to see if we drop something
@@ -43,7 +43,7 @@ public class MonsterIce : MonsterClass {
     // Update
     ////////////////
     protected override void Update(){
-        // Rune MonsterClass Update()
+        // Run MonsterClass Update()
         base.Update();
 
         // Poison Timer

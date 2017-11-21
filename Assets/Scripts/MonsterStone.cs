@@ -27,10 +27,9 @@ public class MonsterStone : MonsterClass {
     protected override void Start() {
         // Run MonsterClass Start()
         base.Start();
-        Physics2D.IgnoreCollision(enemyBody.GetComponent<Collider2D>(), thePlayer.GetComponent<CircleCollider2D>());
         // Set Stats
         monsterType = 0;
-        maxHealth = 30;
+        maxHealth = 25;
         healthPool = maxHealth;
         monsterSpeed = 2f;
         currentSpeed = monsterSpeed;
@@ -52,11 +51,6 @@ public class MonsterStone : MonsterClass {
     protected override void Update(){
         // Run MonsterClass Update()
         base.Update();
-        //DistanceToPlayer = playerLocation - enemyPosition;
-       // if (gameObject.transform == playerLocation)
-        //{
-          //  BoundAttack();
-        //}
 
         // Poison Timer
         if (this.poisonTimer > 0){
@@ -82,17 +76,11 @@ public class MonsterStone : MonsterClass {
                 this.stunned = false;
             }
         }
-
-        // if HP is less then 0
-        if (healthPool <= 0){
-            this.Die();
-        }
     }
 
     // Fixed Update
     ////////////////
     void FixedUpdate() {
-        // probably place this in a different place, and have it check less often
         playerLocation = thePlayer.transform;
     }
 

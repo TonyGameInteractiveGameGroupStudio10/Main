@@ -35,7 +35,10 @@ public class DropFire : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll){
         if (coll.gameObject.tag == "Enemy"){
-            coll.gameObject.GetComponent<MonsterClass>().TakeDamage(4);
+            // fire monster isn't damage via fire
+            if (coll.gameObject.GetComponent<MonsterClass>().getType() != 1) {
+                coll.gameObject.GetComponent<MonsterClass>().TakeDamage(4);
+            }
         }
         else if (coll.gameObject.tag == "Player") {
             coll.gameObject.GetComponent<UserClass>().TakeDamage(4);
