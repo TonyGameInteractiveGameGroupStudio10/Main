@@ -35,6 +35,7 @@ public class MonsterClass : MonoBehaviour {
     protected int numberOfMoves = 0;
     protected Vector3 goalPosition;
     protected List<Vector3> listOfMovement;
+    protected float timerBeforeNextFind;
     protected bool inAction;
     protected bool inSpecial;
 
@@ -85,18 +86,18 @@ public class MonsterClass : MonoBehaviour {
 
         // Find the first path, then search every second
         inAction = false;
+        timerBeforeNextFind = 0f;
     }
 
     // Update
     ////////////////
     protected virtual void Update(){
 
-        // if not stunned
-        if (stunned == false){
+        // if not stunned, and not in special
+        if ((stunned == false) && (inSpecial == false)){
             // Make a decision
-            if (inSpecial == false) {
-                this.MakeDecision();
-            }
+            this.MakeDecision();
+
             // Verify the list isn't empty, more then current square, and isn't in action
             if((listOfMovement != null) && (listOfMovement.Count > 1) && (inAction == false)){
                 if (numberOfMoves < listOfMovement.Count) {
@@ -107,6 +108,13 @@ public class MonsterClass : MonoBehaviour {
                     }
                 }
             }
+        }
+
+        // Path Timer
+        if (timerBeforeNextFind > 0){
+            timerBeforeNextFind -= Time.deltaTime;
+        } else {
+            timerBeforeNextFind = 1f;
         }
 
         // if HP is less then 0
@@ -225,16 +233,6 @@ public class MonsterClass : MonoBehaviour {
         else if (this.environmentDrop == true){
             Vector3 scaledVector = gameMaster.GetComponent<InfluenceMap>().scaleWorldPos(transform.position);
             Instantiate(environDrop,scaledVector,Quaternion.identity);
-
-        Vector3 testCenter = new Vector3(scaledVector.x, scaledVector.y, 0);
-        Vector3 testingRight = new Vector3(scaledVector.x+0.5f, scaledVector.y, 0);
-        Vector3 testingLeft = new Vector3(scaledVector.x-0.5f, scaledVector.y, 0);
-        Vector3 testingBottom = new Vector3(scaledVector.x, scaledVector.y-0.5f,0);
-        Vector3 testingTop = new Vector3(scaledVector.x, scaledVector.y+0.5f,0);
-        Debug.DrawLine(testCenter, testingRight, Color.red, 100, false);
-        Debug.DrawLine(testCenter, testingLeft, Color.red, 100, false);
-        Debug.DrawLine(testCenter, testingTop, Color.red, 100, false);
-        Debug.DrawLine(testCenter, testingBottom, Color.red, 100, false);
             // if the monster type isn't ice, add it to the map
             if (monsterType != 4){
                 gameMaster.GetComponent<InfluenceMap>().addNode(transform.position,monsterType);
@@ -286,7 +284,7 @@ public class MonsterClass : MonoBehaviour {
 
     }
 
-    // If the target isn't close enough
+    // If the target isn't close enough to attack, then do is it in range for special
     protected bool SpecialAttackRange(){
         float distance =  Vector3.Distance(this.transform.position, playerLocation.position);
         if (distance < 5) {
@@ -299,7 +297,7 @@ public class MonsterClass : MonoBehaviour {
     // Roll to see if you can cast special
     protected bool SpecialCheck(){
         int diceRoll = Random.Range(0,100);
-        if (diceRoll < 1){
+        if (diceRoll < 2){
             inSpecial = true;
             return true;
         } else {
@@ -338,8 +336,10 @@ public class MonsterClass : MonoBehaviour {
     // Find the path
     protected void FindPath(){
         inAction = false;
-        listOfMovement = movementPlan.FindPath(transform.position, monsterType);
-        numberOfMoves = 1;
+        if (timerBeforeNextFind <= 0){
+            listOfMovement = movementPlan.FindPath(transform.position, monsterType);
+            numberOfMoves = 1;
+        }
     }
 
     // Attack the player

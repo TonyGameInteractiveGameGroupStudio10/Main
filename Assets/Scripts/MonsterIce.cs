@@ -25,7 +25,7 @@ public class MonsterIce : MonsterClass {
         monsterType = 4;
         maxHealth = 20;
         healthPool = maxHealth;
-        monsterSpeed = 3.5f;
+        monsterSpeed = 3.4f;
         currentSpeed = monsterSpeed;
 
         // Check to see if we drop something
