@@ -12,6 +12,8 @@ public class ColumnThreat : MonoBehaviour {
     void Start(){
         gameMaster = GameObject.FindWithTag("GameMaster");
 
+        transform.position = gameMaster.GetComponent<InfluenceMap>().scaleWorldPos(transform.position);
+
         Renderer rend = GetComponent<Renderer>();
         Vector3 topLeft = new Vector3(rend.bounds.min.x+1f, rend.bounds.max.y-0.5f, 0);
         Vector3 topRight = new Vector3(rend.bounds.max.x-1f, rend.bounds.max.y-0.5f, 0);
