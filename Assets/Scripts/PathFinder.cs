@@ -25,7 +25,7 @@ public class PathFinder : MonoBehaviour {
         this.RunSetup();
         // Data Set up
         bool pathFound = false;
-        Vector3 currentVector = startingVector;
+        Vector3 currentVector = threatMap.scaleWorldPos(startingVector);
         Vector3[] adjacentVectors = new Vector3[4];
         Path adjacentPath;
         Path smallestPath;
@@ -53,10 +53,10 @@ public class PathFinder : MonoBehaviour {
             }
 
             // retreive all adjacent squares
-			adjacentVectors[0] = new Vector3(currentVector.x,currentVector.y+0.5f,0);
-			adjacentVectors[1] = new Vector3(currentVector.x,currentVector.y-0.5f,0);
-			adjacentVectors[2] = new Vector3(currentVector.x+0.5f,currentVector.y,0);
-			adjacentVectors[3] = new Vector3(currentVector.x-0.5f,currentVector.y,0);
+			adjacentVectors[0] = new Vector3(currentVector.x,currentVector.y+1f,0);
+			adjacentVectors[1] = new Vector3(currentVector.x,currentVector.y-1f,0);
+			adjacentVectors[2] = new Vector3(currentVector.x+1f,currentVector.y,0);
+			adjacentVectors[3] = new Vector3(currentVector.x-1f,currentVector.y,0);
 
             // for loop through the adjacent square
             for (int i = 0; i < 4; i += 1){
