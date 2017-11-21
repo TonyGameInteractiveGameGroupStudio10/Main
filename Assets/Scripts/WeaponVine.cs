@@ -21,13 +21,15 @@ public class WeaponVine : WeaponType {
 	}
 
 	void OnTriggerEnter2D(Collider2D coll){
-		// grab the transform of the collider
-		Transform collTransform = coll.gameObject.transform;
-		// save the position of the collider
-		Vector2 oldPos = new Vector2(collTransform.position.x, collTransform.position.y);
-		// save the position of the vine
-		Vector2 vinePos = new Vector2(transform.position.x, transform.position.y);
-		// move the collider from the old position to the vine position
-		coll.gameObject.transform.position = Vector2.MoveTowards(oldPos, vinePos, 5 * Time.deltaTime);
+		if (coll.gameObject.tag == "Enemy"){
+			// grab the transform of the collider
+			Transform collTransform = coll.gameObject.transform;
+			// save the position of the collider
+			Vector2 oldPos = new Vector2(collTransform.position.x, collTransform.position.y);
+			// save the position of the vine
+			Vector2 vinePos = new Vector2(transform.position.x, transform.position.y);
+			// move the collider from the old position to the vine position
+			coll.gameObject.transform.position = Vector2.MoveTowards(oldPos, vinePos, 25 * Time.deltaTime);
+		}
 	}
 }

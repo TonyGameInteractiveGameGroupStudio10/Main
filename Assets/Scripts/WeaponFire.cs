@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponFire : MonoBehaviour {
 
-    public float speed = 1.0f;
+    public float speed = 5.0f;
     public Vector3 FiringDirection;
 
 	// Use this for initialization

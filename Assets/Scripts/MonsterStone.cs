@@ -81,7 +81,6 @@ public class MonsterStone : MonsterClass {
     // Fixed Update
     ////////////////
     void FixedUpdate() {
-        // probably place this in a different place, and have it check less often
         playerLocation = thePlayer.transform;
     }
 

@@ -215,7 +215,7 @@ public class MonsterClass : MonoBehaviour {
             // 0 - Posion ; 1 - vine ; 2 - shock ; 3 - quaking ; 4 - ricochet;
             this.dropIndex = Random.Range(0,5);
         }
-        else if (diceRoll >= 7 && diceRoll <= 43){ // 7 57 50%
+        else if (diceRoll >= 7 && diceRoll <= 57){ // 7 57 50%
             // doesn't have a drop table because each environment drop is unique to
             // the monster that it is being dropped by
             this.environmentDrop = true;
@@ -282,7 +282,7 @@ public class MonsterClass : MonoBehaviour {
     // Is the player in attack range
     protected bool AttackRange(){
         float distance =  Vector3.Distance(this.transform.position, playerLocation.position);
-        if (distance < 3) {
+        if (distance < 2) {
             return true;
         } else {
             return false;
@@ -293,7 +293,7 @@ public class MonsterClass : MonoBehaviour {
     // If the target isn't close enough to attack, then do is it in range for special
     protected bool SpecialAttackRange(){
         float distance =  Vector3.Distance(this.transform.position, playerLocation.position);
-        if (distance < 5) {
+        if (distance < 4) {
             return true;
         } else {
             return false;
