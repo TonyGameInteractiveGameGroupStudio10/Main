@@ -34,7 +34,7 @@ public class MonsterPoison : MonsterClass {
 
         // Check which sprite to load
         // large sprite = has a drop ; small sprite = has no drop
-        if ((potionDrop == true) || (weaponModDrop == true) || (attackModDrop == true) || (environmentDrop == true)){
+        if (hasDrop == true){
             spriteSwitcher.sprite = largeSprite;
         } else {
             spriteSwitcher.sprite = smallSprite;

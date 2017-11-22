@@ -53,6 +53,7 @@ public class MonsterClass : MonoBehaviour {
     // Effects
     ////////////////
     protected int dropIndex;
+    protected bool hasDrop;
     protected bool potionDrop;
     protected bool attackModDrop;
     protected bool weaponModDrop;
@@ -89,6 +90,13 @@ public class MonsterClass : MonoBehaviour {
         inAction = false;
         timerBeforeNextFind = 0f;
         specialTimer = 0f;
+
+        // Check to see if it has a drop
+        if ((potionDrop == true) || (weaponModDrop == true) || (attackModDrop == true) || (environmentDrop == true)){
+            hasDrop = true;
+        } else {
+            hasDrop = false;
+        }  
     }
 
     // Update
@@ -211,7 +219,7 @@ public class MonsterClass : MonoBehaviour {
             // 0 - clear; 1 - haste; 2 - health;
             this.dropIndex = Random.Range(0,3);
         }
-        else if (diceRoll <= 6){ // 5 6 1%
+        else if (diceRoll <= 6){ // 6 1%
             this.weaponModDrop = true;
             // 0 -  Attack Speed ;
             this.dropIndex = 0;
