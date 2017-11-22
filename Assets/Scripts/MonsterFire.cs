@@ -32,9 +32,6 @@ public class MonsterFire : MonsterClass {
         monsterSpeed = 3.5f;
         currentSpeed = monsterSpeed;
 
-        // Check to see if we drop something
-        effectRoller();
-
         // Check to see if it has a drop
         if (hasDrop == true){
             spriteSwitcher.sprite = largeSprite;
@@ -43,7 +40,8 @@ public class MonsterFire : MonsterClass {
         }  
         // Check which sprite to load
         // large sprite = has a drop ; small sprite = has no drop
-        if ((potionDrop == true) || (weaponModDrop == true) || (attackModDrop == true) || (environmentDrop == true)){
+        Debug.Log(hasDrop + " in Monster Type");
+        if (hasDrop == true){
             spriteSwitcher.sprite = largeSprite;
         } else {
             spriteSwitcher.sprite = smallSprite;

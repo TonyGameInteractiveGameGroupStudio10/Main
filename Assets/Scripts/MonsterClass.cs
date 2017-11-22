@@ -91,11 +91,15 @@ public class MonsterClass : MonoBehaviour {
         timerBeforeNextFind = 0f;
         specialTimer = 0f;
 
+        // Check to see if we drop something
+        this.effectRoller();
+
         // Check to see if it has a drop
         if ((potionDrop == true) || (weaponModDrop == true) || (attackModDrop == true) || (environmentDrop == true)){
-            hasDrop = true;
+            Debug.Log("True in MonsterClass");
+            this.hasDrop = true;
         } else {
-            hasDrop = false;
+            this.hasDrop = false;
         }  
     }
 

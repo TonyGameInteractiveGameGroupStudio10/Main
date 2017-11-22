@@ -28,11 +28,9 @@ public class MonsterIce : MonsterClass {
         monsterSpeed = 3.4f;
         currentSpeed = monsterSpeed;
 
-        // Check to see if we drop something
-        this.effectRoller();
-
         // Check which sprite to load
         // large sprite = has a drop ; small sprite = has no drop
+        Debug.Log(hasDrop + " in Monster Type");
         if (hasDrop == true){
             spriteSwitcher.sprite = largeSprite;
         } else {
