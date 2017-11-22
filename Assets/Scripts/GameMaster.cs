@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameMaster : MonoBehaviour {
 
@@ -22,6 +23,9 @@ public class GameMaster : MonoBehaviour {
 	private float[] waveTimer;
 	private float spawnTimer;
 
+	// UI
+	public Text waveUI;
+
 	///////////////////////////////////
 	// Unity Methods
 	///////////////////////////////////
@@ -39,6 +43,7 @@ public class GameMaster : MonoBehaviour {
 			waveTimer[i] = 120;
 		}
 		spawnTimer = 2f;
+		waveUI.text = 1.ToString();
 	}
 
 	void Update(){
@@ -54,6 +59,7 @@ public class GameMaster : MonoBehaviour {
 			waveTimer[currentWave] -= Time.deltaTime;
 		} else {
 			currentWave += 1;
+			waveUI.text = (currentWave+1).ToString();
 		}
 
 		// Timer for spawning
