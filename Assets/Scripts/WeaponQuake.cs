@@ -29,7 +29,7 @@ public class WeaponQuake : WeaponType {
 	void OnTriggerStay2D(Collider2D coll){
 		if (this.quake == true){
 			if (coll.gameObject.tag == "Enemy"){
-				coll.gameObject.SendMessage("TakeDamage", 4);
+				coll.gameObject.SendMessage("TakeDamage", 1);
 			}
 			this.quake = false;
 		}

@@ -106,10 +106,13 @@ public class MonsterFire : MonsterClass {
 
     private void BlastingCannon()
       {
+        // Find player location
         FiringDirection = (playerLocation.position - FlameMouth.position).normalized;
+        // Set the firing direction
         FlameSpit.GetComponent<WeaponFire>().setFiringDirection(FiringDirection);
-        GameObject tempShot;
-        tempShot = Instantiate(FlameSpit, FlameMouth.position, FlameMouth.rotation) ;
+        // Instantiate and save the object
+        GameObject tempShot = Instantiate(FlameSpit, FlameMouth.position, FlameMouth.rotation);
+        // Rotate the object
         tempShot.transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), FiringDirection);
         
         inSpecial = false;

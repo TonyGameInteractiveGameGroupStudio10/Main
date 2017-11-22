@@ -32,10 +32,14 @@ public class UserPotion : MonoBehaviour {
 			player.SetSpeed(player.GetSpeed()+1f);
 			hasteActive = true;
 			timer = 2f;
-
 		} else {
-			int newHealth = player.GetHealth() + 10;
-			player.SetHealth(newHealth);
+			int newHealth = player.GetHealth() + 15;
+			// If it is larger then max, set to max.
+			if (newHealth <= player.GetMaxHealth()){
+				player.SetHealth(newHealth);
+			} else {
+				player.SetHealth(player.GetMaxHealth());
+			}
 		}
 	}
 }
