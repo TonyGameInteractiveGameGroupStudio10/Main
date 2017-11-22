@@ -27,6 +27,11 @@ public class UserClass : MonoBehaviour {
 	public Text healthPotionCount;
 	public Text hastePotionCount;
 	public Text clearPotionCount;
+	public Image poisonImage;
+	public Image shockImage;
+	public Image vineImage;
+	public Image quakeImage;
+	public Image bounceImage;
 
     // Status Effects
     ///////////////
@@ -313,13 +318,35 @@ public class UserClass : MonoBehaviour {
 
 	public void GiveAttackMod(int indexAttackMod) {
 		this.attackMod[indexAttackMod] += 1;
+		this.TurnOnAttackSprite(indexAttackMod);
 		this.recheckAttack = true;
+	}
+
+	private void TurnOnAttackSprite(int index){
+		// 0 - Posion ; 1 - vine ; 2 - shock ;
+		// 3 - quaking ; 4 - ricochet
+		if (index == 0){
+			poisonImage.enabled = true;
+		} else if (index == 1){
+			vineImage.enabled = true;
+		} else if (index == 2){
+			shockImage.enabled = true;
+		} else if (index == 3){
+			quakeImage.enabled = true;
+		} else {
+			bounceImage.enabled = true;
+		}
 	}
 
 	public void ResetAttackMod(){
 		for (int c = 0; c < 1; c += 1) {
 			this.SetAttackMod(c, 0);
 		}
+		poisonImage.enabled = false;
+		shockImage.enabled = false;	
+		vineImage.enabled = false;
+		quakeImage.enabled = false;
+		bounceImage.enabled = false;
 		this.recheckAttack = true;
 	}
 }
