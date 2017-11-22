@@ -20,6 +20,7 @@ public class GameMaster : MonoBehaviour {
 	private int waves;
 	private int currentWave;
 	private float[] waveTimer;
+	private float spawnTimer;
 
 	///////////////////////////////////
 	// Unity Methods
@@ -37,23 +38,52 @@ public class GameMaster : MonoBehaviour {
 		for (int i = 0; i < waves; i += 1){
 			waveTimer[i] = 120;
 		}
-		InvokeRepeating("MonsterSpawning", 2f, 4f);
+		spawnTimer = 2f;
 	}
 
 	void Update(){
-
+		// Timer for Game Length
 		if(gameTimer > 0){
 			gameTimer -= Time.deltaTime;
 		} else {
 			// YOU WIN
 		}
 
+		// Timer for each wave
 		if(waveTimer[currentWave] > 0){
 			waveTimer[currentWave] -= Time.deltaTime;
 		} else {
 			currentWave += 1;
 		}
 
+		// Timer for spawning
+		if (spawnTimer > 0){
+			spawnTimer -= Time.deltaTime;
+		} else {
+			if (currentWave == 0){
+				this.MonsterSpawning();
+				spawnTimer = 2f;
+			} else if (currentWave == 1) {
+				this.MonsterSpawning();
+				spawnTimer = 1f;
+			} else if (currentWave == 2){
+				this.MonsterSpawning();
+				this.MonsterSpawning();
+				spawnTimer = 2f;
+			} else if (currentWave == 3) {
+				this.MonsterSpawning();
+				this.MonsterSpawning();
+				this.MonsterSpawning();
+				spawnTimer = 1f;
+
+			} else if (currentWave == 4) {
+				this.MonsterSpawning();
+				this.MonsterSpawning();
+				this.MonsterSpawning();
+				this.MonsterSpawning();
+				spawnTimer = 1f;
+			}
+		}
 	}
 
 	///////////////////////////////////
