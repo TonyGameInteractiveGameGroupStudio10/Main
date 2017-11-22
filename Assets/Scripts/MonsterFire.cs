@@ -29,7 +29,7 @@ public class MonsterFire : MonsterClass {
         monsterType = 1;
         maxHealth = 15;
         healthPool = maxHealth;
-        monsterSpeed = 3.5f;
+        monsterSpeed = 3f;
         currentSpeed = monsterSpeed;
 
         // Check to see if it has a drop

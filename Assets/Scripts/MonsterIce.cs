@@ -25,7 +25,7 @@ public class MonsterIce : MonsterClass {
         monsterType = 4;
         maxHealth = 20;
         healthPool = maxHealth;
-        monsterSpeed = 3.4f;
+        monsterSpeed = 2.8f;
         currentSpeed = monsterSpeed;
 
         // Check which sprite to load

@@ -26,7 +26,7 @@ public class MonsterPoison : MonsterClass {
         monsterType = 2;
 		maxHealth = 20;
         healthPool = maxHealth;
-        monsterSpeed = 3.5f;
+        monsterSpeed = 2.8f;
         currentSpeed = monsterSpeed;
 
 
