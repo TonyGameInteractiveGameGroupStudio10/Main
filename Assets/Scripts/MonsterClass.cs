@@ -96,7 +96,6 @@ public class MonsterClass : MonoBehaviour {
 
         // Check to see if it has a drop
         if ((potionDrop == true) || (weaponModDrop == true) || (attackModDrop == true) || (environmentDrop == true)){
-            Debug.Log("True in MonsterClass");
             this.hasDrop = true;
         } else {
             this.hasDrop = false;

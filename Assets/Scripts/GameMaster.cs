@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameMaster : MonoBehaviour {
 
@@ -20,6 +21,10 @@ public class GameMaster : MonoBehaviour {
 	private int waves;
 	private int currentWave;
 	private float[] waveTimer;
+	private float spawnTimer;
+
+	// UI
+	public Text waveUI;
 
 	///////////////////////////////////
 	// Unity Methods
@@ -37,23 +42,54 @@ public class GameMaster : MonoBehaviour {
 		for (int i = 0; i < waves; i += 1){
 			waveTimer[i] = 120;
 		}
-		InvokeRepeating("MonsterSpawning", 2f, 4f);
+		spawnTimer = 2f;
+		waveUI.text = 1.ToString();
 	}
 
 	void Update(){
-
+		// Timer for Game Length
 		if(gameTimer > 0){
 			gameTimer -= Time.deltaTime;
 		} else {
 			// YOU WIN
 		}
 
+		// Timer for each wave
 		if(waveTimer[currentWave] > 0){
 			waveTimer[currentWave] -= Time.deltaTime;
 		} else {
 			currentWave += 1;
+			waveUI.text = (currentWave+1).ToString();
 		}
 
+		// Timer for spawning
+		if (spawnTimer > 0){
+			spawnTimer -= Time.deltaTime;
+		} else {
+			if (currentWave == 0){
+				this.MonsterSpawning();
+				spawnTimer = 2f;
+			} else if (currentWave == 1) {
+				this.MonsterSpawning();
+				spawnTimer = 1f;
+			} else if (currentWave == 2){
+				this.MonsterSpawning();
+				this.MonsterSpawning();
+				spawnTimer = 2f;
+			} else if (currentWave == 3) {
+				this.MonsterSpawning();
+				this.MonsterSpawning();
+				this.MonsterSpawning();
+				spawnTimer = 1f;
+
+			} else if (currentWave == 4) {
+				this.MonsterSpawning();
+				this.MonsterSpawning();
+				this.MonsterSpawning();
+				this.MonsterSpawning();
+				spawnTimer = 1f;
+			}
+		}
 	}
 
 	///////////////////////////////////
