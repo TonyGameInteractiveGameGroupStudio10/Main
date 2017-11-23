@@ -144,6 +144,14 @@ public class MonsterClass : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D coll){
         if (coll.gameObject.tag == "Player"){
 			coll.gameObject.GetComponent<UserClass>().TakeDamage(5);
+        } else if (coll.gameObject.tag == "Weapon"){
+            enemyAnimator.SetBool("isHit", true);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D coll){
+        if (coll.gameObject.tag == "Weapon"){
+            enemyAnimator.SetBool("isHit", true);
         }
     }
 

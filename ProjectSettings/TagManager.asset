@@ -19,6 +19,7 @@ TagManager:
   - DropIce
   - AttackDistance
   - HealthLength
+  - Weapon
   layers:
   - Default
   - TransparentFX
