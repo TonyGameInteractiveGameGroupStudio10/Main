@@ -20,10 +20,10 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: d594092de3bc24f0ebe10f49433955cc, type: 3}
-    attribute: smallSprite
+    attribute: m_Sprite
     path: 
-    classID: 114
-    script: {fileID: 11500000, guid: bd1230e8e721c4de999b89113da1408d, type: 3}
+    classID: 212
+    script: {fileID: 0}
   m_SampleRate: 1
   m_WrapMode: 0
   m_Bounds:
@@ -33,10 +33,10 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 0
-      attribute: 728180567
-      script: {fileID: 11500000, guid: bd1230e8e721c4de999b89113da1408d, type: 3}
-      typeID: 114
-      customType: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 21300000, guid: d594092de3bc24f0ebe10f49433955cc, type: 3}

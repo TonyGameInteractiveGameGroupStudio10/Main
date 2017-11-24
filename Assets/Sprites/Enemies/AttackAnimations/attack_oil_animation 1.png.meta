@@ -1,22 +1,13 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: e90894cc2e71a414197ac06ad56a77fc
-timeCreated: 1511303782
+guid: 1aaf4967e20b28b42ac30d1dd941b90d
+timeCreated: 1511560449
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: attack_oil_animation_0
-    21300002: attack_oil_animation_1
-    21300004: attack_oil_animation_2
-    21300006: attack_oil_animation_3
-=======
-guid: 98a37a417b3a94f6583cceb270921799
-timeCreated: 1511304845
-licenseType: Free
-TextureImporter:
-  fileIDToRecycleName: {}
-  externalObjects: {}
->>>>>>> c9c01be4aa359a588b871cd2bd06a505b3891a57
+    21300000: attack_oil_animation 1_0
+    21300002: attack_oil_animation 1_1
+    21300004: attack_oil_animation 1_2
+    21300006: attack_oil_animation 1_3
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -52,11 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-<<<<<<< HEAD
   spriteMode: 2
-=======
-  spriteMode: 1
->>>>>>> c9c01be4aa359a588b871cd2bd06a505b3891a57
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -74,7 +61,6 @@ TextureImporter:
   platformSettings:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-<<<<<<< HEAD
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -83,9 +69,6 @@ TextureImporter:
     overridden: 0
   - buildTarget: Standalone
     maxTextureSize: 2048
-=======
-    resizeAlgorithm: 0
->>>>>>> c9c01be4aa359a588b871cd2bd06a505b3891a57
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -94,10 +77,9 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-<<<<<<< HEAD
     sprites:
     - serializedVersion: 2
-      name: attack_oil_animation_0
+      name: attack_oil_animation 1_0
       rect:
         serializedVersion: 2
         x: 4
@@ -111,7 +93,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: attack_oil_animation_1
+      name: attack_oil_animation 1_1
       rect:
         serializedVersion: 2
         x: 44
@@ -125,7 +107,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: attack_oil_animation_2
+      name: attack_oil_animation 1_2
       rect:
         serializedVersion: 2
         x: 78
@@ -139,7 +121,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: attack_oil_animation_3
+      name: attack_oil_animation 1_3
       rect:
         serializedVersion: 2
         x: 117
@@ -152,9 +134,6 @@ TextureImporter:
       outline: []
       physicsShape: []
       tessellationDetail: 0
-=======
-    sprites: []
->>>>>>> c9c01be4aa359a588b871cd2bd06a505b3891a57
     outline: []
     physicsShape: []
   spritePackingTag: 
