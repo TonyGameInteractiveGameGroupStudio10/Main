@@ -176,7 +176,7 @@ MonoBehaviour:
   monsters:
   - {fileID: 1633296544280098, guid: 5bf5f8fd19aee4c4faea61f885ec7abb, type: 2}
   - {fileID: 1851021034509096, guid: 02718a501b16547fda830f0d31b7acdf, type: 2}
-  - {fileID: 1975939147600220, guid: 1fe13d18e9fe444418c8af73ca631df6, type: 2}
+  - {fileID: 1968740131497594, guid: 81fc3e386d4fd1241955b09d8eb35dfd, type: 2}
   - {fileID: 1918411757117298, guid: 1d761c7744e7c41f18b75dee1a8d91cc, type: 2}
   - {fileID: 1624527080125814, guid: 1ea3ec849d3a44cdfb1b7cd2902bfb9b, type: 2}
   potionSprites:
@@ -191,6 +191,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c5f45b6870fd0470abd087b8ef07e4c5, type: 3}
   - {fileID: 0}
   - {fileID: 0}
+  waveUI: {fileID: 0}
 --- !u!114 &114412377226572816
 MonoBehaviour:
   m_ObjectHideFlags: 1
