@@ -41,10 +41,10 @@ public class MonsterFire : MonsterClass {
         // Check which sprite to load
         // large sprite = has a drop ; small sprite = has no drop
         if (hasDrop == true){
-            spriteSwitcher.sprite = largeSprite;
+            //spriteSwitcher.sprite = largeSprite;
             GetComponent<BoxCollider2D>().size = new Vector2(0.11f,0.14f);
         } else {
-            spriteSwitcher.sprite = smallSprite;
+            //spriteSwitcher.sprite = smallSprite;
             GetComponent<BoxCollider2D>().size = new Vector2(0.09f,0.11f);
         }
     }
@@ -117,8 +117,6 @@ public class MonsterFire : MonsterClass {
         FlameSpit.GetComponent<WeaponFire>().setFiringDirection(FiringDirection);
         // Instantiate and save the object
         GameObject tempShot = Instantiate(FlameSpit, FlameMouth.position, FlameMouth.rotation);
-        // Rotate the object
-        tempShot.transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), FiringDirection);
         //leave special attack state
         inSpecial = false;
     }

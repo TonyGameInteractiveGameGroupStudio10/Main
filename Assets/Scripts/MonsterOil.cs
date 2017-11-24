@@ -125,8 +125,6 @@ public class MonsterOil : MonsterClass {
         OilSpit.GetComponent<WeaponOil>().SetFiringDirection(FiringDirection);
         //Instantiate and save the object
         GameObject tempShot = Instantiate(OilSpit, OilMouth.position, OilMouth.rotation);
-        //Rotate the object
-        tempShot.transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), FiringDirection);
         //leave special attack state
         inSpecial = false;
     }

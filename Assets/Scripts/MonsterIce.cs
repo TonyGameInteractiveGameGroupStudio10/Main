@@ -31,10 +31,10 @@ public class MonsterIce : MonsterClass {
         // Check which sprite to load
         // large sprite = has a drop ; small sprite = has no drop
         if (hasDrop == true){
-            spriteSwitcher.sprite = largeSprite;
+            //spriteSwitcher.sprite = largeSprite;
             GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.13f);
         } else {
-            spriteSwitcher.sprite = smallSprite;
+            //spriteSwitcher.sprite = smallSprite;
             GetComponent<BoxCollider2D>().size = new Vector2(0.11f,0.1f);
         }
     }
