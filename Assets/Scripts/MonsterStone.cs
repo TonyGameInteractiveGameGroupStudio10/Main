@@ -18,6 +18,7 @@ public class MonsterStone : MonsterClass {
     // Other
     private Transform tempLocation;
     private Transform enemyPosition;
+    private bool Bounding;
 
     ///////////////////////////////////
     // Unity Methods
@@ -101,14 +102,32 @@ public class MonsterStone : MonsterClass {
     }
 
     public void BoundAttack(){
+        Debug.Log("entered bound attack");
         Vector2 newVector2 = playerLocation.position - this.transform.position;
-        enemyBody.AddForce(newVector2 * currentSpeed * 25);
-        Invoke("Stop",0.5f);
+        enemyBody.AddForce(newVector2 * currentSpeed * 75);
+        Bounding = true;
+        Invoke("Stop", 0.5f);
         
-    } 
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && Bounding == true)
+        {
+            collision.gameObject.SendMessage("TakeDamage", 10);
+        }
+        else if (collision.gameObject.tag == "Enemy" && Bounding == true) 
+        {
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "DropWall" && Bounding == true)
+        {
+            Destroy(collision.gameObject);
+        }
+    }
 
     public void Stop(){
         enemyBody.velocity = new Vector3(0,0,0);
+        Bounding = false;
         inSpecial = false;
     }
 }

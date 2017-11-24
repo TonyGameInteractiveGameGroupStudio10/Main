@@ -7,7 +7,7 @@ using UnityEngine;
 // - Medium HP
 // - Drop oil
 // - Can't Be Slowed
-public class MonsterOil : MonsterClass {
+public class MonsterOil : MonsterClass { 
 
     //Distance to player and temp location
     private int DistanceToPlayer;
@@ -17,6 +17,9 @@ public class MonsterOil : MonsterClass {
     public Sprite smallSprite;
     public Sprite largeSprite;
 
+    public GameObject OilSpit;
+    public Transform OilMouth;
+    private Vector2 FiringDirection;
     ///////////////////////////////////
     // Unity Methods
     ///////////////////////////////////
@@ -41,7 +44,7 @@ public class MonsterOil : MonsterClass {
             spriteSwitcher.sprite = smallSprite;
         }
     }
-
+   
     // Update
     ////////////////
     protected override void Update(){
@@ -109,16 +112,20 @@ public class MonsterOil : MonsterClass {
     // Attack
     ////////////////
     public override void SpecialMove(){
-        inSpecial = false;
+        OilBomb();
     }
 
-    //private void OilBomb();
-    //{
-    //     transform.right = playerLocation.position - transform.position;
-    //     Instantiate.OilBomb;
-    //     if (oil hits player)
-    //         slow Player for 2 tiles
-    //     else
-    //         do nothing
-    //}
+    private void OilBomb()
+    {
+        //find location to shoot
+        FiringDirection = (playerLocation.position - OilMouth.position).normalized;
+        //set the direction in which to fire
+        OilSpit.GetComponent<WeaponOil>().SetFiringDirection(FiringDirection);
+        //Instantiate and save the object
+        GameObject tempShot = Instantiate(OilSpit, OilMouth.position, OilMouth.rotation);
+        //Rotate the object
+        tempShot.transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), FiringDirection);
+        //leave special attack state
+        inSpecial = false;
+    }
 }

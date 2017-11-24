@@ -1,11 +1,20 @@
 fileFormatVersion: 2
 guid: bd1230e8e721c4de999b89113da1408d
-timeCreated: 1509743940
+timeCreated: 1511491519
 licenseType: Free
 MonoImporter:
-  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - deathCry: {instanceID: 0}
+  - environDrop: {instanceID: 0}
+  - potionPrefab: {instanceID: 0}
+  - attackModPrefab: {instanceID: 0}
+  - weaponModPrefab: {instanceID: 0}
+  - TempLocation: {instanceID: 0}
+  - smallSprite: {instanceID: 0}
+  - largeSprite: {instanceID: 0}
+  - OilSpit: {fileID: 1406456645490828, guid: bcbd1fc428728de4aa38cf5d2596e19f, type: 2}
+  - OilMouth: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

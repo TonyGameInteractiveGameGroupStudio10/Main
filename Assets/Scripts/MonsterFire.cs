@@ -118,7 +118,7 @@ public class MonsterFire : MonsterClass {
         GameObject tempShot = Instantiate(FlameSpit, FlameMouth.position, FlameMouth.rotation);
         // Rotate the object
         tempShot.transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), FiringDirection);
-        
+        //leave special attack state
         inSpecial = false;
     }
 }

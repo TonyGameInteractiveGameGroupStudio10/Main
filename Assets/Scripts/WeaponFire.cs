@@ -25,7 +25,7 @@ public class WeaponFire : MonoBehaviour {
             collision.gameObject.SendMessage("TakeDamage", 5);
             Destroy(gameObject);
         }
-        /*if (collision.gameObject.tag == "Enemy")
+      /*  if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.SendMessage("TakeDamage", 5);
             Destroy(gameObject);

@@ -328,7 +328,7 @@ public class MonsterClass : MonoBehaviour {
     // Roll to see if you can cast special
     protected bool SpecialCheck(){
         int diceRoll = Random.Range(0,100);
-        if ((diceRoll < 1) && (specialTimer <= 0)){
+        if ((diceRoll < 50) && (specialTimer <= 0)){
             inSpecial = true;
             specialTimer = 5f;
             return true;
