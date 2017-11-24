@@ -35,7 +35,6 @@ public class MonsterFire : MonsterClass {
         // Check to see if it has a drop
         if (hasDrop == true){
             spriteSwitcher.sprite = largeSprite;
-            enemyAnimator.SetBool("isLarge", true);
         } else {
             spriteSwitcher.sprite = smallSprite;
         }  
