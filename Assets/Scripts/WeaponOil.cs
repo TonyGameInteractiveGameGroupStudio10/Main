@@ -34,12 +34,12 @@ public class WeaponOil : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        else if (collision.gameObject.tag == "Enemy")
+     /*   else if (collision.gameObject.tag == "Enemy")
         {
             collision.gameObject.SendMessage("SetCurrentSpeed", 2);
             Destroy(gameObject);
             
-        }
+        }*/
 
     }
     IEnumerator ResetTimer()
