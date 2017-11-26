@@ -32,19 +32,12 @@ public class MonsterFire : MonsterClass {
         monsterSpeed = 3f;
         currentSpeed = monsterSpeed;
 
-        // Check to see if it has a drop
+        // Set the box collider
         if (hasDrop == true){
-            spriteSwitcher.sprite = largeSprite;
-        } else {
-            spriteSwitcher.sprite = smallSprite;
-        }  
-        // Check which sprite to load
-        // large sprite = has a drop ; small sprite = has no drop
-        if (hasDrop == true){
-            spriteSwitcher.sprite = largeSprite;
+            // large sprite
             GetComponent<BoxCollider2D>().size = new Vector2(0.11f,0.14f);
         } else {
-            spriteSwitcher.sprite = smallSprite;
+            // small sprite
             GetComponent<BoxCollider2D>().size = new Vector2(0.09f,0.11f);
         }
     }

@@ -36,13 +36,12 @@ public class MonsterOil : MonsterClass {
         monsterSpeed = 2.5f;
         currentSpeed = monsterSpeed;
 
-        // Check which sprite to load
-        // large sprite = has a drop ; small sprite = has no drop
+        // Set the box collider
         if (hasDrop == true){
-            spriteSwitcher.sprite = largeSprite;
+            // Large sprite
             GetComponent<BoxCollider2D>().size = new Vector2(0.14f,0.12f);
         } else {
-            spriteSwitcher.sprite = smallSprite;
+            // Small sprite
             GetComponent<BoxCollider2D>().size = new Vector2(0.14f,0.09f);
         }
     }

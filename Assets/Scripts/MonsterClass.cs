@@ -141,7 +141,9 @@ public class MonsterClass : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter2D(Collision2D coll){
+    // On Collision
+    ////////////////
+    protected virtual void OnCollisionEnter2D(Collision2D coll){
         if (coll.gameObject.tag == "Player"){
 			coll.gameObject.GetComponent<UserClass>().TakeDamage(5);
         } else if (coll.gameObject.tag == "Weapon"){
@@ -149,7 +151,9 @@ public class MonsterClass : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter2D(Collider2D coll){
+    // On Trigger
+    ////////////////
+    protected virtual void OnTriggerEnter2D(Collider2D coll){
         if (coll.gameObject.tag == "Weapon"){
             enemyAnimator.SetBool("isHit", true);
         }

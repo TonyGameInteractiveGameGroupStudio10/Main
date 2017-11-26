@@ -29,13 +29,12 @@ public class MonsterPoison : MonsterClass {
         monsterSpeed = 2.8f;
         currentSpeed = monsterSpeed;
 
-        // Check which sprite to load
-        // large sprite = has a drop ; small sprite = has no drop
+        // Set the box collider
         if (hasDrop == true){
-            spriteSwitcher.sprite = largeSprite;
-            GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.12f);
+            // Large sprite
+            GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.13f);
         } else {
-            spriteSwitcher.sprite = smallSprite;
+            // Small sprite
             GetComponent<BoxCollider2D>().size = new Vector2(0.1f,0.1f);
         }
     }
