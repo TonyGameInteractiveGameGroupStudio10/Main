@@ -13,6 +13,8 @@ public class MonsterPoison : MonsterClass {
     public Sprite smallSprite;
     public Sprite largeSprite;
 
+    public GameObject specialTelegraph;
+
     ///////////////////////////////////
     // Unity Methods
     ///////////////////////////////////
@@ -89,11 +91,13 @@ public class MonsterPoison : MonsterClass {
 
     public void envenom()
     {
-        Vector3 scaledVector = gameMaster.GetComponent<InfluenceMap>().scaleWorldPos(playerLocation.position);
-        GameObject temp = Instantiate(environDrop, scaledVector, Quaternion.identity);
-        Debug.Log("There should be a drop.... Is it there.");
+        // find a random square in range of +/- 2 squares from the player
+        float randomx = Random.Range(playerLocation.position.x-2f, playerLocation.position.x+2f);
+        float randomy = Random.Range(playerLocation.position.y-2f, playerLocation.position.y+2f);
+        Vector3 randomLocation = new Vector3(randomx,randomy,0);
+        // Create telegraph at the location the posion will be coming from
+        Vector3 scaledVector = gameMaster.GetComponent<InfluenceMap>().scaleWorldPos(randomLocation);
+        Instantiate(specialTelegraph, scaledVector, Quaternion.identity);
         inSpecial = false;
-       // DropPoison.DestroySelf(temp, 7.0f);
-        Debug.Log("The drop should have been destroyed, is it destroyed yet?");
     }
 }
