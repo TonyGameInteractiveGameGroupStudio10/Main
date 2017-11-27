@@ -90,10 +90,10 @@ public class MonsterPoison : MonsterClass {
     public void envenom()
     {
         Vector3 scaledVector = gameMaster.GetComponent<InfluenceMap>().scaleWorldPos(playerLocation.position);
-        Instantiate(environDrop, scaledVector, Quaternion.identity);
+        GameObject temp = Instantiate(environDrop, scaledVector, Quaternion.identity);
         Debug.Log("There should be a drop.... Is it there.");
         inSpecial = false;
-        Destroy(environDrop, 7.0f);
+       // DropPoison.DestroySelf(temp, 7.0f);
         Debug.Log("The drop should have been destroyed, is it destroyed yet?");
     }
 }

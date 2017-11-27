@@ -20,11 +20,11 @@ public class WeaponOil : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.SendMessage("Slowed");
+            collision.gameObject.SendMessage("SetSpeed", 2.0f);
             Debug.Log("Speed should be reduced by 2");
             Destroy(gameObject);
             StartCoroutine(ResetTimer());
-            GameObject.FindGameObjectWithTag("Player").SendMessage("slowed");
+            GameObject.FindGameObjectWithTag("Player").SendMessage("ResetSpeed");
         }
         else if (collision.gameObject.tag == "Wall")
         {

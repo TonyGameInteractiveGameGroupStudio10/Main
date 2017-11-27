@@ -109,5 +109,5 @@ public class MonsterIce : MonsterClass {
         GameObject tempShot = Instantiate(ColdAsIce, ColdMouth.position, ColdMouth.rotation);
         inSpecial = false;
 
-;    }
+    }
 }
