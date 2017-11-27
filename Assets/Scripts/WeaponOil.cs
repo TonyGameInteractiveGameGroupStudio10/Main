@@ -20,11 +20,9 @@ public class WeaponOil : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.SendMessage("SetSpeed", 2.0f);
+            GameObject.FindGameObjectWithTag("Player").SendMessage("SlowPlayer");
             Debug.Log("Speed should be reduced by 2");
             Destroy(gameObject);
-            StartCoroutine(ResetTimer());
-            GameObject.FindGameObjectWithTag("Player").SendMessage("ResetSpeed");
         }
         else if (collision.gameObject.tag == "Wall")
         {
@@ -34,16 +32,16 @@ public class WeaponOil : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-     /*   else if (collision.gameObject.tag == "Enemy")
+        else if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.SendMessage("SetCurrentSpeed", 2);
+            collision.gameObject.SendMessage("SetCurrentSpeed", 1.5f);
             Destroy(gameObject);
             
-        }*/
+        }
 
     }
-    IEnumerator ResetTimer()
+   /* IEnumerator ResetTimer()
     {
         yield return new WaitForSeconds(2.0f);
-    }
+    }*/
 }

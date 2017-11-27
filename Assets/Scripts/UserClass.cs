@@ -38,6 +38,7 @@ public class UserClass : MonoBehaviour {
     private int poison;
     private float poisonTimer; // 6 seconds
     private bool[] poisonDamage = new bool[3];
+    private bool isSlowed;
 
 	// Items
 	////////////////
@@ -349,4 +350,26 @@ public class UserClass : MonoBehaviour {
 		bounceImage.enabled = false;
 		this.recheckAttack = true;
 	}
+   
+    public void SlowPlayer()
+    {
+        if (isSlowed == true)
+        {
+            SetSpeed(4.0f);
+            isSlowed = false;
+           
+            
+
+        }
+        else { 
+            SetSpeed(2.0f);
+            isSlowed = true;
+            StartCoroutine(ResetTimer());
+        }
+    }
+    IEnumerator ResetTimer()
+    {
+        yield return new WaitForSeconds(2.0f);
+        SlowPlayer();
+    }
 }
