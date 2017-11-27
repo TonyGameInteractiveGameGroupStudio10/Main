@@ -61,7 +61,7 @@ public class PathFinder : MonoBehaviour {
             // for loop through the adjacent square
             for (int i = 0; i < 4; i += 1){
                 // check if its out of bounds
-				if ((adjacentVectors[i].x > -17) && (adjacentVectors[i].x < 17) && (adjacentVectors[i].y > -17) && (adjacentVectors[i].y < 17)){
+				if ((adjacentVectors[i].x > -18) && (adjacentVectors[i].x < 18) && (adjacentVectors[i].y > -18) && (adjacentVectors[i].y < 18)){
 					int adjacentScore = TileWeight(adjacentVectors[i], monsterType);
                     // Verify we want to go there (wall)
                     if (adjacentScore < 1000){
