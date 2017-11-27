@@ -6,7 +6,6 @@ using UnityEngine;
 // - Fast
 // - Low HP
 // - Drops Fire
-// - Cant be stunned
 public class MonsterFire : MonsterClass {
 
     // Sprite

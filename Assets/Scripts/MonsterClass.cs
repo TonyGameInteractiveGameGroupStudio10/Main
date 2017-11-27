@@ -146,6 +146,8 @@ public class MonsterClass : MonoBehaviour {
     protected virtual void OnCollisionEnter2D(Collision2D coll){
         if (coll.gameObject.tag == "Player"){
 			coll.gameObject.GetComponent<UserClass>().TakeDamage(5);
+            this.stunned = true;
+            this.stunTimer = 0.4f;
         } else if (coll.gameObject.tag == "Weapon"){
             enemyAnimator.SetBool("isHit", true);
         }
@@ -284,7 +286,7 @@ public class MonsterClass : MonoBehaviour {
     ///////////////
     // Decision Start/Selector
     protected void MakeDecision(){
-        treeRoot.Search();
+        this.treeRoot.Search();
     }
 
     // Is the target in ray cast
@@ -334,8 +336,8 @@ public class MonsterClass : MonoBehaviour {
     protected bool SpecialCheck(){
         int diceRoll = Random.Range(0,100);
         if ((diceRoll < 1) && (specialTimer <= 0)){
-            inSpecial = true;
-            specialTimer = 5f;
+            this.inSpecial = true;
+            this.specialTimer = 5f;
             return true;
         } else {
             return false;
