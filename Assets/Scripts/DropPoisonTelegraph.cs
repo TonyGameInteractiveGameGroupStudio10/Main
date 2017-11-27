@@ -7,13 +7,13 @@ public class DropPoisonTelegraph : MonoBehaviour {
     // Poison Drop
     public GameObject poisonDrop;
     // Store the created poison
-    private GameObhect poisonSave;
+    private GameObject poisonSave;
     
     // Unity Method
     ////////////////////
     void Start(){
         Invoke("PoisonSpawn", 2f);
-        Invoke("DestroyPoison", 5f)
+		Invoke("DestroyPoison", 5f);
         Invoke("DestroySelf", 5.1f);
     }
 
