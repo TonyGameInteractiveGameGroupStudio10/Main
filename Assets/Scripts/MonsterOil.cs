@@ -114,7 +114,7 @@ public class MonsterOil : MonsterClass {
         //set the direction in which to fire
         OilSpit.GetComponent<WeaponOil>().SetFiringDirection(FiringDirection);
         //Instantiate and save the object
-        GameObject tempShot = Instantiate(OilSpit, OilMouth.position, OilMouth.rotation);
+       	Instantiate(OilSpit, OilMouth.position, OilMouth.rotation);
         //leave special attack state
         inSpecial = false;
     }

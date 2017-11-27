@@ -101,7 +101,7 @@ public class MonsterIce : MonsterClass {
     public void AbsoluteZero(){
         Direction = (playerLocation.position - ColdMouth.position).normalized;
         ColdAsIce.GetComponent<WeaponIce>().SetFiringDirection(Direction);
-        GameObject tempShot = Instantiate(ColdAsIce, ColdMouth.position, ColdMouth.rotation);
+        Instantiate(ColdAsIce, ColdMouth.position, ColdMouth.rotation);
         inSpecial = false;
 
     }

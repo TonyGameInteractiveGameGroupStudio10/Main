@@ -105,7 +105,7 @@ public class MonsterFire : MonsterClass {
         // Set the firing direction
         FlameSpit.GetComponent<WeaponFire>().setFiringDirection(FiringDirection);
         // Instantiate and save the object
-        GameObject tempShot = Instantiate(FlameSpit, FlameMouth.position, FlameMouth.rotation);
+        Instantiate(FlameSpit, FlameMouth.position, FlameMouth.rotation);
         //leave special attack state
         inSpecial = false;
     }

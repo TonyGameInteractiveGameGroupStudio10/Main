@@ -19,10 +19,9 @@ public class UserAttackMod : MonoBehaviour {
 		weaponPrefab.GetComponent<WeaponArrow>().ResetWeaponArrow();
 
 		// Apply modifiers from buffs to the script
-		for (int i = 0; i < 5; i += 1){
+		for (int i = 0; i < buffs.Length; i += 1){
 			weaponPrefab.GetComponent<WeaponArrow>().SetAttackEffects(i, buffs[i]);
 		}
-	
 		return weaponPrefab;
 	}
 }
