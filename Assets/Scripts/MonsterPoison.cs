@@ -43,17 +43,14 @@ public class MonsterPoison : MonsterClass {
 
     // Update
     ////////////////
-    protected override void Update()
-    {
+    protected override void Update(){
         // Run MonsterClass Update()
         base.Update();
 
         // Stun Timer
-        if (this.stunTimer > 0)
-        {
+        if (this.stunTimer > 0){
             this.stunTimer -= Time.deltaTime;
-            if (this.stunTimer <= 0)
-            {
+            if (this.stunTimer <= 0){
                 this.stunned = false;
             }
         }
@@ -71,25 +68,21 @@ public class MonsterPoison : MonsterClass {
     ///////////////////////////////////
     // Health
     ////////////////
-    public int GetMaxHealth()
-    {
+    public int GetMaxHealth(){
         return this.maxHealth;
     }
 
-    public void SetMaxHealth(int newMaxHealth)
-    {
+    public void SetMaxHealth(int newMaxHealth){
         this.maxHealth = newMaxHealth;
     }
 
     // Attack
     ////////////////
-    public override void SpecialMove()
-    {
+    public override void SpecialMove(){
         envenom();
     }
 
-    public void envenom()
-    {
+    public void envenom(){
         // find a random square in range of +/- 2 squares from the player
         float randomx = Random.Range(playerLocation.position.x-2f, playerLocation.position.x+2f);
         float randomy = Random.Range(playerLocation.position.y-2f, playerLocation.position.y+2f);

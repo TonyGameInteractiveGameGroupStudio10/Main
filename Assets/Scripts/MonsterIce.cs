@@ -85,24 +85,20 @@ public class MonsterIce : MonsterClass {
     ///////////////////////////////////
     // Health
     ////////////////
-    public int GetMaxHealth()
-    {
+    public int GetMaxHealth(){
         return this.maxHealth;
     }
 
-    public void SetMaxHealth(int newMaxHealth)
-    {
+    public void SetMaxHealth(int newMaxHealth){
         this.maxHealth = newMaxHealth;
     }
 
     // Attack
     ////////////////
-    public override void SpecialMove()
-    {
+    public override void SpecialMove(){
         AbsoluteZero();
     }
-    public void AbsoluteZero()
-    {
+    public void AbsoluteZero(){
         Direction = (playerLocation.position - ColdMouth.position).normalized;
         ColdAsIce.GetComponent<WeaponIce>().SetFiringDirection(Direction);
         GameObject tempShot = Instantiate(ColdAsIce, ColdMouth.position, ColdMouth.rotation);

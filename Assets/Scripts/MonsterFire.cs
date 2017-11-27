@@ -85,13 +85,11 @@ public class MonsterFire : MonsterClass {
     ///////////////////////////////////
     // Health
     ////////////////
-    public int GetMaxHealth()
-    {
+    public int GetMaxHealth(){
         return this.maxHealth;
     }
 
-    public void SetMaxHealth(int newMaxHealth)
-    {
+    public void SetMaxHealth(int newMaxHealth){
         this.maxHealth = newMaxHealth;
     }
 
@@ -101,8 +99,7 @@ public class MonsterFire : MonsterClass {
         BlastingCannon();
     }
 
-    private void BlastingCannon()
-      {
+    private void BlastingCannon(){
         // Find player location
         FiringDirection = (playerLocation.position - FlameMouth.position).normalized;
         // Set the firing direction

@@ -10,6 +10,7 @@ public class WeaponArrow : WeaponType {
 	////////////////
 	public float speed = 1f;
 	public Vector2 firingDirection;
+	public bool hasBounced;
 
 	// Effects
 	////////////////
@@ -20,6 +21,7 @@ public class WeaponArrow : WeaponType {
 	public bool ricochet;
 	public GameObject quakePrefab;
 	public GameObject vinePrefab;
+
 
 	///////////////////////////////////
 	// Unity Methods
@@ -35,16 +37,29 @@ public class WeaponArrow : WeaponType {
 	////////////////
 	void OnTriggerEnter2D(Collider2D coll){
 		if ((coll.gameObject.tag == "Wall") || (coll.gameObject.tag == "DropWall")) {
-			this.QuakingEffect();
+			// If this isn't a ricochet
+			if (hasBounced == false){
+				this.QuakingEffect();
+			}
 			Destroy(gameObject);
 		}
 		else if (coll.gameObject.tag == "Enemy"){
+			// Send Damage
 			coll.gameObject.SendMessage("TakeDamage", 10);
+			// Apply Poison Effect
 			this.PoisonEffect(coll.gameObject);
-			this.VineEffect();
+			// Apply Stun Effect
 			this.ShockEffect(coll.gameObject);
-			this.QuakingEffect();
+			// If this isnt a ricochet
+			if (hasBounced == false){
+				// Apply Quaking
+				this.QuakingEffect();
+				// Apply Vine
+				this.VineEffect();
+			}
+			// Apply Ricochet
 			this.RicochetEffect();
+			// Destroy Self
 			Destroy(gameObject);
 		}
 	}
@@ -107,8 +122,14 @@ public class WeaponArrow : WeaponType {
 			// shoot object and rotate
 			GameObject ricochetClone = Instantiate(gameObject,firingPosition,Quaternion.identity);
 			ricochetClone.GetComponent<WeaponArrow>().SetFiringDirection(firingDirection);
+			ricochetClone.GetComponent<WeaponArrow>().SetBounce(true);
 			ricochetClone.transform.rotation = Quaternion.LookRotation(new Vector3(0,0,1), firingDirection);
+
 		}
+	}
+
+	public void SetBounce(bool newBool){
+		this.hasBounced = newBool;
 	}
 
 	// Speed
@@ -148,6 +169,6 @@ public class WeaponArrow : WeaponType {
 		this.shock = false;
 		this.quaking = false;
 		this.ricochet = false;
+		this.hasBounced = false;
 	}
-
 }
