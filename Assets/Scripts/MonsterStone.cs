@@ -119,7 +119,7 @@ public class MonsterStone : MonsterClass {
         }
         else if (collision.gameObject.tag == "Enemy" && Bounding == true) 
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<MonsterClass>().Die();
         }
         else if (collision.gameObject.tag == "DropWall" && Bounding == true)
         {

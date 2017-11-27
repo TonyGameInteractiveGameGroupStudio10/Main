@@ -20,6 +20,6 @@ public class PoisonTelegraph : MonoBehaviour {
     }
 
     private void DestroySelf(){
-        Destory(gameObject);
+        Destroy(gameObject);
     }
 }
