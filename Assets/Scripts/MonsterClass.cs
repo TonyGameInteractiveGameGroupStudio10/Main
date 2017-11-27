@@ -106,7 +106,6 @@ public class MonsterClass : MonoBehaviour {
     // Update
     ////////////////
     protected virtual void Update(){
-
         // if not stunned, and not in special
         if ((stunned == false) && (inSpecial == false)){
             // Make a decision
