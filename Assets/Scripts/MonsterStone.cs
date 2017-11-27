@@ -35,12 +35,13 @@ public class MonsterStone : MonsterClass {
         monsterSpeed = 2f;
         currentSpeed = monsterSpeed;
 
-        // Sets up the box collider
+        // Check which sprite to load
+        // large sprite = has a drop ; small sprite = has no drop
         if (hasDrop == true){
-            // Large sprite
+            //spriteSwitcher.sprite = largeSprite;
             GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.15f);
         } else {
-            // Small sprite
+           // spriteSwitcher.sprite = smallSprite;
             GetComponent<BoxCollider2D>().size = new Vector2(0.11f,0.11f);
         }
     }
@@ -83,25 +84,6 @@ public class MonsterStone : MonsterClass {
         playerLocation = thePlayer.transform;
     }
 
-    // On Collision
-    ////////////////
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        base.OnCollisionEnter2D(collision);
-        if (collision.gameObject.tag == "Player" && Bounding == true)
-        {
-            collision.gameObject.SendMessage("TakeDamage", 10);
-        }
-        else if (collision.gameObject.tag == "Enemy" && Bounding == true) 
-        {
-            collision.gameObject.GetComponent<MonsterClass>().Die();
-        }
-        else if (collision.gameObject.tag == "DropWall" && Bounding == true)
-        {
-			collision.gameObject.GetComponent<DropWall>().DestroySelf();
-        }
-    }
-
     ///////////////////////////////////
     // Methods
     ///////////////////////////////////
@@ -118,15 +100,31 @@ public class MonsterStone : MonsterClass {
     // Attack
     ////////////////
     public override void SpecialMove(){
-        this.BoundAttack();
+        this.LandSlide();
     }
 
-    public void BoundAttack(){
+    public void LandSlide(){
+        Debug.Log("entered bound attack");
         Vector2 newVector2 = playerLocation.position - this.transform.position;
         enemyBody.AddForce(newVector2 * currentSpeed * 75);
         Bounding = true;
         Invoke("Stop", 0.5f);
         
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && Bounding == true)
+        {
+            collision.gameObject.SendMessage("TakeDamage", 10);
+        }
+        else if (collision.gameObject.tag == "Enemy" && Bounding == true) 
+        {
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "DropWall" && Bounding == true)
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
     public void Stop(){

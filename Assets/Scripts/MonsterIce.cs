@@ -11,6 +11,9 @@ public class MonsterIce : MonsterClass {
     // Sprite
     public Sprite smallSprite;
     public Sprite largeSprite;
+    public GameObject ColdAsIce;
+    public Transform ColdMouth;
+    public Vector2 Direction;
 
     ///////////////////////////////////
     // Unity Methods
@@ -28,12 +31,13 @@ public class MonsterIce : MonsterClass {
         monsterSpeed = 2.8f;
         currentSpeed = monsterSpeed;
 
-        // Set the box collider
+        // Check which sprite to load
+        // large sprite = has a drop ; small sprite = has no drop
         if (hasDrop == true){
-            // Large sprite
-            GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.14f);
+            //spriteSwitcher.sprite = largeSprite;
+            GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.13f);
         } else {
-            // Small sprite
+            //spriteSwitcher.sprite = smallSprite;
             GetComponent<BoxCollider2D>().size = new Vector2(0.11f,0.1f);
         }
     }
@@ -94,7 +98,16 @@ public class MonsterIce : MonsterClass {
 
     // Attack
     ////////////////
-    public override void SpecialMove(){
-        inSpecial = false;
+    public override void SpecialMove()
+    {
+        AbsoluteZero();
     }
+    public void AbsoluteZero()
+    {
+        Direction = (playerLocation.position - ColdMouth.position).normalized;
+        ColdAsIce.GetComponent<WeaponIce>().SetFiringDirection(Direction);
+        GameObject tempShot = Instantiate(ColdAsIce, ColdMouth.position, ColdMouth.rotation);
+        inSpecial = false;
+
+;    }
 }

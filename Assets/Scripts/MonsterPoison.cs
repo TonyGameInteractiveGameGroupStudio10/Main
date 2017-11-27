@@ -29,26 +29,30 @@ public class MonsterPoison : MonsterClass {
         monsterSpeed = 2.8f;
         currentSpeed = monsterSpeed;
 
-        // Set the box collider
+        // Check which sprite to load
+        // large sprite = has a drop ; small sprite = has no drop
         if (hasDrop == true){
-            // Large sprite
-            GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.13f);
+            //spriteSwitcher.sprite = largeSprite;
+            GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.12f);
         } else {
-            // Small sprite
+            //spriteSwitcher.sprite = smallSprite;
             GetComponent<BoxCollider2D>().size = new Vector2(0.1f,0.1f);
         }
     }
 
     // Update
     ////////////////
-    protected override void Update(){
+    protected override void Update()
+    {
         // Run MonsterClass Update()
         base.Update();
 
         // Stun Timer
-        if (this.stunTimer > 0){
+        if (this.stunTimer > 0)
+        {
             this.stunTimer -= Time.deltaTime;
-            if (this.stunTimer <= 0){
+            if (this.stunTimer <= 0)
+            {
                 this.stunned = false;
             }
         }
@@ -78,7 +82,18 @@ public class MonsterPoison : MonsterClass {
 
     // Attack
     ////////////////
-    public override void SpecialMove(){
+    public override void SpecialMove()
+    {
+        envenom();
+    }
+
+    public void envenom()
+    {
+        Vector3 scaledVector = gameMaster.GetComponent<InfluenceMap>().scaleWorldPos(playerLocation.position);
+        Instantiate(environDrop, scaledVector, Quaternion.identity);
+        Debug.Log("There should be a drop.... Is it there.");
         inSpecial = false;
+        Destroy(environDrop, 7.0f);
+        Debug.Log("The drop should have been destroyed, is it destroyed yet?");
     }
 }
