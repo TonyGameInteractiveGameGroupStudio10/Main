@@ -16,8 +16,8 @@ public class SpawningScript : MonoBehaviour {
 		
 	}
 
-    public void Spawn()
-    {
-        int number =
-    }
+   // public void Spawn()
+    //{
+      //  int number =
+    //}
 }
