@@ -9,10 +9,6 @@ using UnityEngine;
 // - Can't Be Slowed
 public class MonsterOil : MonsterClass { 
 
-    //Distance to player and temp location
-    private int DistanceToPlayer;
-    public Transform TempLocation;
-
     // Sprite
     public Sprite smallSprite;
     public Sprite largeSprite;
@@ -52,11 +48,6 @@ public class MonsterOil : MonsterClass {
         // Run MonsterClass Update()
         base.Update();
 
-        //Attack
-        if (DistanceToPlayer <= 8)
-        {
-            //OilSling();   
-        }
         // Poison Timer
         if (this.poisonTimer > 0){
             this.poisonTimer -= Time.deltaTime;

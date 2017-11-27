@@ -31,13 +31,12 @@ public class MonsterIce : MonsterClass {
         monsterSpeed = 2.8f;
         currentSpeed = monsterSpeed;
 
-        // Check which sprite to load
-        // large sprite = has a drop ; small sprite = has no drop
+        // Check which hitbox to load
         if (hasDrop == true){
-            //spriteSwitcher.sprite = largeSprite;
+            // Large hit box
             GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.13f);
         } else {
-            //spriteSwitcher.sprite = smallSprite;
+            // Small hit box
             GetComponent<BoxCollider2D>().size = new Vector2(0.11f,0.1f);
         }
     }

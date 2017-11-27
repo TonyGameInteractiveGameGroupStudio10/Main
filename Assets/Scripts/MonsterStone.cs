@@ -35,13 +35,12 @@ public class MonsterStone : MonsterClass {
         monsterSpeed = 2f;
         currentSpeed = monsterSpeed;
 
-        // Check which sprite to load
-        // large sprite = has a drop ; small sprite = has no drop
+        // Check which hitbox to load
         if (hasDrop == true){
-            //spriteSwitcher.sprite = largeSprite;
+            // Large Sprite Hitboxes
             GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.15f);
         } else {
-           // spriteSwitcher.sprite = smallSprite;
+            // Small Sprite Hitboxes
             GetComponent<BoxCollider2D>().size = new Vector2(0.11f,0.11f);
         }
     }
@@ -111,18 +110,16 @@ public class MonsterStone : MonsterClass {
         Invoke("Stop", 0.5f);
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+	protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player" && Bounding == true)
-        {
+		base.OnCollisionEnter2D(collision);
+        if (collision.gameObject.tag == "Player" && Bounding == true) {
             collision.gameObject.SendMessage("TakeDamage", 10);
-        }
-        else if (collision.gameObject.tag == "Enemy" && Bounding == true) 
-        {
+        } 
+        else if (collision.gameObject.tag == "Enemy" && Bounding == true) {
             collision.gameObject.GetComponent<MonsterClass>().Die();
-        }
-        else if (collision.gameObject.tag == "DropWall" && Bounding == true)
-        {
+        } 
+        else if (collision.gameObject.tag == "DropWall" && Bounding == true) {
             Destroy(collision.gameObject);
         }
     }

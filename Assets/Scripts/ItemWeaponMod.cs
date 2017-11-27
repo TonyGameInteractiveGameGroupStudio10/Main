@@ -7,21 +7,11 @@ public class ItemWeaponMod : MonoBehaviour {
 	// Index of Weapon Modifier
 	public int itemIndex = 123;
 
-	// Link to GameMaster
-	private GameObject theGameMaster;
-
 	// Sprite
-	private SpriteRenderer spriteSwitcher;
 	private bool askedForSprite;
 
 	// Unity Methods
 	////////////////
-	void Start () {	
-		askedForSprite = false;
-		this.spriteSwitcher = GetComponent<SpriteRenderer>();
-		theGameMaster = GameObject.FindGameObjectWithTag("GameMaster");
-	}
-
 	void Update() {
 		// If that index has been changed/set
 		if ((itemIndex != 123) && (askedForSprite == false)) {
