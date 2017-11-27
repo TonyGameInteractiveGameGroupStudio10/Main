@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameMaster : MonoBehaviour {
 
 	// Spawn Location
-	public GameObject[] spawner = new GameObject[4];
+	public GameObject[] spawnLocations = new GameObject[4];
 
 	// Enemy Types
 	public GameObject[] monsters = new GameObject[5];
@@ -16,15 +16,22 @@ public class GameMaster : MonoBehaviour {
 	public Sprite[] weaponSprites = new Sprite[1];
 	public Sprite[] attackSprites = new Sprite[5];
 
-	// Wave Timer
-	private float gameTimer;
-	private int waves;
+	// Wave & Round Controllers
+	// 3 waves per round
+	private int currentRound;
 	private int currentWave;
-	private float[] waveTimer;
-	private float spawnTimer;
+	// Number of Waves per round, and rounds per game
+	private int maxWaves;
+	private int maxRounds;
+	// Timers for the current round, wave and game
+	private float currentRoundTimer;
+	private float currentWaveTimer;
+	// Store all the keeper information
+	private float[][] timeKeeper;
 
 	// UI
 	public Text waveUI;
+	public Text roundUI;
 
 	///////////////////////////////////
 	// Unity Methods
@@ -33,68 +40,74 @@ public class GameMaster : MonoBehaviour {
 	////////////////
 	void Start(){
 		// Store all the Spawn Points
-		spawner = GameObject.FindGameObjectsWithTag("Spawner");
-		// Set up the wave timers
+		spawnLocations = GameObject.FindGameObjectsWithTag("Spawner");
+		// Set up counters
+		currentRound = 0;
 		currentWave = 0;
-		waves = 5;
-		waveTimer = new float[waves];
-		gameTimer  = waves*120;
-		for (int i = 0; i < waves; i += 1){
-			waveTimer[i] = 120;
-		}
-		spawnTimer = 2f;
+		maxWaves = 3;
+		maxRounds = 5;
+		// Set up the time Keeper
+		this.SetUpKeepers();
+		// Set up the UI
 		waveUI.text = 1.ToString();
+		roundUI.text = 1.ToString();
 	}
 
+	// Update
+	////////////////
 	void Update(){
-		// Timer for Game Length
-		if(gameTimer > 0){
-			gameTimer -= Time.deltaTime;
-		} else {
-			// YOU WIN
+		// Timer For Waves & Rounds
+		if (timeKeeper[currentRound][currentWave] > 0){
+			timeKeeper[currentRound][currentWave] -= Time.deltaTime;
 		}
-
-		// Timer for each wave
-		if(waveTimer[currentWave] > 0){
-			waveTimer[currentWave] -= Time.deltaTime;
-		} else {
+		else if (currentWave == maxWaves-1){
+			// if != monster alive
+				// check if last level
+					// win 
+					// increase round
+		}
+		else {
 			currentWave += 1;
-			waveUI.text = (currentWave+1).ToString();
+			waveUi.text = (currentWave+1).ToString();
 		}
 
-		// Timer for spawning
-		if (spawnTimer > 0){
-			spawnTimer -= Time.deltaTime;
-		} else {
-			if (currentWave == 0){
-				this.MonsterSpawning();
-				spawnTimer = 2f;
-			} else if (currentWave == 1) {
-				this.MonsterSpawning();
-				spawnTimer = 1f;
-			} else if (currentWave == 2){
-				this.MonsterSpawning();
-				this.MonsterSpawning();
-				spawnTimer = 2f;
-			} else if (currentWave == 3) {
-				this.MonsterSpawning();
-				this.MonsterSpawning();
-				this.MonsterSpawning();
-				spawnTimer = 1f;
-
-			} else if (currentWave == 4) {
-				this.MonsterSpawning();
-				this.MonsterSpawning();
-				this.MonsterSpawning();
-				this.MonsterSpawning();
-				spawnTimer = 1f;
-			}
-		}
+		this.spawner();
 	}
 
 	///////////////////////////////////
 	// Methods
 	///////////////////////////////////
+	// Time Keeping
+	////////////////
+	private void SetUpKeepers(){
+		timeKeeper = new float[maxRounds][maxWaves];
+		// Set Up Round Timers, and Wave Timers 
+		for (int i = 0; i < maxWaves; i += 1){
+			timeKeeper[0][i] = 30f;
+			timeKeeper[1][i] = 30f;
+			timeKeeper[2][i] = 30f;
+			timeKeeper[3][i] = 60f;
+			timeKeeper[4][i] = 60f;
+		}
+	}
+
+	// Spawners
+	////////////////
+	private void spanwer(){
+
+
+	}
+
+	private Vector3 SpawnSelector(){
+		return spawnLocations[Random.Range(0, 4)].transform.position;
+	}
+
+	private void MonsterSpawning(){
+		int diceRollMob = Random.Range(0,5);
+		Vector3 diceRollSpawner = this.SpawnSelector();
+		Instantiate(monsters[diceRollMob],diceRollSpawner,Quaternion.identity);
+	}
+
 	// Sprites
 	////////////////
 	// Only One thing can be message passed, so passing an array of objects
@@ -108,19 +121,6 @@ public class GameMaster : MonoBehaviour {
 
 	public Sprite GetAttackSprite(int index){
 		return attackSprites[index];
-	}
-
-	// Spawns
-	////////////////
-	private Vector3 SpawnSelector(){
-		return spawner[Random.Range(0, 4)].transform.position;
-	}
-
-	private void MonsterSpawning(){
-		int diceRollMob = Random.Range(0,5);
-		Vector3 diceRollSpawner = this.SpawnSelector();
-		Instantiate(monsters[diceRollMob],diceRollSpawner,Quaternion.identity);
-
 	}
 
 
