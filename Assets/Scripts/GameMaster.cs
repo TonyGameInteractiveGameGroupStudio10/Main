@@ -112,7 +112,7 @@ public class GameMaster : MonoBehaviour {
 		// 15 15 20 - 50 / 90 / 1.8
 		// 20 20 25 - 65 / 90 / 1.38
 		// 50 50 50 - 150 / 180 / 1.2
-		// 55 55 55 - 165 / 180 / 1.09
+		// 55 55 60 - 170 / 180 / 1.06
 
 		// Set Up Round Timers, and Wave Timers 
 		timeKeeper = new float[maxRounds,maxWaves];
@@ -145,7 +145,7 @@ public class GameMaster : MonoBehaviour {
 		// Round Five
 		spawnRateKeeper[4,0] = 1.09f;
 		spawnRateKeeper[4,1] = 1.09f;
-		spawnRateKeeper[4,2] = 1.09f;
+		spawnRateKeeper[4,2] = 1f;
 	}
 
 	// Spawners
