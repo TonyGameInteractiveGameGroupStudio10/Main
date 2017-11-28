@@ -23,11 +23,11 @@ public class GameMaster : MonoBehaviour {
 	// Number of Waves per round, and rounds per game
 	private int maxWaves;
 	private int maxRounds;
-	// Timers for the current round, wave and game
-	private float currentRoundTimer;
-	private float currentWaveTimer;
+	// Timers for next spawn
+	private float spawnTimer;
 	// Store all the keeper information
-	private float[][] timeKeeper;
+	private float[,] timeKeeper;
+	private float[,] spawnRateKeeper;
 
 	// UI
 	public Text waveUI;
@@ -57,8 +57,8 @@ public class GameMaster : MonoBehaviour {
 	////////////////
 	void Update(){
 		// Timer For Waves & Rounds
-		if (timeKeeper[currentRound][currentWave] > 0){
-			timeKeeper[currentRound][currentWave] -= Time.deltaTime;
+		if (timeKeeper[currentRound,currentWave] > 0){
+			timeKeeper[currentRound,currentWave] -= Time.deltaTime;
 		}
 		else if (currentWave == maxWaves-1){
 			// if != monster alive
@@ -68,10 +68,15 @@ public class GameMaster : MonoBehaviour {
 		}
 		else {
 			currentWave += 1;
-			waveUi.text = (currentWave+1).ToString();
+			waveUI.text = (currentWave+1).ToString();
 		}
 
-		this.spawner();
+		// Timer for spawns
+		if (spawnTimer > 0){
+			spawnTimer -= Time.deltaTime;
+		} else {
+			this.Spawner();
+		}
 	}
 
 	///////////////////////////////////
@@ -80,22 +85,52 @@ public class GameMaster : MonoBehaviour {
 	// Time Keeping
 	////////////////
 	private void SetUpKeepers(){
-		timeKeeper = new float[maxRounds][maxWaves];
+		// Spawn count per wave - total - total round time - avg spawn rate
+		// 10 10 20 - 40 / 90 / 2.25
+		// 15 20 20 - 55 / 90 / 1.63
+		// 25 25 25 - 75 / 90 / 1.20
+		// 50 55 60 - 165 / 180 / 1.09
+		// 60 60 60 - 180 / 180 / 1
+
 		// Set Up Round Timers, and Wave Timers 
+		timeKeeper = new float[maxRounds,maxWaves];
 		for (int i = 0; i < maxWaves; i += 1){
-			timeKeeper[0][i] = 30f;
-			timeKeeper[1][i] = 30f;
-			timeKeeper[2][i] = 30f;
-			timeKeeper[3][i] = 60f;
-			timeKeeper[4][i] = 60f;
+			timeKeeper[0,i] = 30f;
+			timeKeeper[1,i] = 30f;
+			timeKeeper[2,i] = 30f;
+			timeKeeper[3,i] = 60f;
+			timeKeeper[4,i] = 60f;
 		}
+
+		// Set Up Spawn Rates 
+		spawnRateKeeper = new float[maxRounds,maxWaves];
+		// Round One
+		spawnRateKeeper[0,0] = 3f;
+		spawnRateKeeper[0,1] = 3f;
+		spawnRateKeeper[0,2] = 1.5f;
+		// Round Two
+		spawnRateKeeper[1,0] = 2f;
+		spawnRateKeeper[1,1] = 1.5f;
+		spawnRateKeeper[1,2] = 1.5f;
+		// Round Three
+		spawnRateKeeper[2,0] = 1.2f;
+		spawnRateKeeper[2,1] = 1.2f;
+		spawnRateKeeper[2,2] = 1.2f;
+		// Round Four
+		spawnRateKeeper[3,0] = 1.2f;
+		spawnRateKeeper[3,1] = 1.09f;
+		spawnRateKeeper[3,2] = 1f;
+		// Round Five
+		spawnRateKeeper[4,0] = 1f;
+		spawnRateKeeper[4,1] = 1f;
+		spawnRateKeeper[4,2] = 1f;
 	}
 
 	// Spawners
 	////////////////
-	private void spanwer(){
-
-
+	private void Spawner(){
+		spawnTimer = spawnRateKeeper[currentWave,currentRound];
+		this.MonsterSpawning();
 	}
 
 	private Vector3 SpawnSelector(){
