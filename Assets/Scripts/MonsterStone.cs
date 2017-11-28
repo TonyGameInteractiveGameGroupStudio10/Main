@@ -103,7 +103,6 @@ public class MonsterStone : MonsterClass {
     }
 
     public void LandSlide(){
-        Debug.Log("entered bound attack");
         Vector2 newVector2 = playerLocation.position - this.transform.position;
         enemyBody.AddForce(newVector2 * currentSpeed * 75);
         Bounding = true;

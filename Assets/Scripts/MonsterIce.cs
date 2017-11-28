@@ -103,11 +103,13 @@ public class MonsterIce : MonsterClass {
     public override void SpecialMove(){
         AbsoluteZero();
     }
+
     public void AbsoluteZero(){
         tempIce = Instantiate(ColdAsIce, ColdMouth.position, ColdMouth.rotation);
         inSpecial = false;
         Invoke("DestroyIce", 5f);
     }
+    
     public void DestroyIce(){
         Destroy(tempIce);
     }
