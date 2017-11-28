@@ -107,10 +107,5 @@ public class MonsterIce : MonsterClass {
     public void AbsoluteZero(){
         tempIce = Instantiate(ColdAsIce, ColdMouth.position, ColdMouth.rotation);
         inSpecial = false;
-        Invoke("DestroyIce", 5f);
-    }
-    
-    public void DestroyIce(){
-        Destroy(tempIce);
     }
 }

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponIce : MonoBehaviour {
+
+    void Start(){
+        Invoke("DestroySelf", 5f);
+    }
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -27,5 +31,9 @@ public class WeaponIce : MonoBehaviour {
     IEnumerator ResetSpeed()
     {
         yield return new WaitForSeconds(1.0f);
+    }
+
+    private void DestroySelf(){
+      Destroy(gameObject);
     }
 }
