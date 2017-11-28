@@ -168,11 +168,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f4917bda52c548c694fae5c3e69fb75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawner:
-  - {fileID: 1603481964931380}
-  - {fileID: 1603481964931380}
-  - {fileID: 1977671664313672}
-  - {fileID: 1659320254665438}
+  spawnLocations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   monsters:
   - {fileID: 1633296544280098, guid: 5bf5f8fd19aee4c4faea61f885ec7abb, type: 2}
   - {fileID: 1851021034509096, guid: 02718a501b16547fda830f0d31b7acdf, type: 2}
@@ -192,6 +192,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   waveUI: {fileID: 0}
+  roundUI: {fileID: 0}
 --- !u!114 &114412377226572816
 MonoBehaviour:
   m_ObjectHideFlags: 1

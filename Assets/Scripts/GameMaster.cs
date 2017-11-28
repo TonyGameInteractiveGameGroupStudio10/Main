@@ -25,6 +25,8 @@ public class GameMaster : MonoBehaviour {
 	private int maxRounds;
 	// Timers for next spawn
 	private float spawnTimer;
+	private float nextRoundTimer;
+	private bool stopSpawner;
 	// Store all the keeper information
 	private float[,] timeKeeper;
 	private float[,] spawnRateKeeper;
@@ -46,6 +48,8 @@ public class GameMaster : MonoBehaviour {
 		currentWave = 0;
 		maxWaves = 3;
 		maxRounds = 5;
+		nextRoundTimer = 5f;
+		stopSpawner = false;
 		// Set up the time Keeper
 		this.SetUpKeepers();
 		// Set up the UI
@@ -59,14 +63,32 @@ public class GameMaster : MonoBehaviour {
 		// Timer For Waves & Rounds
 		if (timeKeeper[currentRound,currentWave] > 0){
 			timeKeeper[currentRound,currentWave] -= Time.deltaTime;
-		}
+		} 
+		// If the player is on the last wave, and the time is out
 		else if (currentWave == maxWaves-1){
-			// if != monster alive
-				// check if last level
-					// win 
-					// increase round
-		}
-		else {
+			// Stop the spawning
+			stopSpawner = true;
+			// Check every five seconds
+			if (nextRoundTimer > 0){
+				nextRoundTimer -= Time.deltaTime;
+			} else {
+				nextRoundTimer = 5f;
+				// too see if all enemy are destroy.
+				if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0){
+					// If true, and it was the last round, win. 
+					if (currentRound == maxRounds-1){
+						// WIN
+					// Else increase the round, and start spawning again
+					} else{
+						currentRound += 1;
+						currentWave = 0;
+						roundUI.text = (currentRound+1).ToString();
+						waveUI.text = (currentWave+1).ToString();
+						stopSpawner = false;
+					}
+				} 
+			}
+		} else {
 			currentWave += 1;
 			waveUI.text = (currentWave+1).ToString();
 		}
@@ -74,7 +96,7 @@ public class GameMaster : MonoBehaviour {
 		// Timer for spawns
 		if (spawnTimer > 0){
 			spawnTimer -= Time.deltaTime;
-		} else {
+		} else if (stopSpawner == false){
 			this.Spawner();
 		}
 	}
