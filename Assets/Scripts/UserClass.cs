@@ -111,7 +111,9 @@ public class UserClass : MonoBehaviour {
 				weaponModule.ApplyMod(weaponMod);
 				this.recheckWeapon = false;
 			}
-			weaponModule.Fire(weaponPrefab, this.transform.Find("FiringPosition"));
+			if(weaponModule.Fire(weaponPrefab, this.transform.Find("FiringPosition"))){
+				anim.SetTrigger("shoot");
+			}
 		}
 
 		// Poison Timer
@@ -146,6 +148,7 @@ public class UserClass : MonoBehaviour {
 		// Movement
 		this.targetVelocity = new Vector2 (Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 		GetComponent<Rigidbody2D>().velocity = targetVelocity * playerSpeed;
+		anim.SetFloat("speed", GetComponent<Rigidbody2D>().velocity.magnitude);
 
 		// Rotate
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

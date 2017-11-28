@@ -57,7 +57,7 @@ public class UserWeaponMod : MonoBehaviour {
 
 	// Firing Weapon
 	////////////////
-	public void Fire(GameObject firingWeapon, Transform firingPosition){
+	public bool Fire(GameObject firingWeapon, Transform firingPosition){
 		// If the user isn't in the attack animation, then fire
 		if (inAttackAnimation == false){
 			// Find direction in which the mouse is pointed
@@ -72,6 +72,8 @@ public class UserWeaponMod : MonoBehaviour {
 			// reset swing counter
 			attackCounter = attackSpeed;
 			inAttackAnimation = true;
+			return true;
 		}
+		return false;
 	}
 }
