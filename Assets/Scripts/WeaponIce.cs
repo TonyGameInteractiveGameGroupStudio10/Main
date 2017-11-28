@@ -3,16 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponIce : MonoBehaviour {
-    public Vector3 FiringDirections;
-
-
-	// Use this for initialization
-		
-	// Update is called once per frame
-	void FixedUpdate () {
-        this.GetComponent<Rigidbody2D>();
-        Destroy(gameObject, 5.0f);
-	}
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
