@@ -17,6 +17,7 @@ public class UserClass : MonoBehaviour {
 	private float playerSpeed;
 	private float maxSpeed; // 4f
 	private Vector2 targetVelocity;
+    private bool Stunned;
 
 	// UI
 	///////////////
@@ -368,6 +369,25 @@ public class UserClass : MonoBehaviour {
             isSlowed = true;
             StartCoroutine(ResetTimer());
         }
+    }
+    public void StunPlayer()
+    {
+        if(Stunned)
+        {
+            SetSpeed(4.0f);
+            Stunned = false;
+        }
+        else
+        {
+            SetSpeed(0.0f);
+            Stunned = true;
+            StartCoroutine(StunReset());
+        }
+    }
+    IEnumerator StunReset()
+    {
+        yield return new WaitForSeconds(1.0f);
+        StunPlayer();
     }
     IEnumerator ResetTimer()
     {

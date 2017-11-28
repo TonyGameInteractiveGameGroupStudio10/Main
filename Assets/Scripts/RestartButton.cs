@@ -11,7 +11,7 @@ public class RestartButton : MonoBehaviour {
     public Button quitButton;
 
     void Start(){
-    	restartButton.GetComponent<Button>().onClick.AddListener(RestartClick);
+
   		quitButton.GetComponent<Button>().onClick.AddListener(QuitClick);
     }
 
