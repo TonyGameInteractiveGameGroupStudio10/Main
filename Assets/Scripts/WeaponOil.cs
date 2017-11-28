@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponOil : MonoBehaviour {
 
-    public float speed = 5.0f;
+    public float speed = 10.0f;
     public Vector3 FiringDirection;
 	
 	// Update is called once per frame

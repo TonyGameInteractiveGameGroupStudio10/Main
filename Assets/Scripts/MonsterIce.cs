@@ -105,8 +105,8 @@ public class MonsterIce : MonsterClass {
     {
         ColdAsIce.GetComponent<WeaponIce>();
         Instantiate(ColdAsIce, ColdMouth.position, ColdMouth.rotation);
-        StartCoroutine(DestroyIceField());
-        Destroy(ColdAsIce);
+       // StartCoroutine(DestroyIceField());
+        //Destroy(ColdAsIce);
     }
     IEnumerator DestroyIceField()
     {

@@ -362,9 +362,6 @@ public class UserClass : MonoBehaviour {
         {
             SetSpeed(4.0f);
             isSlowed = false;
-           
-            
-
         }
         else { 
             SetSpeed(2.0f);
