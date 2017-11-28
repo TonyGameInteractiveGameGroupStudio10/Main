@@ -111,8 +111,8 @@ public class GameMaster : MonoBehaviour {
 		// 10 10 15 - 35 / 90 / 2.57
 		// 15 15 20 - 50 / 90 / 1.8
 		// 20 20 25 - 65 / 90 / 1.38
-		// 50 50 60 - 160 / 180 / 1.12
-		// 60 60 60 - 180 / 180 / 1
+		// 50 50 50 - 150 / 180 / 1.2
+		// 50 50 55 - 155 / 180 / 1.16
 
 		// Set Up Round Timers, and Wave Timers 
 		timeKeeper = new float[maxRounds,maxWaves];
@@ -140,18 +140,18 @@ public class GameMaster : MonoBehaviour {
 		spawnRateKeeper[2,2] = 1.2f;
 		// Round Four
 		spawnRateKeeper[3,0] = 1.2f;
-		spawnRateKeeper[3,1] = 1.09f;
-		spawnRateKeeper[3,2] = 1f;
+		spawnRateKeeper[3,1] = 1.2f;
+		spawnRateKeeper[3,2] = 1.2f;
 		// Round Five
-		spawnRateKeeper[4,0] = 1f;
-		spawnRateKeeper[4,1] = 1f;
-		spawnRateKeeper[4,2] = 1f;
+		spawnRateKeeper[4,0] = 1.2f;
+		spawnRateKeeper[4,1] = 1.2f;
+		spawnRateKeeper[4,2] = 1.09f;
 	}
 
 	// Spawners
 	////////////////
 	private void Spawner(){
-		spawnTimer = spawnRateKeeper[currentWave,currentRound];
+		spawnTimer = spawnRateKeeper[currentRound,currentWave];
 		this.MonsterSpawning();
 	}
 

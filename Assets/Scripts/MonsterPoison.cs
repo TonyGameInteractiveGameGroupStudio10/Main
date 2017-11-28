@@ -34,7 +34,7 @@ public class MonsterPoison : MonsterClass {
         // Check which Hit Box to load
         if (hasDrop == true){
             // Large Hit Box
-            GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.12f);
+            GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.14f);
         } else {
             // Small Hit Box
             GetComponent<BoxCollider2D>().size = new Vector2(0.1f,0.1f);

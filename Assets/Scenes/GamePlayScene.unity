@@ -897,6 +897,28 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 201
       objectReference: {fileID: 0}
+    - target: {fileID: 114897027211535586, guid: a5f8b3dbe2cbc4cbab3c3af3f2038f57,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114897027211535586, guid: a5f8b3dbe2cbc4cbab3c3af3f2038f57,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a40b4e7f748be4c45ab75bed77513399,
+        type: 3}
+    - target: {fileID: 114934489896024658, guid: a5f8b3dbe2cbc4cbab3c3af3f2038f57,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 50541f8848ed942a4aa462eb1ab29072,
+        type: 3}
+    - target: {fileID: 114934489896024658, guid: a5f8b3dbe2cbc4cbab3c3af3f2038f57,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.584
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5f8b3dbe2cbc4cbab3c3af3f2038f57, type: 2}
   m_IsPrefabParent: 0
@@ -1800,11 +1822,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 212854429141687082, guid: 03e9a5f9298ab440d85078ad91138c79,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 114747665306272302, guid: 03e9a5f9298ab440d85078ad91138c79,
         type: 2}
       propertyPath: hpSlider
@@ -1817,6 +1834,11 @@ Prefab:
       objectReference: {fileID: 1134229461}
     - target: {fileID: 114747665306272302, guid: 03e9a5f9298ab440d85078ad91138c79,
         type: 2}
+      propertyPath: healthPotionCount
+      value: 
+      objectReference: {fileID: 1198394620}
+    - target: {fileID: 114747665306272302, guid: 03e9a5f9298ab440d85078ad91138c79,
+        type: 2}
       propertyPath: hastePotionCount
       value: 
       objectReference: {fileID: 484283932}
@@ -1825,11 +1847,6 @@ Prefab:
       propertyPath: clearPotionCount
       value: 
       objectReference: {fileID: 979265062}
-    - target: {fileID: 114747665306272302, guid: 03e9a5f9298ab440d85078ad91138c79,
-        type: 2}
-      propertyPath: healthPotionCount
-      value: 
-      objectReference: {fileID: 1198394620}
     - target: {fileID: 114747665306272302, guid: 03e9a5f9298ab440d85078ad91138c79,
         type: 2}
       propertyPath: poisonImage
