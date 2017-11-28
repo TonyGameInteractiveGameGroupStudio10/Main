@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour {
 
@@ -77,7 +78,7 @@ public class GameMaster : MonoBehaviour {
 				if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0){
 					// If true, and it was the last round, win. 
 					if (currentRound == maxRounds-1){
-						// WIN
+						SceneManager.LoadScene("VictoryScene", LoadSceneMode.Single);
 					// Else increase the round, and start spawning again
 					} else{
 						currentRound += 1;

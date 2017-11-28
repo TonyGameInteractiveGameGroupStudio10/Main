@@ -5,15 +5,21 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class RestartButton : MonoBehaviour {
-	// The restart Button
-    public Button button;
+	// The restart button
+    public Button restartButton;
+    // The quit button
+    public Button quitButton;
 
     void Start(){
-    	Button btn = button.GetComponent<Button>();
-    	btn.onClick.AddListener(TaskOnClick);
+    	restartButton.GetComponent<Button>().onClick.AddListener(RestartClick);
+  		quitButton.GetComponent<Button>().onClick.AddListener(QuitClick);
     }
 
-    void TaskOnClick(){
+    void RestartClick(){
     	SceneManager.LoadScene("GamePlayScene", LoadSceneMode.Single);
+    }
+
+    void QuitClick(){
+    	Application.Quit();
     }
 }

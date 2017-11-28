@@ -29,7 +29,7 @@ public class UserPotion : MonoBehaviour {
 		if (outgoingPotion == 0){
 			Instantiate(clear, transform.position, Quaternion.identity);
 		} else if (outgoingPotion == 1){
-			player.SetSpeed(player.GetSpeed()+1f);
+			player.SetSpeed(player.GetSpeed()+3f);
 			hasteActive = true;
 			timer = 2f;
 		} else {
