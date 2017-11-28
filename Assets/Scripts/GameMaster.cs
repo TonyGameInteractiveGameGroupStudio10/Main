@@ -108,10 +108,10 @@ public class GameMaster : MonoBehaviour {
 	////////////////
 	private void SetUpKeepers(){
 		// Spawn count per wave - total - total round time - avg spawn rate
-		// 10 10 20 - 40 / 90 / 2.25
-		// 15 20 20 - 55 / 90 / 1.63
-		// 25 25 25 - 75 / 90 / 1.20
-		// 50 55 60 - 165 / 180 / 1.09
+		// 10 10 15 - 35 / 90 / 2.57
+		// 15 15 20 - 50 / 90 / 1.8
+		// 20 20 25 - 65 / 90 / 1.38
+		// 50 50 60 - 160 / 180 / 1.12
 		// 60 60 60 - 180 / 180 / 1
 
 		// Set Up Round Timers, and Wave Timers 
@@ -129,14 +129,14 @@ public class GameMaster : MonoBehaviour {
 		// Round One
 		spawnRateKeeper[0,0] = 3f;
 		spawnRateKeeper[0,1] = 3f;
-		spawnRateKeeper[0,2] = 1.5f;
+		spawnRateKeeper[0,2] = 2f;
 		// Round Two
 		spawnRateKeeper[1,0] = 2f;
-		spawnRateKeeper[1,1] = 1.5f;
+		spawnRateKeeper[1,1] = 2f;
 		spawnRateKeeper[1,2] = 1.5f;
 		// Round Three
-		spawnRateKeeper[2,0] = 1.2f;
-		spawnRateKeeper[2,1] = 1.2f;
+		spawnRateKeeper[2,0] = 1.5f;
+		spawnRateKeeper[2,1] = 1.5f;
 		spawnRateKeeper[2,2] = 1.2f;
 		// Round Four
 		spawnRateKeeper[3,0] = 1.2f;

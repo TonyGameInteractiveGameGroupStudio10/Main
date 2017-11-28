@@ -179,6 +179,7 @@ public class UserClass : MonoBehaviour {
 
 	public void SetHealth(int newHealth){ 
 		this.healthPool = newHealth; 
+		hpSlider.value = this.healthPool;
 	}
 
 	public int GetMaxHealth(){ 

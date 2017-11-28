@@ -189,8 +189,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cafdb1cfc273b4f588d2a023d3a75ec1, type: 3}
   - {fileID: 21300000, guid: 8b9c8a9d4ffb447e980f05a5b39c4709, type: 3}
   - {fileID: 21300000, guid: c5f45b6870fd0470abd087b8ef07e4c5, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 50541f8848ed942a4aa462eb1ab29072, type: 3}
+  - {fileID: 21300000, guid: a40b4e7f748be4c45ab75bed77513399, type: 3}
   waveUI: {fileID: 0}
   roundUI: {fileID: 0}
 --- !u!114 &114412377226572816
