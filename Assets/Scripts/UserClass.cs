@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 // Requirments:
 [RequireComponent (typeof (Rigidbody2D))]
@@ -196,7 +197,7 @@ public class UserClass : MonoBehaviour {
 		hpSlider.value = healthPool;
 		// Death
         if (healthPool <= 0){
-        	
+        	SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
         }
 	}
 
