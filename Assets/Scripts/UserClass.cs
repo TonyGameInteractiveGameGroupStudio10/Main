@@ -12,7 +12,7 @@ public class UserClass : MonoBehaviour {
 	// Stats
 	////////////////
 	private int healthPool;  
-	private int maxHealthPool; // 50
+	private int maxHealthPool; // 60
 	private float playerSpeed;
 	private float maxSpeed; // 4f
 	private Vector2 targetVelocity;
@@ -201,7 +201,7 @@ public class UserClass : MonoBehaviour {
 	}
 
 	public void ResetHealth(){
-		this.SetMaxHealth(50);
+		this.SetMaxHealth(60);
 		this.SetHealth(maxHealthPool);
 	}
 

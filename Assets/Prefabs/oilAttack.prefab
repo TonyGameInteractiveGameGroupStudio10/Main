@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114275407695853428}
   - component: {fileID: 58426192706445298}
   - component: {fileID: 50195402507001534}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: oilAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  FiringDirection: {x: -0.98360795, y: 0.18032022, z: 0}
+  FiringDirection: {x: -0.8977767, y: -0.44045085, z: 0}
 --- !u!212 &212338917816127748
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -118,6 +118,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -133,6 +134,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
