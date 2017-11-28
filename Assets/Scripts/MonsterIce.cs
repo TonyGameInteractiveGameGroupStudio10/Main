@@ -78,6 +78,7 @@ public class MonsterIce : MonsterClass {
     void FixedUpdate() {
         // probably place this in a different place, and have it check less often
         playerLocation = thePlayer.transform;
+        ColdAsIce.transform.position = ColdMouth.position;
     }
 
     ///////////////////////////////////
@@ -95,14 +96,20 @@ public class MonsterIce : MonsterClass {
 
     // Attack
     ////////////////
-    public override void SpecialMove(){
+    public override void SpecialMove()
+    {
         AbsoluteZero();
     }
-    public void AbsoluteZero(){
-        Direction = (playerLocation.position - ColdMouth.position).normalized;
-        ColdAsIce.GetComponent<WeaponIce>().SetFiringDirection(Direction);
+    //Create a circular blizzard around the monster Freezes and damages if player or enemy is in the radius
+    public void AbsoluteZero()
+    {
+        ColdAsIce.GetComponent<WeaponIce>();
         Instantiate(ColdAsIce, ColdMouth.position, ColdMouth.rotation);
-        inSpecial = false;
-
+        StartCoroutine(DestroyIceField());
+        Destroy(ColdAsIce);
+    }
+    IEnumerator DestroyIceField()
+    {
+        yield return new WaitForSeconds(5.0f);
     }
 }
