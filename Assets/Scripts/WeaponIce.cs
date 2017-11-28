@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponIce : MonoBehaviour {
 
     void Start(){
-        Invoke("DestroySelf", 5f);
+        Invoke("DestroySelf", 3.5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
