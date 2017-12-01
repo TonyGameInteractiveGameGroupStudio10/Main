@@ -426,6 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e84ff9948a64422a965c4a660bed635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialButton: {fileID: 0}
   restartButton: {fileID: 81366717}
   quitButton: {fileID: 463137615}
 --- !u!1 &525743805
@@ -485,7 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -523,7 +524,7 @@ RectTransform:
   m_GameObject: {fileID: 525743805}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 311, y: 175, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7775, y: 0.7775, z: 0.7775}
   m_Children:
   - {fileID: 1480750240}
   - {fileID: 463137614}
@@ -730,6 +731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e84ff9948a64422a965c4a660bed635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialButton: {fileID: 0}
   restartButton: {fileID: 0}
   quitButton: {fileID: 0}
 --- !u!1 &1064421845
