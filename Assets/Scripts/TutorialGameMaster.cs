@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialGameMaster : MonoBehaviour {
+public class TutorialGameMaster : GameMaster {
 
-	// Sprite Containers
-	public Sprite[] potionSprites = new Sprite[3];
-	public Sprite[] weaponSprites = new Sprite[1];
-	public Sprite[] attackSprites = new Sprite[5];
-
-	// Event Stuff
+	// Event Timer and Position
 	private float eventTimer;
 	private int eventPlace;
+
+	// Event Texts
+	public GameObject welcome;
+	public GameObject movement;
+	public GameObject shooting;
+	public GameObject powerUps;
+	public GameObject potions;
+	public GameObject monsters;
+
 
 	void Start(){
 

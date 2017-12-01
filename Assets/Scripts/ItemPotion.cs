@@ -8,7 +8,7 @@ public class ItemPotion : MonoBehaviour {
 	public int itemIndex = 123;
 
 	// Link to gameMaster
-	public GameObject theGameMaster;
+	private GameObject theGameMaster;
 
 	// Sprite
 	private SpriteRenderer spriteSwitcher;
