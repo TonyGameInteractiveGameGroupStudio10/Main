@@ -103,7 +103,7 @@ public class UserClass : MonoBehaviour {
 		}
 
 		// Fire
-		if (Input.GetKeyDown("space")){
+		if ((Input.GetKey("space")) || (Input.GetKey(KeyCode.Mouse1))){
 			if (this.recheckAttack == true){
 				weaponPrefab = attackModule.ApplyMod(attackMod);
 				this.recheckAttack = false;

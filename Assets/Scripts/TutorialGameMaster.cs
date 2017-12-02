@@ -7,6 +7,7 @@ public class TutorialGameMaster : GameMaster {
 	// Event Timer and Position
 	private float eventTimer;
 	private int eventPlace;
+	public KeyCode lastHitKey;
 
 	// Event Texts
 	public GameObject welcome;
@@ -34,9 +35,8 @@ public class TutorialGameMaster : GameMaster {
 		potionHealth.SetActive(false);
 		potionHaste.SetActive(false);
 		potionClear.SetActive(false);
+		eventPlace = 0;
 		this.WelcomePhase();
-		eventTimer = 8f;
-		eventPlace = 1;
 	}
 
 	void Update(){
@@ -44,46 +44,62 @@ public class TutorialGameMaster : GameMaster {
 			eventTimer -= Time.deltaTime;
 		}
 		else if(eventPlace == 1){
-
+			MovementPhase();
+			if ((Input.GetKeyDown("w")) || (Input.GetKeyDown("a")) || (Input.GetKeyDown("s")) || (Input.GetKeyDown("d"))){
+				eventPlace += 1;
+				eventTimer = 2f;
+			}
 		}
 		else if(eventPlace == 2){
-
+			ShootingPhase();
+			if ((Input.GetKey("space")) || (Input.GetKey(KeyCode.Mouse1))){
+				eventPlace += 1;
+				eventTimer = 2f;
+			}
 		}
 		else if(eventPlace == 3){
-
+			PowerUpPhase();
 		}
 		else if(eventPlace == 4){
-
+			PotionPhase();
 		}
 		else if(eventPlace == 5){
-
+			MonsterPhase();
 		}
 		else{
-
+			Completed();
 		}
 	}
 
-	public void WelcomePhase(){
+	private void WelcomePhase(){
+		welcome.SetActive(true);
+		eventTimer = 4f;
+		eventPlace += 1;
+	}
+
+	private void MovementPhase(){
+		welcome.SetActive(false);
+		movement.SetActive(true);
+	}
+
+	private void ShootingPhase(){
+		movement.SetActive(false);
+		shooting.SetActive(true);
+	}
+
+	private  void PowerUpPhase(){
 
 	}
 
-	public void MovementPhase(){
+	private void PotionPhase(){
 
 	}
 
-	public void ShootingPhase(){
+	private void MonsterPhase(){
 
 	}
 
-	public void PowerUpPhase(){
-
-	}
-
-	public void PotionPhase(){
-
-	}
-
-	public void MonsterPhase(){
+	private void Completed(){
 
 	}
 }
