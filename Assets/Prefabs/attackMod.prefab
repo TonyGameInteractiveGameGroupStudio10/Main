@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114278984057158398}
   - component: {fileID: 50870797946686470}
   - component: {fileID: 61078651758137846}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: attackMod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
