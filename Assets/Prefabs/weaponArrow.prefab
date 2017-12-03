@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1257318683815074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.26, y: 1.59, z: 0}
+  m_LocalPosition: {x: 11.428093, y: -14.615029, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.32808924, y: -0.00763011}
+  m_Offset: {x: 0.041855335, y: 0.46054792}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -86,7 +86,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2827829, y: 0.31058097}
+  m_Size: {x: 0.13122463, y: 0.27033138}
   m_EdgeRadius: 0
 --- !u!114 &114544610103465758
 MonoBehaviour:
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  firingDirection: {x: -0.5568971, y: 0.061860647}
+  firingDirection: {x: 0.010200004, y: 0.59061664}
   hasBounced: 0
   poison: 0
   vine: 0

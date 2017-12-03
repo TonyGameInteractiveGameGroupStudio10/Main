@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TutorialGameMaster : GameMaster {
 	// Access to user
@@ -23,12 +25,17 @@ public class TutorialGameMaster : GameMaster {
 	public GameObject potions;
 	public GameObject monstersText;
 	public GameObject monstersTextPT2;
+	public GameObject completedButtons;
 
 	// Props
 	public GameObject attackMod;
 	public GameObject potionHealth;
 	public GameObject potionHaste;
 	public GameObject potionClear;
+
+	// Complete Buttons
+	public Button retryButton;
+	public Button menuButton;
 
 	///////////////////////////////////
 	// Unity Methods
@@ -43,17 +50,27 @@ public class TutorialGameMaster : GameMaster {
 		powerUps.SetActive(false);
 		potions.SetActive(false);
 		monstersText.SetActive(false);
+		monstersTextPT2.SetActive(false);
+		completedButtons.SetActive(false);
 		attackMod.SetActive(false);
 		potionHealth.SetActive(false);
 		potionHaste.SetActive(false);
 		potionClear.SetActive(false);
 		eventPlace = 0;
 		this.WelcomePhase();
+
+        retryButton.GetComponent<Button>().onClick.AddListener(Retry);
+        menuButton.GetComponent<Button>().onClick.AddListener(MainMenu);
 	}
 
 	// Update
 	////////////////
 	void Update(){
+		// Keep the player at max life
+		if (thePlayer.GetComponent<UserClass>().GetHealth() < 60){
+			thePlayer.GetComponent<UserClass>().SetHealth(60);
+		}
+
 		if (eventTimer > 0){
 			eventTimer -= Time.deltaTime;
 		}
@@ -168,12 +185,27 @@ public class TutorialGameMaster : GameMaster {
 	}
 
 	private void Completed(){
-		monstersText.SetActive(false);
+		monstersTextPT2.SetActive(false);
+		completedButtons.SetActive(true);
 	}
 
-	// Monster Spawning for MonsterPhasePT2
+	// Monster Spawner
+	//////////////////
 	private void MonsterSpawningTut(int monsterType){
 		Vector3 diceRollSpawner = this.SpawnSelector();
 		Instantiate(monsters[monsterType],diceRollSpawner,Quaternion.identity);
+	}
+
+	// Buttons
+	//////////////////
+	void Retry(){
+		completedButtons.SetActive(false);
+		eventPlace = 5;
+		currentType = 0;
+		howMany = 0;
+	}
+
+	void MainMenu(){
+		SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
 	}
 }

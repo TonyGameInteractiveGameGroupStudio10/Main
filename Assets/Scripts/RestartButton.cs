@@ -11,6 +11,8 @@ public class RestartButton : MonoBehaviour {
     public Button restartButton;
     // The quit button
     public Button quitButton;
+    // The main menu button
+    public Button mainButton;
 
     void Start(){
         if (tutorialButton != null){
@@ -18,6 +20,9 @@ public class RestartButton : MonoBehaviour {
         }
         if (restartButton != null){
             restartButton.GetComponent<Button>().onClick.AddListener(RestartClick);
+        }
+        if (mainButton != null){
+            mainButton.GetComponent<Button>().onClick.AddListener(MainMenuClick);
         }
         if (quitButton != null){
             quitButton.GetComponent<Button>().onClick.AddListener(QuitClick);
@@ -30,6 +35,10 @@ public class RestartButton : MonoBehaviour {
 
     void RestartClick(){
     	SceneManager.LoadScene("GamePlayScene", LoadSceneMode.Single);
+    }
+
+    void MainMenuClick(){
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
     void QuitClick(){
