@@ -274,6 +274,7 @@ public class UserClass : MonoBehaviour {
 				clearPotionCount.text = this.GetPotion(outgoingPotion).ToString();
 			} else if (outgoingPotion == 1){
 				hastePotionCount.text = this.GetPotion(outgoingPotion).ToString();
+				anim.SetTrigger("haste");
 			} else {
 				healthPotionCount.text = this.GetPotion(outgoingPotion).ToString();
 				anim.SetTrigger("heal");
