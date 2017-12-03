@@ -156,12 +156,12 @@ public class GameMaster : MonoBehaviour {
 		this.MonsterSpawning();
 	}
 
-	private Vector3 SpawnSelector(){
-		return spawnLocations[Random.Range(0,4)].transform.position;
+	protected Vector3 SpawnSelector(){
+		return spawnLocations[Random.Range(0,spawnLocations.Length)].transform.position;
 	}
 
 	private void MonsterSpawning(){
-		int diceRollMob = Random.Range(0,5);
+		int diceRollMob = Random.Range(0,monsters.Length);
 		Vector3 diceRollSpawner = this.SpawnSelector();
 		Instantiate(monsters[diceRollMob],diceRollSpawner,Quaternion.identity);
 	}

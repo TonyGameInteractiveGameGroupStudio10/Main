@@ -10,6 +10,11 @@ public class TutorialGameMaster : GameMaster {
 	private float eventTimer;
 	private int eventPlace;
 
+	// Timers for Monster Phase
+	private float monsterTimer;
+	private int currentType;
+	private int howMany;
+
 	// Event Texts
 	public GameObject welcome;
 	public GameObject movement;
@@ -31,6 +36,7 @@ public class TutorialGameMaster : GameMaster {
 	// Start
 	////////////////
 	void Start(){
+		spawnLocations = GameObject.FindGameObjectsWithTag("Spawner");
 		welcome.SetActive(false);
 		movement.SetActive(false);
 		shooting.SetActive(false);
@@ -138,14 +144,36 @@ public class TutorialGameMaster : GameMaster {
 	private void MonsterPhase(){
 		potions.SetActive(false);
 		monstersText.SetActive(true);
+		howMany = 0;
+		currentType = 0;
 	}
 
 	private void MonsterPhasePT2(){
 		monstersText.SetActive(false);
 		monstersTextPT2.SetActive(true);
+		if (monsterTimer > 0){
+			monsterTimer -= Time.deltaTime;
+		} else{
+			if ((currentType >= 4) && (howMany >= 2)){
+				eventPlace += 1;
+			} else if (howMany >= 2){
+				currentType += 1;
+				howMany = 0;
+			} else {
+				MonsterSpawningTut(currentType);
+				monsterTimer = 10f;
+				howMany += 1;
+			}
+		}
 	}
 
 	private void Completed(){
 		monstersText.SetActive(false);
+	}
+
+	// Monster Spawning for MonsterPhasePT2
+	private void MonsterSpawningTut(int monsterType){
+		Vector3 diceRollSpawner = this.SpawnSelector();
+		Instantiate(monsters[monsterType],diceRollSpawner,Quaternion.identity);
 	}
 }
