@@ -147,16 +147,6 @@ public class MonsterClass : MonoBehaviour {
 			coll.gameObject.GetComponent<UserClass>().TakeDamage(5);
             this.stunned = true;
             this.stunTimer = 0.4f;
-        } else if (coll.gameObject.tag == "Weapon"){
-            enemyAnimator.SetBool("isHit", true);
-        }
-    }
-
-    // On Trigger
-    ////////////////
-    protected virtual void OnTriggerEnter2D(Collider2D coll){
-        if (coll.gameObject.tag == "Weapon"){
-            enemyAnimator.SetBool("isHit", true);
         }
     }
 
@@ -174,6 +164,7 @@ public class MonsterClass : MonoBehaviour {
     }
 
     public void TakeDamage(int incomingDamage){
+        enemyAnimator.SetTrigger("isHit");
         this.healthPool -= incomingDamage;
     }
 
