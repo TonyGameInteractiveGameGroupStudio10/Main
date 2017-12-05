@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1747482922194260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.099, y: 0, z: 0}
+  m_LocalPosition: {x: 0.142, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4702295826365372}
@@ -67,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1968740131497594}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.61, y: -0.59, z: 0}
+  m_LocalPosition: {x: 0.030734945, y: -3.688134, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 4317060798935458}
@@ -167,7 +167,6 @@ MonoBehaviour:
     type: 2}
   weaponModPrefab: {fileID: 1718961940058438, guid: 14300705cf9644ca38ef40a401683f0e,
     type: 2}
-  TempLocation: {fileID: 0}
   smallSprite: {fileID: 21300000, guid: dd48e89b9b03e42b8809d423a051b798, type: 3}
   largeSprite: {fileID: 21300000, guid: d594092de3bc24f0ebe10f49433955cc, type: 3}
   OilSpit: {fileID: 1157828956978262, guid: 7be133e2b5ad1d845a858aca9f97b990, type: 2}
@@ -212,5 +211,3 @@ SpriteRenderer:
   m_Size: {x: 0.13, y: 0.09}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
