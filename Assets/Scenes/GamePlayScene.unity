@@ -952,6 +952,21 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 23.75
       objectReference: {fileID: 0}
+    - target: {fileID: 114798005319372140, guid: a5f8b3dbe2cbc4cbab3c3af3f2038f57,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.928
+      objectReference: {fileID: 0}
+    - target: {fileID: 114798005319372140, guid: a5f8b3dbe2cbc4cbab3c3af3f2038f57,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.122
+      objectReference: {fileID: 0}
+    - target: {fileID: 114798005319372140, guid: a5f8b3dbe2cbc4cbab3c3af3f2038f57,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.041
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5f8b3dbe2cbc4cbab3c3af3f2038f57, type: 2}
   m_IsPrefabParent: 0
