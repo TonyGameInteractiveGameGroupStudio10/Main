@@ -34,5 +34,6 @@ public class ColumnThreat : MonoBehaviour {
         gameMaster.GetComponent<InfluenceMap>().addNode(middleBottom, 0);
         gameMaster.GetComponent<InfluenceMap>().addNode(bottomLeft, 0);
         gameMaster.GetComponent<InfluenceMap>().addNode(bottomRight, 0);
+
     }
 }
