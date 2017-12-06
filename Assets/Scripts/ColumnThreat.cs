@@ -17,7 +17,7 @@ public class ColumnThreat : MonoBehaviour {
     }
 
     private void MapInfluence(){
-                Renderer rend = GetComponent<Renderer>();
+        Renderer rend = GetComponent<Renderer>();
         Vector3 topLeft = new Vector3(rend.bounds.min.x, rend.bounds.max.y-0.01f, 0);
         Vector3 topRight = new Vector3(rend.bounds.max.x, rend.bounds.max.y-0.01f, 0);
         float middley = (((rend.bounds.max.y) + (rend.bounds.min.y))/2);
@@ -28,15 +28,10 @@ public class ColumnThreat : MonoBehaviour {
         Vector3 middleBottom = new Vector3(middlex,rend.bounds.min.y+0.01f,0);
         Vector3 middleMiddle = new Vector3(middlex,middley,0);
         Vector3 bottomLeft = new Vector3(rend.bounds.min.x, rend.bounds.min.y+0.01f, 0);
-        Vector3 bottomRight = new Vector3(rend.bounds.max.x, rend.bounds.min.y+0.01f, 0); 
+        Vector3 bottomRight = new Vector3(rend.bounds.max.x, rend.bounds.min.y+0.01f, 0);      
 
-        /////////////////////////////////
 
-        Debug.DrawLine(topRight,topLeft,Color.red,100f);
-        Debug.DrawLine(middleRight,middleLeft,Color.red,100f);
-        Debug.DrawLine(bottomRight,bottomLeft,Color.red,100f);
-        Debug.DrawLine(middleTop,middleBottom,Color.red,100f);
-
+        /* This is here for testing purposes, no one should have to rewrite it if needed.
         topLeft = gameMaster.GetComponent<InfluenceMap>().scaleWorldPos(topLeft);
         topRight = gameMaster.GetComponent<InfluenceMap>().scaleWorldPos(topRight);
         middleRight = gameMaster.GetComponent<InfluenceMap>().scaleWorldPos(middleRight);
@@ -45,7 +40,12 @@ public class ColumnThreat : MonoBehaviour {
         middleBottom = gameMaster.GetComponent<InfluenceMap>().scaleWorldPos(middleBottom);
         middleMiddle = gameMaster.GetComponent<InfluenceMap>().scaleWorldPos(middleMiddle);
         bottomRight = gameMaster.GetComponent<InfluenceMap>().scaleWorldPos(bottomRight);
-        bottomLeft = gameMaster.GetComponent<InfluenceMap>().scaleWorldPos(bottomLeft);
+        bottomLeft = gameMaster.GetComponent<InfluenceMap>().scaleWorldPos(bottomLeft); 
+
+        Debug.DrawLine(topRight,topLeft,Color.red,100f);
+        Debug.DrawLine(middleRight,middleLeft,Color.red,100f);
+        Debug.DrawLine(bottomRight,bottomLeft,Color.red,100f);
+        Debug.DrawLine(middleTop,middleBottom,Color.red,100f);
 
         Vector3 upLine = new Vector3(topLeft.x,topLeft.y+0.5f,0);
         Vector3 downLine = new Vector3(topLeft.x,topLeft.y-0.5f,0);
@@ -118,6 +118,7 @@ public class ColumnThreat : MonoBehaviour {
 
         Debug.DrawLine(upLine,downLine,Color.blue,100f);
         Debug.DrawLine(leftLine,rightLine,Color.blue,100f);
+        */
 
         /////////////////////////////////////////
 
