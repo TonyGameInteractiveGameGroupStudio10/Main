@@ -359,10 +359,8 @@ public class UserClass : MonoBehaviour {
 		this.recheckAttack = true;
 	}
    
-    public void SlowPlayer()
-    {
-        if (isSlowed == true)
-        {
+    public void SlowPlayer(){
+        if (isSlowed == true){
             SetSpeed(4.0f);
             isSlowed = false;
         }
@@ -372,27 +370,26 @@ public class UserClass : MonoBehaviour {
             StartCoroutine(ResetTimer());
         }
     }
+
     public void StunPlayer()
     {
-        if(Stunned)
-        {
+        if(Stunned){
             SetSpeed(4.0f);
             Stunned = false;
         }
-        else
-        {
+        else{
             SetSpeed(0.0f);
             Stunned = true;
             StartCoroutine(StunReset());
         }
     }
-    IEnumerator StunReset()
-    {
-        yield return new WaitForSeconds(1.0f);
+
+    IEnumerator StunReset(){
+        yield return new WaitForSeconds(0.5f);
         StunPlayer();
     }
-    IEnumerator ResetTimer()
-    {
+
+    IEnumerator ResetTimer(){
         yield return new WaitForSeconds(2.0f);
         SlowPlayer();
     }

@@ -25,19 +25,19 @@ public class WeaponIce : MonoBehaviour {
           playerTimer -= Time.deltaTime;
         } else {
           playerRef.SendMessage("StunPlayer");
-          playerTimer = 1f;
+          playerTimer = 1.5f;
         }
       }
     }
 
     void OnTriggerEnter2D(Collider2D collision){
         if (collision.gameObject.tag == "Player"){
-            collision.gameObject.SendMessage("TakeDamage", 2);
+            collision.gameObject.SendMessage("TakeDamage", 1);
             playerInside = true;
             playerRef = collision.gameObject;
         }
         if (collision.gameObject.tag == "Enemy" && collision.gameObject.GetComponent<MonsterClass>().getType() != 4){
-            collision.gameObject.SendMessage("TakeDamage", 2);
+            collision.gameObject.SendMessage("TakeDamage", 1);
             collision.gameObject.SendMessage("ReceivingStun");       
         }
     }
