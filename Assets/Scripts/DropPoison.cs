@@ -34,7 +34,6 @@ public class DropPoison : MonoBehaviour {
     }
 
   void OnTriggerEnter2D(Collider2D coll){
-        Debug.Log(coll.gameObject.tag);
         // On collision with enemy, poison him
         if (coll.gameObject.tag == "Enemy"){
             coll.gameObject.GetComponent<MonsterClass>().ReceivingPoison();
@@ -46,7 +45,6 @@ public class DropPoison : MonoBehaviour {
         }
         // The poison burns away if touches fire
         else if (coll.gameObject.tag == "DropFire"){
-            Debug.Log("HELLLLLO");
             // Remove Poison
             this.DestroySelf();
         }
