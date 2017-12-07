@@ -162,7 +162,7 @@ public class UserClass : MonoBehaviour {
 	// Status Effects
     ////////////////
     protected void Poisoned(){
-        int tick = 2*this.poison;
+        int tick = 1+this.poison;
         this.TakeDamage(tick);
     }
 
