@@ -131,6 +131,7 @@ public class UserClass : MonoBehaviour {
             else if ((poisonDamage[2] == false) && (poisonTimer < 2)) {
                 this.Poisoned();
                 this.poisonDamage[2] = true;
+                this.poison = 0;
             }
         }
 

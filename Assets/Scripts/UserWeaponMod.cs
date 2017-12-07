@@ -25,7 +25,7 @@ public class UserWeaponMod : MonoBehaviour {
 	// Start
 	////////////////
 	void Start(){
-		startingAttackSpeed = 0.7f;
+		startingAttackSpeed = 0.60f;
 		attackSpeed = startingAttackSpeed;
 		inAttackAnimation = false;
 	}
@@ -50,8 +50,8 @@ public class UserWeaponMod : MonoBehaviour {
 	public void ApplyMod(int[] buffs){
 		float attackSpeedBuff = buffs[0] * 0.05f;
 		float newAttackSpeed = startingAttackSpeed - attackSpeedBuff;
-		if(newAttackSpeed < 0.5f){
-			attackSpeed = 0.5f;
+		if(newAttackSpeed < 0.45f){
+			attackSpeed = 0.45f;
 		} else{
 			attackSpeed = newAttackSpeed;
 		}

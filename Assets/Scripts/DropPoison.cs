@@ -21,7 +21,7 @@ public class DropPoison : MonoBehaviour {
     void Start(){
         this.poison = true;
         this.poisonTimer = 0f;
-        gameMaster = GameObject.FindWithTag("GameMaster");
+		gameMaster = GameObject.FindWithTag ("GameMaster");
     }
 
     void Update() {
@@ -29,11 +29,12 @@ public class DropPoison : MonoBehaviour {
             poisonTimer -= Time.deltaTime;
         } else {
             poison = true;
-            poisonTimer = 3f;
+            poisonTimer = 2f;
         }
     }
 
   void OnTriggerEnter2D(Collider2D coll){
+        Debug.Log(coll.gameObject.tag);
         // On collision with enemy, poison him
         if (coll.gameObject.tag == "Enemy"){
             coll.gameObject.GetComponent<MonsterClass>().ReceivingPoison();
@@ -41,9 +42,11 @@ public class DropPoison : MonoBehaviour {
         // On collision with player, poison him
         else if (coll.gameObject.tag == "Player") {
             coll.gameObject.GetComponent<UserClass>().ReceivingPoison();
+            poisonTimer = 2f;
         }
         // The poison burns away if touches fire
         else if (coll.gameObject.tag == "DropFire"){
+            Debug.Log("HELLLLLO");
             // Remove Poison
             this.DestroySelf();
         }
