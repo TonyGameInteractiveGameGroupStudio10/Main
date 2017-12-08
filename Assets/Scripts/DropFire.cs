@@ -63,7 +63,7 @@ public class DropFire : MonoBehaviour {
     void OnTriggerStay2D(Collider2D coll){
         if (this.fire == true){
             if (coll.gameObject.tag == "Enemy"){
-                if (coll.gameObject.GetComponent<MonsterClass>().getType() != 0){
+                if (coll.gameObject.GetComponent<MonsterClass>().getType() != 1){
                     coll.gameObject.GetComponent<MonsterClass>().TakeDamage(4);
                 }  
             }

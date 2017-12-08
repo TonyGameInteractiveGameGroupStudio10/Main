@@ -78,8 +78,8 @@ public class GameMaster : MonoBehaviour {
 				// too see if all enemy are destroy.
 				if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0){
 					// If true, and it was the last round, win. 
-					if (currentRound == maxRounds-1){
-						SceneManager.LoadScene("VictoryScene", LoadSceneMode.Single);
+					if (currentRound == maxRounds-1){ //
+						SceneManager.LoadScene("VictoryScreen", LoadSceneMode.Single);
 					// Else increase the round, and start spawning again
 					} else{
 						currentRound += 1;
@@ -125,7 +125,6 @@ public class GameMaster : MonoBehaviour {
 			timeKeeper[3,i] = 60f;
 			timeKeeper[4,i] = 60f;
 		}
-
 		// Set Up Spawn Rates 
 		spawnRateKeeper = new float[maxRounds,maxWaves];
 		// Round One

@@ -103,7 +103,7 @@ public class UserClass : MonoBehaviour {
 		}
 
 		// Fire
-		if ((Input.GetKey("space")) || (Input.GetKey(KeyCode.Mouse1))){
+		if ((Input.GetKey("space")) || (Input.GetKey(KeyCode.Mouse0)) || (Input.GetKey(KeyCode.Mouse1))){
 			if (this.recheckAttack == true){
 				weaponPrefab = attackModule.ApplyMod(attackMod);
 				this.recheckAttack = false;
@@ -115,6 +115,10 @@ public class UserClass : MonoBehaviour {
 			if(weaponModule.Fire(weaponPrefab, this.transform.Find("FiringPosition"))){
 				anim.SetTrigger("shoot");
 			}
+		}
+
+		if(Input.GetKey(KeyCode.Escape)){
+			SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
 		}
 
 		// Poison Timer

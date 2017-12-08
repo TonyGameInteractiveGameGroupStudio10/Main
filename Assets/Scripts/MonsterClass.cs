@@ -114,7 +114,7 @@ public class MonsterClass : MonoBehaviour {
             // Verify the list isn't empty, more then current square, and isn't in action
             if((listOfMovement != null) && (listOfMovement.Count > 1) && (inAction == false)){
                 if (numberOfMoves < listOfMovement.Count) {
-                    goalPosition = listOfMovement[numberOfMoves];
+                    goalPosition = listOfMovement[listOfMovement.Count - numberOfMoves - 1];
                     transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), goalPosition, (currentSpeed * Time.deltaTime));
                     if ((transform.position.x == goalPosition.x) && (transform.position.y == goalPosition.y)){
                         numberOfMoves += 1;
@@ -126,8 +126,6 @@ public class MonsterClass : MonoBehaviour {
         // Path Timer
         if (timerBeforeNextFind > 0){
             timerBeforeNextFind -= Time.deltaTime;
-        } else {
-            timerBeforeNextFind = 1f;
         }
 
         if (specialTimer > 0){
@@ -368,6 +366,7 @@ public class MonsterClass : MonoBehaviour {
         if (timerBeforeNextFind <= 0){
             listOfMovement = movementPlan.FindPath(transform.position, monsterType);
             numberOfMoves = 1;
+            timerBeforeNextFind = 1.8f;
         }
     }
 
