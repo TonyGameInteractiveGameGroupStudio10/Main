@@ -63,10 +63,8 @@ public class InfluenceMap : MonoBehaviour {
 		return influenceMap[conVec.y , conVec.x];
 	}
 
-	// these numbers need to be play tested; for now I'm just picking some
-	// arbitrary shtuff cuz we r in finish 'em mode - Chris
 	private void spreadInfluence(bool delInfluence, int type, IntVector2 center){
-		int radius = 3;
+		int radius = 1;
 		int decayFactor = 75;
 		int threatVal = 100;
 		int spread;
@@ -81,7 +79,21 @@ public class InfluenceMap : MonoBehaviour {
 			return;
 		}
 
-		for(int i = -3; i <= radius; i++) {
+		influenceMap[center.y, center.x].getThreat()[type] += threatVal;
+		for (int i = -radius; i <= radius; i += 1){
+			if(((center.y + i) < gridLength) && ((center.y + i) > 0)) {
+				for(spread = (radius - Mathf.Abs(i)); spread > 0; spread--){
+					if((center.x + spread) < gridWidth) {
+						influenceMap[center.y+i , center.x+spread].getThreat()[type] += threatVal/4;
+					}
+					if((center.x - spread) > 0){
+						influenceMap[center.y+i , center.x-spread].getThreat()[type] += threatVal/4;
+					}
+				}		
+			}
+		}
+		/**
+		for(int i = -radius; i <= radius; i++) {
 			if(((center.y + i) < gridLength) && ((center.y + i) > 0)) {
 				influenceMap[center.y+i , center.x].getThreat()[type] += threatVal * (decayFactor * i);
 				for(spread = (radius - Mathf.Abs(i)); spread > 0; spread--){
@@ -94,5 +106,6 @@ public class InfluenceMap : MonoBehaviour {
 				}	
 			}
 		}
+		*/
 	}
 }
