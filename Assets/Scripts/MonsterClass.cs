@@ -387,7 +387,7 @@ public class MonsterClass : MonoBehaviour {
         if (timerBeforeNextFind <= 0){
             listOfMovement = movementPlan.FindPath(transform.position, monsterType);
             numberOfMoves = 1;
-            timerBeforeNextFind = 1.3f;
+            timerBeforeNextFind = 1.1f;
         }
     }
 
