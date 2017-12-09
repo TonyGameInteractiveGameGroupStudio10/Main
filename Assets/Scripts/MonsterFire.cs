@@ -31,10 +31,14 @@ public class MonsterFire : MonsterClass {
         monsterSpeed = 3f;
         currentSpeed = monsterSpeed;
 
-        // Set the box collider
+        float vx = transform.position.x;
+        float vy = transform.position.y;
+        // Set the box collider & and raycasters
         if (hasDrop == true){
             // large sprite
             GetComponent<BoxCollider2D>().size = new Vector2(0.11f,0.14f);
+            topLine.transform.position = new Vector3(vx,vy+0.40f,0f);
+            bottomLine.transform.position = new Vector3(vx,vy-0.45f,0f);
         } else {
             // small sprite
             GetComponent<BoxCollider2D>().size = new Vector2(0.09f,0.11f);

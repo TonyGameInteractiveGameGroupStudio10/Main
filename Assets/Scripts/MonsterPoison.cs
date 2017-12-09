@@ -31,10 +31,14 @@ public class MonsterPoison : MonsterClass {
         monsterSpeed = 2.8f;
         currentSpeed = monsterSpeed;
 
-        // Check which Hit Box to load
+        // Check which Hit Box to load & raycasters
+        float vx = transform.position.x;
+        float vy = transform.position.y;
         if (hasDrop == true){
             // Large Hit Box
             GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.14f);
+            topLine.transform.position = new Vector3(vx,vy+0.40f,0f);
+            bottomLine.transform.position = new Vector3(vx,vy-0.40f,0f);
         } else {
             // Small Hit Box
             GetComponent<BoxCollider2D>().size = new Vector2(0.1f,0.1f);

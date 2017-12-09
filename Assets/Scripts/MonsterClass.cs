@@ -39,6 +39,8 @@ public class MonsterClass : MonoBehaviour {
     protected bool inAction;
     protected float specialTimer;
     protected bool inSpecial;
+    public GameObject topLine;
+    public GameObject bottomLine;
 
     // Player
     ////////////////
@@ -279,14 +281,33 @@ public class MonsterClass : MonoBehaviour {
 
     // Is the target in ray cast
     protected bool InRayCast(){
-        RaycastHit2D hit = Physics2D.Linecast(transform.position, playerLocation.position);
-        if (hit.collider == null){
-            return false;
-        } else if (hit.collider.gameObject.tag == "Player") {
-			return true;
+        RaycastHit2D topHit = Physics2D.Linecast(topLine.transform.position, playerLocation.position);
+        RaycastHit2D bottomHit = Physics2D.Linecast(bottomLine.transform.position, playerLocation.position);
+        bool top;
+        bool bottom;
+        // This is so they dont just cut the corner on site of the player
+        // check to see if the top can see the player
+        if (topHit.collider == null){
+           top = false;
+        } else if (topHit.collider.gameObject.tag == "Player") {
+			top = true;
 		} else {
-			return false;
+			top = false;
 		}
+        // check to see if the bottom can see the player
+        if (bottomHit.collider == null){
+           bottom = false;
+        } else if (bottomHit.collider.gameObject.tag == "Player") {
+            bottom = true;
+        } else {
+            bottom = false;
+        }
+        // if they both can, return true
+        if (top && bottom) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Is the target in range
@@ -366,7 +387,7 @@ public class MonsterClass : MonoBehaviour {
         if (timerBeforeNextFind <= 0){
             listOfMovement = movementPlan.FindPath(transform.position, monsterType);
             numberOfMoves = 1;
-            timerBeforeNextFind = 1.8f;
+            timerBeforeNextFind = 1.3f;
         }
     }
 

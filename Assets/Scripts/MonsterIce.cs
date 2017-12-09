@@ -32,10 +32,14 @@ public class MonsterIce : MonsterClass {
         monsterSpeed = 2.8f;
         currentSpeed = monsterSpeed;
 
-        // Check which hitbox to load
+        // Check which hitbox to load & raycasters
+        float vx = transform.position.x;
+        float vy = transform.position.y;
         if (hasDrop == true){
             // Large hit box
-            GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.13f);
+            GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.14f);
+            topLine.transform.position = new Vector3(vx,vy+0.45f,0f);
+            bottomLine.transform.position = new Vector3(vx,vy-0.45f,0f);
         } else {
             // Small hit box
             GetComponent<BoxCollider2D>().size = new Vector2(0.11f,0.1f);

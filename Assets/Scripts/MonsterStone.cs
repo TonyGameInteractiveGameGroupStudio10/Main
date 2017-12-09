@@ -35,10 +35,14 @@ public class MonsterStone : MonsterClass {
         monsterSpeed = 2f;
         currentSpeed = monsterSpeed;
 
-        // Check which hitbox to load
+        // Check which hitbox to load & raycaster
+        float vx = transform.position.x;
+        float vy = transform.position.y;
         if (hasDrop == true){
-            // Large Sprite Hitboxes
+            // Large Sprite Hitboxes & Raycasters
             GetComponent<BoxCollider2D>().size = new Vector2(0.12f,0.15f);
+            topLine.transform.position = new Vector3(vx,vy+0.45f,0f);
+            bottomLine.transform.position = new Vector3(vx,vy-0.40f,0f);
         } else {
             // Small Sprite Hitboxes
             GetComponent<BoxCollider2D>().size = new Vector2(0.11f,0.11f);
