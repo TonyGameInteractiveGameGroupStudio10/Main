@@ -9,7 +9,7 @@ using UnityEngine;
 public class MonsterStone : MonsterClass {
 
     // Stats
-    public int Thrust = 50;
+    public int Thrust = 40;
 
     // Sprite
     public Sprite smallSprite;
