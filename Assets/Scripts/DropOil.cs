@@ -22,12 +22,12 @@ public class DropOil : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D coll){
         // Slow enemy 
         if (coll.gameObject.tag == "Enemy"){
-            float objectSpeed = coll.gameObject.GetComponent<MonsterClass>().GetCurrentSpeed();
+            float objectSpeed = coll.gameObject.GetComponent<MonsterClass>().GetMonsterSpeed();
             coll.gameObject.GetComponent<MonsterClass>().SetCurrentSpeed(objectSpeed/2);
         }
         // Slow Player
         else if (coll.gameObject.tag == "Player") {
-            float objectSpeed = coll.gameObject.GetComponent<UserClass>().GetSpeed();
+            float objectSpeed = coll.gameObject.GetComponent<UserClass>().GetMaxSpeed();
             coll.gameObject.GetComponent<UserClass>().SetSpeed(objectSpeed/2);
         }
         // The oil corrupts the water/ice/juel
@@ -38,6 +38,19 @@ public class DropOil : MonoBehaviour {
             // Add Oil
             Instantiate(this, iceLocation, Quaternion.identity);
             gameMaster.GetComponent<InfluenceMap>().addNode(iceLocation,3);
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D coll){
+        // Slow enemy 
+        if (coll.gameObject.tag == "Enemy"){
+            float objectSpeed = coll.gameObject.GetComponent<MonsterClass>().GetMonsterSpeed();
+            coll.gameObject.GetComponent<MonsterClass>().SetCurrentSpeed(objectSpeed/2);
+        }
+        // Slow Player
+        else if (coll.gameObject.tag == "Player") {
+            float objectSpeed = coll.gameObject.GetComponent<UserClass>().GetMaxSpeed();
+            coll.gameObject.GetComponent<UserClass>().SetSpeed(objectSpeed/2);
         }
     }
 
