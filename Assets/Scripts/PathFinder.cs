@@ -45,8 +45,8 @@ public class PathFinder : MonoBehaviour {
 
             // Check to see if we arrived at destination
             currentVector = smallestPath.GetPosition();
-            if ((currentVector.x > playerLocation.x-1f) && (currentVector.x < playerLocation.x+1f)){
-                if  ((currentVector.y > playerLocation.y-1f) && (currentVector.y < playerLocation.y+1f)) {
+            if ((currentVector.x > playerLocation.x-0.6f) && (currentVector.x < playerLocation.x+0.6f)){
+                if  ((currentVector.y > playerLocation.y-0.6f) && (currentVector.y < playerLocation.y+0.6f)) {
                     pathFound = true;
                     break;
                 }
