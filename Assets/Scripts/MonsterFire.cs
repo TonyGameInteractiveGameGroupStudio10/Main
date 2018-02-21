@@ -14,7 +14,7 @@ public class MonsterFire : MonsterClass {
     public GameObject FlameSpit;
     public Transform FlameMouth;
     private Vector2 FiringDirection;
-
+    private Transform RotatePosition;
     ///////////////////////////////////
     // Unity Methods
     ///////////////////////////////////
@@ -100,10 +100,27 @@ public class MonsterFire : MonsterClass {
     // Attack
     ////////////////
     public override void SpecialMove(){
-        BlastingCannon();
+        int random = Random.Range(1, 100);
+        if (random <= 50)
+        {
+            BlastingCannon();
+        }
+        else
+        {
+            FlameWheel();
+        }
     }
-
-    private void BlastingCannon(){
+    private void FlameWheel()
+    {
+        Debug.Log("should be rotating... Is it?");
+        FlameSpit.GetComponent<WeaponFire>().setFiringDirection(FiringDirection);
+        Instantiate(FlameSpit, gameObject.transform.position, gameObject.transform.rotation);
+        FlameSpit.transform.RotateAround(gameObject.transform.position, Vector3.up, 20 * Time.deltaTime);
+        
+        inSpecial = false;
+    }
+    private void BlastingCannon()
+    {
         // Find player location
         FiringDirection = (playerLocation.position - FlameMouth.position).normalized;
         // Set the firing direction
